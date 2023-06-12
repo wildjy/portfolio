@@ -4,9 +4,9 @@
 	publishng : JY
 */
 //<![CDATA[
-$(document).ready(function(){
-	project.init();
-});
+// $(document).ready(function(){
+// 	project.init();
+// });
 
 var project = {
 	init : function(){
