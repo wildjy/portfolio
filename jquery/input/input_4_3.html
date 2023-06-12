@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css">
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+
+<style type="text/css">
+/* file_Upload */
+#wrap{margin-bottom:40px;}
+#contents{padding: 0 15px;}
+#contents .file{height:46px; }
+#contents .file_box {float:left; margin:0 3px 0 0; padding:12px; width:calc(100% - 103px); height:100%; font-family: 'Nanum Gothic', sans-serif; font-size:15px; color:#00817f; border:1px solid #ddd; background-color:#FFF; white-space:nowrap; overflow:hidden;}
+#contents .filebutton {width:100px; height:100%; position:relative; overflow:hidden;}
+#contents .filebutton input{opacity: 0; filter: alpha(opacity = 0); -ms-filter: "alpha(opacity=0)"; position: absolute; top: -2px; left:-700px; font-size: 50px; line-height: 0; cursor: pointer; z-index: 999;}
+#contents .filebutton label.button{position:relative; top:0; left:0; display:block; float:right; padding-top:12px; width:100%; height:46px; font-family: 'Nanum Gothic', sans-serif; font-size:15px; color:#444; font-weight:600; text-align:center; border:1px solid #ddd;
+-webkit-transform:translate(0,0);
+-moz-transform:translate(0,0);
+-o-transform:translate(0,0);
+transform:translate(0,0);}
+
+.select{display:block; padding:5px 10px 5px 10px; width:100%; max-width:200px; height:46px; font-family: 'Nanum Gothic', sans-serif; font-size:14px; color:#222; text-align:left; vertical-align:-2px; border:none; border:1px solid #ddd; background:#FFF url("../../img/v3/ico/custom_Select_.gif") right 50% no-repeat; background-size:31px 46px;}
+.select.on{background:#f7f7f7 url("../../img/v3/ico/custom_Select_on.gif") right 50% no-repeat; background-size:31px 46px;}
+.select option{padding:5px 25px 5px 10px; font-family: 'Nanum Gothic', sans-serif; font-size:14px; color:#777;}
+
+#contents .functionBox{width:100%; max-width:400px; margin:0 auto; position:relative;}
+#contents .functionBox>.addControl{margin-top:15px;}
+#contents .functionBox>.addControl span.add{width:100%;}
+#contents .addControl span.add{display:block; width:46px; height:46px; font-size:0; text-indent:-9999px; background:#1A97FC url("../../images/ico/ico_addObj.gif") 50% 50% no-repeat; cursor:pointer;}
+#contents .addControl span.del{display:block; width:46px; height:46px; font-size:0; text-indent:-9999px;  background:#ccc url("../../images/ico/ico_delObj.gif") 50% 50% no-repeat; cursor:pointer;}
+#contents .img_Upload{width:100%; position:relative;}
+#contents .img_Upload:after{content:""; display:block; clear:both;}
+#contents .img_Upload .addControl{position:absolute; bottom:0; right:0; z-index:50;}
+#contents .up_Box{margin-top:10px; width:100%; position: relative;}
+#contents .up_Box:first-child{margin-top:0px;}
+#contents .up_Box:after{content:""; display:block; clear:both;}
+#contents .up_Box>.select{float:left; width:100px;}
+#contents .up_Box>.file{float:left; margin-left:10px; width:calc(100% - 170px); max-width:235px; position:relative;}
+#contents .up_Box>.file .file_box{padding-right:5px; width:100%; text-overflow:ellipsis;}
+#contents .up_Box>.file .filebutton{position:absolute; top:0; left:0; width:100%;}
+#contents .up_Box>.file .filebutton label.button{color:#fff; background-color:#A3A3A3;}
+#contents .up_Box>.addControl{position: absolute; top:0; right:0; z-index:5;}
+#contents .up_Box .preview_Img{display:none; float:left; margin-top:15px; padding:40px 20px; width:100%; text-align:center; border:1px solid #ddd; background-color: #fff;}
+#contents .up_Box:first-child .preview_Img{display:block;}
+#contents .up_Box .preview_Img img{width:90%; max-width:95%; cursor:pointer;}
+
+.newPop{position:fixed; top:0; bottom:0; left:0; right:0; padding:20px 10px; text-align:center; background-color: #fff; overflow-y:scroll; -webkit-overflow-scrolling:touch; z-index:9999;}
+.newPop img{width:auto; max-width:100%; cursor:pointer;}
+
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+</style>
+	</head>
+
+	<body>
+		<div class="sampleWrap">
+			<div id="wrap">
+				<div class="code in">
+					<div id="contents">
+						<div class="functionBox">
+							<div class="img_Upload">
+								<!-- -->
+								<!-- -->
+							</div>
+							<div class="addControl">
+								<span class="add">추가</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- 스크립트 -->
+		<script type="text/javascript">
+			//<![CDATA[
+			$(document).ready(function(){
+				genHTML(); // codemirror 실행
+				fnUpload.init();
+			});
+
+			/* fileUpload_add*/
+			var _num = 0,
+				arr = [],
+				limit = 10,
+				sta = 0;
+					
+			var fnUpload = {
+				init: function(){
+					$(".addControl .add").on("click", function(){
+						/*
+						if(_num == limit - 1) return false;
+						_num++;
+						fnUpload.create();
+						*/
+						if(_num == limit - 1){
+							alert("파일첨부는 10개 까지만 가능합니다.");
+							 return false;
+						} else {
+							_num++;
+							fnUpload.create();
+						}
+					});
+					fnUpload.create();
+				},
+
+				create : function(){
+					var obj = {};
+					obj.num = _num;
+					fnUpload.draw(obj);
+				},
+
+				draw : function(obj){
+					var $html = "";
+					$html += '';
+					$html += '<div class="up_Box">';
+					$html += '<select name="img_position['+ (obj.num - 1) +']" id="material_'+ (obj.num - 1) +'" class="select" title="이미지 위치를 선택하세요!">';
+					$html += '<option value="">선택</option>';
+					$html += '<option value="정면">정면</option>';
+					$html += '<option value="후면">후면</option>';
+					$html += '<option value="상세">상세</option>';
+					$html += '<option value="사인포함">사인포함</option>';
+					$html += '<option value="기타">기타</option>';
+					$html += '</select>';
+					$html += '<div class="file">';
+					$html += '<div class="file_box"></div>';
+					$html += '<div class="filebutton"><input type="file" name="file" id="file_'+ obj.num +'" class="searchfile files" title="파일 찾기" /><label for="file_'+ obj.num +'" class="button">파일선택</label></div>';
+					$html += '</div>';
+					$html += '<div class="preview_Img">';
+					$html += '<img src="../../images/contents/noImg.jpg" class="newLink" id="pvImg_" alt="" />';
+					$html += '</div>';
+					$html += '<div class="addControl">';
+					$html += '<span class="del">삭제</span>';
+					$html += '</div>';
+					$html += '</div>';
+					obj.ui = $($html);
+					//console.log(obj.ui);
+					$(".img_Upload").append(obj.ui);
+					arr.push(obj);
+
+					fnUpload.file(obj);
+					fnUpload.del(obj);
+				},
+
+				del : function(obj){
+					obj.ui.find(".del").on("click", function(){
+						sta = 0;
+						if(_num <= 0){
+							val = $(this).closest(".up_Box").find("input").val();
+
+							if(val == ""){
+								alert("1개 이하 삭제가 불가능합니다.");
+							} else {
+								$(this).closest(".up_Box").find(".filebutton").css({"opacity":"1"});
+								$(this).closest(".up_Box").find("input").remove();
+								$(this).closest(".up_Box").find(".filebutton").prepend('<input type="file" name="file" id="file_'+ obj.num +'" class="searchfile files" title="파일 찾기" />');
+								$(this).closest(".up_Box").find(".preview_Img img").attr("src", "");
+								$(this).closest(".up_Box").find(".preview_Img").hide();
+								fnUpload.file(obj);
+							}
+						} else {
+							obj.ui.remove();
+							arr.splice(obj.num,1);
+							fnUpload.reset(arr);
+							_num--;
+						}
+					});
+
+					fnUpload.reset(arr);
+				},
+	
+				file : function(obj){
+					$("#file_"+ obj.num +"").on('change', function(){
+						val = $(this).val().split("\\");
+						//console.log(val);
+						f_name = val[val.length-1];
+						s_name = f_name.substring(f_name.length-4, f_name.length);
+						//console.log(s_name);
+						$(this).parent().css({"opacity":"0"});
+						$(this).parent().siblings('.file_box').html("file : "+f_name);
+				
+						if(s_name.toLowerCase() == "jpeg" || s_name.toLowerCase() == ".jpg" || s_name.toLowerCase() == ".gif" || s_name.toLowerCase() == ".png"){
+							$(this).closest(".up_Box").find(".preview_Img").show();
+							readURL(this);
+						} else {
+							if(s_name.toLowerCase() == ""){
+								$(this).closest(".up_Box").find(".preview_Img").hide();
+								$(this).closest(".up_Box").find(".preview_Img img").attr("src", "../../images/contents/noImg.jpg");
+								$(this).closest(".up_Box").find(".filebutton").css({"opacity":"1"});
+								$(this).attr("val", "");
+								//console.log(val);
+								alert("파일이 선택되지 않았습니다.");
+							} else {
+								$(this).closest(".up_Box").find(".preview_Img").hide();
+								$(this).closest(".up_Box").find(".preview_Img img").attr("src", "../../images/contents/noImg.jpg");
+								alert("이미지 파일이 아닙니다.");
+								return;
+							};
+						}
+					});
+
+					function readURL(input) {
+						var reader = new FileReader();
+
+						reader.onload = function(e){
+							//$("#pvLink_"+ obj.num +"").attr("data-type", e.target.result);
+							$("#pvImg_"+ obj.num +"").attr("src", e.target.result);
+						};
+						reader.readAsDataURL(input.files[0]);
+					};
+				},
+
+				reset : function(arr){
+					for(var i in arr){
+						var obj = arr[i],
+						select = obj.ui.find("select"),
+						input = obj.ui.find(".filebutton input"),
+						label = obj.ui.find(".filebutton label"),
+						pvLink = obj.ui.find(".preview_Img a"),
+						pvImg = obj.ui.find(".preview_Img img");
+
+						obj.num = parseInt(i);
+
+						select.attr("name", "img_position["+ obj.num +"]");
+						select.attr("id", "material_"+ obj.num +"");
+						input.attr("name", "file["+ obj.num +"]");
+						input.attr("id", "file_" + obj.num +"");
+						label.attr("for", "file_" + obj.num +"");
+						pvLink.attr("id", "pvLink_" + obj.num +"");
+						pvImg.attr("id", "pvImg_" + obj.num +"");
+					}
+
+					fnUpload.newPop(obj);
+				},
+
+				newPop : function(obj){
+					var $scroll;
+
+					function stopScroll(){
+						$scroll = window.pageYOffset;
+						//console.log($scroll);
+						$("html").css({"overflow": "hidden"});
+						$("body").css({"position":"fixed", "top": -$scroll});
+					};
+
+					function enableScroll(){
+						$("html").css({"overflow":"auto"});
+						$("body").css({"position":"", "top":""});
+						window.scrollTo(0, $scroll);
+					};
+
+					$("#pvImg_"+ obj.num +"").on("click", function(){
+						var src = $(this).attr("src");
+						sta++;
+						if(sta == 1){
+							$("body").append("<div class='newPop'><img src='" + src + "' alt='' /></div>");
+							stopScroll();
+						}
+
+						$(".newPop").on("click", function(){
+							sta = 0;
+							$(this).remove();
+							enableScroll();
+						});
+					});
+				}
+			};
+			//]]>
+		</script>
+		<!-- // 스크립트 -->
+		</div><!-- // sampleWrap -->
+
+		<script type="text/javascript">
+		function genHTML(valArr){
+			$('.sampleWrap').each(function(i){
+				var temp = valArr || $(this).html();
+				var $src = $('<div class="htmlsrc" ></div>');
+				$(this).after($src);	
+				var myCodeMirror = CodeMirror($src[0], {
+					value: valArr ? temp[i] : temp,
+					mode: 'htmlmixed',
+					lineNumbers: !$(this).is('.inline'),
+					readOnly: true,
+					styleActiveLine: false,
+					autoClearEmptyLines:true,
+					lineWrapping: true,
+					matchBrackets: true
+				});
+				if($(this).hasClass('mine')) $(this).hide(); // 클래스 mine 이 붙으면 기존에 있던 텍스트는 삭제
+			});
+		}
+		</script>
+	</body>
+</html>

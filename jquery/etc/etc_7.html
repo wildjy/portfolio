@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" />
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/falling.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+		//스노우효과
+		function autosize(){
+			var h = $(window).height();
+			$('#winter_event').css({'height':h-316});
+		}
+
+		function winterevent(){
+			autosize();
+			
+			$('#winter_event').fallingObj({
+				maxLength : 20,
+				//closeBtn : $('#winter_event .btn_close'),
+				screenW     : $('#winter_event').width(),
+				screenH      : $('#winter_event').height(),
+				inteval       : 30,
+				mXmax       : 150,
+				mXmin        : 30,
+				mYmax       : 5,
+				mYmin        : 1.5,
+				sizeMax      : 30,
+				sizeMin       : 6
+			});
+		}
+		
+		winterevent();
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%; background-color: #111; }
+#wrap{width:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%; position:relative;}
+#contents{width:100%; }
+#footer{width:100%; background-color:#eee;}
+.inner{width:100%; margin:0 auto; position:relative;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#winter_event{overflow:hidden; position:absolute; top:0; bottom:0; left:0; width:100%; }
+.falling > li{position:absolute; left:0; top:0; background:url('../../images/ico/snow02.png') no-repeat 0 0; background-size:cover;}
+.falling > li:nth-child(3n){max-width:15px; max-height:15px; background:url('../../images/ico/smow01.png') no-repeat 0 0; background-size:cover}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+				<div id="winter_event"></div><!-- end : id : winter_event -->
+			</div><!-- end : id : visual -->
+
+			<div id="contents">
+
+			</div><!-- end : id : contents -->
+
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

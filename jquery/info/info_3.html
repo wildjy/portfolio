@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1000px, initial-scale=0.5, user-scalable=yes, maximum-scale=1.0, minimum-scale=0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		console.log(a);
+		var a;
+
+		//
+		console.log(b);
+		var b = 1;
+
+		//
+		console.log(test());
+		function test(){
+			return "hello";
+		}
+
+		//
+		var test_1 = function(){
+			return "hello";
+		};
+		console.log(test_1());
+
+		//함수를 다른 함수의 인수로 전달하기
+		function otherFunction(x, y, z){
+			x(y, z);
+		}
+		var param = function(arg1, arg2){
+			console.log(arg1 + "_" + arg2);
+		};
+		otherFunction(param, "hello", "world");
+
+		//
+		var pm = function inner(){
+			return typeof inner;
+		}
+		console.log(pm());
+
+		//
+		var nums = [1, 45, 2, 16, 9, 12];
+		var sum = 0;
+		for(var i = 0; i < nums.length; i++){
+			sum+= nums[i];
+			console.log(sum);
+		};
+		console.log(sum);
+
+		//
+		var nums_ = [1, 45, 2, 16, 9, 12];
+		var sum = nums_.reduce(function(n1, n2){
+			return n1 + n2;
+		});
+		console.log(sum);
+
+
+		//
+		function hello(name){
+			return 'hello_' + name + '!';
+		};
+
+		var $i = 0;
+		$(".add").on("click", function(){
+			$i++;
+			var name = hello("object");
+			console.log(name);
+
+			$("#wrap>.in").append("<p>" + name + $i + "</p>");
+		});
+
+		var message = (function(user){
+			return "hello_" + user + "_!";
+		})("obj");
+		$("#wrap>.in").prepend("<div>" + message + "</div>");
+
+		//
+		function sum_(a, b){
+			console.log(this === window);
+			this.myNum = 20;
+			return a + b;
+		};
+		sum_(1, 50);
+		console.log(window.myNum);
+
+		//
+		function multiply(a, b){
+			'use strict'
+			console.log(this === undefined);
+			return a * b;
+		}
+		multiply(2, 5);
+	},
+
+	main : function(){
+		var html = "";
+		html += "<ul class='type_2'></ul>";
+
+		var $ty = $(".type_1 li");
+		var $num = [];
+
+		$("#wrap>.in").append(html);
+
+		for(var i = 0; i<$ty.length; i++)
+		$num.push(i);
+		console.log(i);
+
+		$.each($num, function(){
+			$(".type_2").append("<li></li>");
+			var $ty_1 = $(".type_2 li");
+			$ty_1.eq(this).text($ty.eq(this).text());
+
+		});
+	},
+
+	sub : function(){
+
+	}
+}
+
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%; height:100%;  }
+#contents{width:100%;}
+#footer{width:100%;}
+.in{padding:0 2%; width:100%; max-width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+.add{padding:5px 15px; width:80px; font-size:15px; color:#fff; font-weight:600; text-align:center; border:1px solid #fff;}
+.type_1 li{font-size:15px; color:#fff;}
+.type_2 li{font-size:15px; color:yellow;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="in">
+				<p class="add">추가</p>
+
+				<ul class="type_1">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+				</ul>
+				<!-- <ul class="type_2">
+					<li></li>
+				</ul> -->
+			</div>
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

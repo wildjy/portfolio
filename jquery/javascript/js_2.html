@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="format-detection" content="telephone=no">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- <meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:url" content="" /> -->
+		<!-- <link rel="shortcut icon" type="text/css" href="images/ico/favicon_ns.ico" /> -->
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/study.css" />
+		<link type="text/css" rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<link type="text/css" rel="stylesheet" href="https://codemirror.net/2/theme/monokai.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/study.js"></script>
+		<!--[if lt IE 9]><script src="../../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../../js/html5shiv.js"></script><![endif]-->
+
+	</head>
+
+	<body>
+		<h1>Javascript</h1>
+		<h2 class="tit">내장 객체 II</h2>
+
+		<h3>배열 객체</h3>
+		<ul>
+			<li><strong>기본형 3가지</strong></li>
+			<li>var d = new Array();</li>
+			<li>var d = new Array(30, "홍길동", true);</li>
+			<li>var d = [30, "홍길동", true];</li>
+		</ul>
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		var d = [30, "홍길동", true];
+		console.log('d : ' + d);
+		console.log('d[0] : ' + d[0]);
+		console.log('d[1] : ' + d[1]);
+		console.log('d[2] : ' + d[2]);
+		</script>
+		</div>
+
+		<h3>배열 객체의 메서드 및 속성</h3>
+		<ul>
+			<li><strong>join(연결 문자)</strong> : 배열 객체에 데이터를 연결 문자 기준으로 1개의 문자형 데이터로 반환</li>
+			<li><strong>reverse()</strong> : 배열 객체에 데이터의 순서를 거꾸로 바꾼 후 반환</li>
+			<li><strong>sort()</strong> : 배열 객체에 데이터를 오름차순으로 정렬</li>
+			<li><strong>slice(index1, index2)</strong> : 배열 객체에 데이터 중 원하는 인덱스 구간만큼 잘라서 배열 객체로 가져옴</li>
+			<li><strong>splice()</strong> : 배열 객체에 지정 데이터를 삭제하고 그 구간에 새 데이터를 삽입</li>
+			<li><strong>concat()</strong> : 2개의 배열 객체를 하나로 결합</li>
+			<li><strong>pop()</strong> : 배열에 저장된 데이터 중 마지막 인덱스에 저장된 데이터를 삭제</li>
+			<li><strong>push(new data)</strong> : 배열 객체 마지막 인덱스에 새 데이터를 삽입</li>
+			<li><strong>shift()</strong> : 배열 객체에 저장된 데이터 중 첫 번째 인덱스에 저장된 데이터를 삭제</li>
+			<li><strong>unshift(new data)</strong> : 배열 객체의 가장 앞의 인덱스에 새 데이터를 삽입</li>
+			<li><strong>length</strong> : 배열에 저장된 총 데이터의 개수를 반환</li>
+		</ul>
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		var sw = ["사당", "교대", "방배", "강남"];
+		console.log( 'sw : ' + sw );
+		console.log( 'sw.join("-") : ' + sw.join("-") );
+		console.log( 'sw.reverse() : ' + sw.reverse() );
+		console.log( 'sw.sort() : ' + sw.sort() );
+
+		console.log( '------------------------------' );
+
+		var gline = ["사당", "교대", "방배", "강남"];
+		console.log( 'gline : ' + gline );
+		console.log( 'gline.splice(2, 2, "서초", "역삼") : ' + gline.splice(2, 2, "서초", "역삼") ); // 인덱스 2에 저장된 데이터로부터 2개를 삭제하고 지정한 장소에 2개의 데이터를 추가 삽입
+		console.log( 'gline : ' + gline );
+		console.log( 'gline.slice(1, 3) : ' + gline.slice(1, 3) ); // 인덱스 1부터 3 이전까지 선택
+
+		console.log( '------------------------------' );
+
+		var gline = ["사당", "교대", "방배", "강남"];
+		var yline = ["미금", "정자", "모란", "수서"];
+		console.log( 'gline : ' + gline );
+		console.log( 'yline : ' + yline );
+		var tline = gline.concat(yline);
+		console.log( 'tline = gline.concat(yline);' );
+		console.log( 'tline : ' + tline );
+		console.log( 'gline.pop() : ' + gline.pop() );
+		console.log( 'gline : ' + gline );
+		console.log( 'gline.push("삼성") : ' + gline.push("삼성") );
+		console.log( 'gline : ' + gline );
+		console.log( 'gline.shift() : ' + gline.shift() );
+		console.log( 'gline : ' + gline );
+		console.log( 'gline.unshift("신도림") : ' + gline.unshift("신도림") );
+		console.log( 'gline : ' + gline );
+		</script>
+		</div>
+
+		<h3>문자 객체의 메서드 및 속성</h3>
+		<ul>
+			<li><strong>charAt(index)</strong> : 문자열에서 인덱스 번호에 해당하는 문자를 반환</li>
+			<li><strong>indexOf("찾을 문자")</strong> : 문자열에서 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 최초로 일치하는 문자의 인덱스 번호를 반환, 만일 찾는 문자가 없으면 -1를 반환</li>
+			<li><strong>lastIndexOf("찾을 문자")</strong> : 문자열에서 오른쪽부터 찾을 문자와 일치하는 문자를 찾아 최초로 일치하는 문자의 인덱스 번호를 반환, 만일 찾는 문자가 없으면 -1를 반환</li>
+			<li><strong>match("찾을 문자")</strong> : 문자열에서 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 최초로 찾은 문자를 반환, 만일 찾는 문자가 없으면 null을 반환</li>
+			<li><strong>replace("바꿀 문자", "새 문자")</strong> : 문자열에서 왼쪽부터 바꿀 문자와 일치하는 문자를 찾아 최초로 찾은 문자를 새 문자로 치환</li>
+			<li><strong>search("찾을 문자")</strong> : 문자열에서 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 최초로 일치하는 인덱스 번호를 반환</li>
+			<li><strong>slice(a, b)</strong> : 왼쪽부터 a개의 문자를 자르고 b번째 이후에 문자를 모두 자른 후 남은 문자를 반환</li>
+			<li><strong>substring(a, b)</strong> : a인덱스부터 b인덱스 이전 구간의 문자를 반환</li>
+			<li><strong>substr(a, 문자 개수)</strong> : 문자열에 a인덱스부터 지정한 문자 개수만큼 문자열을 반환</li>
+			<li><strong>split("문자")</strong> : 지정한 문자를 기준으로 문자 데이터를 나누어 배열에 저장하여 반환</li>
+			<li><strong>toLowerCase()</strong> : 문자열에서 영문 대문자를 모두 소문자로 바꿈</li>
+			<li><strong>toUpperCase()</strong> : 문자열에서 영문 소문자를 모두 대문자로 바꿈</li>
+			<li><strong>length</strong> : 문자열에서 문자의 개수를 반환</li>
+			<li><strong>concat("새로운 문자")</strong> : 문자열에서 새로운 문자열을 결합</li>
+			<li><strong>charCodeAt("찾을 문자")</strong> : 찾을 문자의 아스키 코드 값을 반환</li>
+			<li><strong>fromCharCode(아스키 코드 값)</strong> : 아스키 코드 값에 해당하는 문자를 반환</li>
+			<li><strong>trim()</strong> : 문자의 앞 또는 뒤에 공백 문자열을 삭제</li>
+		</ul>
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		console.log( '------------------------------' );
+
+		var t = 'Hello Thank you good luck to you';
+		console.log( 't : ' + t );
+		console.log( 't.charAt(16) : ' + t.charAt(16) );
+		console.log( 't.indexOf("you") : ' + t.indexOf("you") );
+		console.log( 't.indexOf("you", 16) : ' + t.indexOf("you", 16) ); // 문자열 인덱스 16 위치부터 최초로 발견된 you의 인덱스 값을 반환
+		console.log( 't.lastIndexOf("you") : ' + t.lastIndexOf("you") );
+		console.log( 't.lastIndexOf("you", 25) : ' + t.lastIndexOf("you", 25) ); // 문자열 인덱스 25부터 왼쪽 방향으로 최초에 발견된 you의 인덱스 값을 반환
+		console.log( 't.match("luck") : ' + t.match("luck") );
+		console.log( 't.search("you") : ' + t.search("you") );
+		console.log( 't.substr(21, 4) : ' + t.substr(21, 4) );
+		console.log( 't.substring(6, 12) : ' + t.substring(6, 12) );
+		console.log( 't.replace("you", "me") : ' + t.replace("you", "me") );
+		console.log( 't.toLowerCase() : ' + t.toLowerCase() );
+		console.log( 't.toUpperCase() : ' + t.toUpperCase() );
+		console.log( 't.length : ' + t.length );
+
+		var s = t.split(" ");
+		console.log( 's = t.split(" ");' );
+		console.log( 's : ' + s );
+		console.log( 's[4] : ' + s[4] );
+		// console.log( 'String.charCodeAt("A") : ' + String.charCodeAt("A") );
+		console.log( 'String.fromCharCode(65) : ' + String.fromCharCode(65) );
+
+		var userNum = "01041475948";
+		var result = userNum.substring(0, userNum.length-4)+"****";
+		console.log( 'userNum : ' + userNum );
+		console.log( 'result = userNum.substring(0, userNum.length-4)+"****";' );
+		console.log( 'result : ' + result );
+		</script>
+		</div>
+	</body>
+</html>

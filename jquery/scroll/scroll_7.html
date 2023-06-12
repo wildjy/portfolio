@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+
+		<!--  ** start : codemirror ** -->
+		<!-- <link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script> -->
+		<!--  ** end : codemirror ** -->
+
+
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+
+<style type="text/css">
+/* layout */
+html {
+    overflow: auto;
+}
+body{width:100%;overflow-x:hidden; }
+#wrap{width:100%; position:relative; }
+#header{width:100%; }
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%;}
+.inner{width:100%; max-width:1200px; margin:0 auto;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:200;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+/* 그룹슬라이더 */
+#wrap .swiper-container{width: 100%; height: 100%;}
+#wrap .swiper-slide{text-align: center; font-size: 18px; background-color: #eee;
+ /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+#wrap .sliderWrap{padding:0 15px 30px 15px; width:100%; overflow-x:scroll; overflow-y:hidden; -webkit-overflow-scrolling:touch; z-index:1000;}
+#wrap .swiper-container-horizontal>.swiper-scrollbar{left:20px; right:20px; width:calc(100% - 40px);}
+#wrap .swiper-scrollbar-drag{background-color:rgba(17, 189, 251,1);}
+#wrap .group_Slider{/* width:100%; min-width:680px;  */margin-top:100px; position:relative; }
+#wrap .group_Slider:after{content:""; display:block; clear:both;}
+#wrap .group_Slider .swiper-slide{float:left; /*margin-left:5px;  width:680px;  height:263px; */ position:relative; background-color:#aaa;}
+#wrap .group_Slider .swiper-slide:first-child{margin-left:0;}
+#wrap .group_Slider .swiper-slide:after{content:""; display:block; clear:both;}
+#wrap .group_Slider .swiper-slide>.obj{position:absolute; /* width:190px; height:150px; */ text-align:center; background-color:#eee; overflow:hidden; border:1px solid #ddd;}
+#wrap .group_Slider .swiper-slide>.obj.big{height:100%;}
+#wrap .group_Slider .swiper-slide>.obj>span{position:absolute; top:50%; left:50%; font-size:13px; color:#111; background-color:#eee;
+-webkit-transform:translate(-50%,-50%);290 10 190 190
+-moz-transform:translate(-50%,-50%);
+-o-transform:translate(-50%,-50%);175 10 175 10 265
+transform:translate(-50%,-50%);}
+#wrap .group_Slider .swiper-slide>.obj>span b{display:block; padding-top:5px; font-size:15px; color:red;}
+#wrap .group_Slider .swiper-slide>.obj .sticker{position:absolute; top:0; left:0; padding:5px; width:37px; height:37px; font-family: 'NanumSquare'; font-size:11px; color:#000; font-weight:600; line-height:13px; background-color:#FAE100; z-index:10; box-shadow:3px 3px 6px rgba(0,0,0,.3);}
+#wrap .group_Slider .swiper-slide>.obj>a{display:block; height:100%;}
+#wrap .group_Slider .swiper-slide>.obj>a>span{display:block; height:100%;}
+#wrap .group_Slider .swiper-slide>.obj>a .cover{position:absolute; top:0; width:100%; height:100%; background-color:rgba(26,151,252,.75); z-index:1;
+-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+#wrap .group_Slider .swiper-slide>.obj.end>a .cover{background-color:rgba(34,34,34,.5); }
+#wrap .group_Slider .swiper-slide>.obj.end>a .cover .info>span.count .guage{display:block;}
+#wrap .group_Slider .swiper-slide>.obj>a .info{position:absolute; margin-top:5px; top:50%; left:0; width:100%;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#wrap .group_Slider .swiper-slide>.obj>a .info span{display:block; color:#fff;}
+#wrap .group_Slider .swiper-slide>.obj>a .info>b.name{display:block; padding:0 20px; font-size:16px; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+#wrap .group_Slider .swiper-slide>.obj>a .info>span.count{margin-top:5px; font-size:12px;}
+#wrap .group_Slider .swiper-slide>.obj>a .info>span.count b{font-size:16px;}
+#wrap .group_Slider .swiper-slide>.obj>a .info>span.count .guage{display:none; width:70px; height:4px; margin:5px auto 0; background-color:#FFF; border-radius:2px;}
+#wrap .group_Slider .swiper-slide>.obj>a .info>span.count .guage>b{display:block; width:0%; height:100%; font-size:0; text-indent:-9999px; background-color:#11BDFB; border-radius:2px;
+-webkit-transition:all 1s ease-in;
+-moz-transition:all 1s ease-in;
+-o-transition:all 1s ease-in;
+transition:all 1s ease-in;}
+
+#wrap .group_Slider .swiper-slide>.obj>a .img{position:absolute; top:0; bottom:0; width:100%; text-align:center;}
+#wrap .group_Slider .swiper-slide>.obj>a .img img{position:absolute; top:50%; left:0; width:100%;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+
+/* swiper-slider_tpye_0 */
+/* #wrap .group_Slider .swiper-slide.type_0>.obj_1{top:0; left:0;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_2{bottom:0; left:0;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_3{top:0; left:195px; width:290px;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_4{top:0; right:0;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_5{bottom:0; right:0;} */
+
+#wrap .group_Slider .swiper-slide.type_0>.obj_3 .sticker{padding:10px; width:50px; height:50px; font-size:12px; line-height:15px;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_3>a .info{margin-top:0;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_3>a .info>b.name{font-size:20px;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_3>a .info>span.count{margin-top:5px; font-size:12px;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_3>a .info>span.count b{font-size:20px;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_3>a .img{text-align:center; position:relative;}
+#wrap .group_Slider .swiper-slide.type_0>.obj_3>a .img img{display:inline-block; top:0; left:50%; height:100%; width:auto;
+-webkit-transform:translate(-50%,0);
+-moz-transform:translate(-50%,0);
+-o-transform:translate(-50%,0);
+transform:translate(-50%,0);}
+
+/* swiper-slider_tpye_1 */
+/* #wrap .group_Slider .swiper-slide.type_1>.obj_1{top:0; left:0;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_2{bottom:0; left:0;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_3{top:0; left:195px;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_4{bottom:0; left:195px;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_5{bottom:0; right:0; width:290px;} */
+#wrap .group_Slider .swiper-slide.type_1>.obj_5 .sticker{padding:10px; width:50px; height:50px; font-size:12px; line-height:15px;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_5>a .info{margin-top:0;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_5>a .info>b.name{font-size:20px;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_5>a .info>span.count{margin-top:5px; font-size:12px;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_5>a .info>span.count b{font-size:20px;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_5>a .img{text-align:center; position:relative;}
+#wrap .group_Slider .swiper-slide.type_1>.obj_5>a .img img{display:inline-block; top:0; left:50%; height:100%; width:auto;
+-webkit-transform:translate(-50%,0);
+-moz-transform:translate(-50%,0);
+-o-transform:translate(-50%,0);
+transform:translate(-50%,0);}
+
+/* swiper-slider_tpye_2 */
+/* #wrap .group_Slider .swiper-slide.type_2>.obj_1{top:0; left:0; width:290px;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_2{top:0; left:295px;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_3{bottom:0; left:295px;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_4{top:0; right:0;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_5{bottom:0; right:0;} */
+#wrap .group_Slider .swiper-slide.type_2>.obj_1 .sticker{padding:10px; width:50px; height:50px; font-size:12px; line-height:15px;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_1>a .info{margin-top:0;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_1>a .info>b.name{font-size:20px;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_1>a .info>span.count{margin-top:5px; font-size:12px;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_1>a .info>span.count b{font-size:20px;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_1>a .img{text-align:center; position:relative;}
+#wrap .group_Slider .swiper-slide.type_2>.obj_1>a .img img{display:inline-block; top:0; left:50%; height:100%; width:auto;
+-webkit-transform:translate(-50%,0);
+-moz-transform:translate(-50%,0);
+-o-transform:translate(-50%,0);
+transform:translate(-50%,0);}
+
+
+.sizeInput{}
+.sizeInput input{padding:5px; font-size:15px; color:#000; border:1px solid #ddd;}
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="code in">
+
+				<div class="swiper-container sliderWrap">
+					<div class="swiper-wrapper group_Slider">
+						<div class="obj"><span>1<b>190</b></span></div>
+						<div class="obj"><span>2<b>190</b></span></div>
+						<div class="obj"><span>3<b>290</b></span></div>
+						<div class="obj"><span>4<b>190</b></span></div>
+						<div class="obj"><span>5<b>190</b></span></div>
+						<div class="obj"><span>6<b>190</b></span></div>
+						<div class="obj"><span>7<b>190</b></span></div>
+						<div class="obj"><span>8<b>190</b></span></div>
+						<div class="obj"><span>9<b>190</b></span></div>
+						<div class="obj"><span>10<b>290</b></span></div>
+						<!-- <div class="obj"><span>11<b>290</b></span></div>
+						<div class="obj"><span>12<b>190</b></span></div>
+						<div class="obj"><span>13<b>190</b></span></div>
+						<div class="obj"><span>14<b>190</b></span></div>
+						<div class="obj"><span>15<b>190</b></span></div>
+						<div class="obj"><span>16<b>190</b></span></div>
+						<div class="obj"><span>17<b>190</b></span></div>
+						<div class="obj"><span>18<b>290</b></span></div>
+						<div class="obj"><span>19<b>190</b></span></div> -->
+					</div>
+
+				</div>
+			</div>
+			<div class="sampleWrap">
+
+			<script type="text/javascript">
+			//<![CDATA[
+			(function($){
+				//genHTML(); // codemirror 실행
+
+				//group_slider
+				//obj = width, height css 기준
+				//small, big = width css setting
+				var _num = 0;
+				var arr = [];
+				var tyN = 3; //slide_Type
+				var isN = 5; //slide obj length
+				var small = 190; //init small width
+				var height = 120; //init height
+				var big = 290; //init big width
+				var between = 5; //init between
+				var $gP = 1000; //max guage
+
+
+				var reset = {
+					slider : function(){
+
+						var $groupSlider = $(".group_Slider");
+						var objs = $(".group_Slider .obj");
+						var $limits = objs.length;
+
+						$groupSlider.height(height*2 +between);
+						objs.css({"width":small,"height":height});
+
+						for(var i=0; i<$limits; i+=isN){
+							objs.slice(i, i + isN).wrapAll("<div class='swiper-slide'></div>");
+						};
+						
+						//slide_height
+						var slide = $(".swiper-slide");
+						var sH = objs.eq(0).outerHeight();
+						slide.css({"margin-left":between, "width":(small*2) + big + (between*2), "height":sH*2 + between});
+						slide.eq(0).css({"margin-left":"0"});
+
+						//guage_init
+						var o = $groupSlider.find(".guage").length;
+
+						for(var a = 0; a<o; a++)
+						arr.push(a);
+						
+						$.each(arr, function(){
+							var $target = $groupSlider.find(".count").eq(this).find("b");
+							var $val = $target.text();
+
+							if($val == $gP){
+								$groupSlider.find(".obj").eq(this).addClass("end");
+								$groupSlider.find(".obj").eq(this).prepend("<div class='sticker'>모집성공</div>");
+							}
+							if($val.length <= 2){
+								var $v = $val.substring(0, 1);
+								//console.log($v);
+								$target.css({"width":$v + "%"});
+							}
+						});
+
+						var objArr = [];
+						$(".group_Slider .swiper-slide").each(function(i){
+							var obj = $(this).find(".obj");
+							var objL = $(this).find(".obj").length;
+
+							if(_num == tyN) _num=0;
+								_num++;
+								$(this).addClass("type_" + (_num-1));
+							var x = 0;
+							for(var a=0; a<objL; a++){
+								if(x==isN) x=0;
+								x++;
+								obj.eq(x -1).addClass("obj_"+x);
+								//type_0 = big center
+								$(".type_0 .obj_1").css({"left":"0px","top":"0px"});
+								$(".type_0 .obj_2").css({"left":"0px","bottom":"0px"});
+								$(".type_0 .obj_3").addClass("big").css({"left":small + between});
+								$(".type_0 .obj_4").css({"right":"0px","top":"0px"});
+								$(".type_0 .obj_5").css({"right":"0px","bottom":"0px"});
+								//type_1 = big right
+								$(".type_1 .obj_1").css({"left":"0px","top":"0px"});
+								$(".type_1 .obj_2").css({"left":"0px","bottom":"0px"});
+								$(".type_1 .obj_3").css({"left":small + between,"top":"0px"});
+								$(".type_1 .obj_4").css({"left":small + between,"bottom":"0px"});
+								$(".type_1 .obj_5").addClass("big").css({"right":"0px"});
+								//type_2 = big left
+								$(".type_2 .obj_1").addClass("big").css({"left":"0px","top":"0px"});
+								$(".type_2 .obj_2").css({"left":big + between,"top":"0px"});
+								$(".type_2 .obj_3").css({"left":big + between,"bottom":"0px"});
+								$(".type_2 .obj_4").css({"right":"0px","top":"0px"});
+								$(".type_2 .obj_5").css({"right":"0px","bottom":"0px"});
+								slide.find(".big").outerWidth(big).height(height*2 + between);
+								objArr.push(objs.eq(a).outerWidth());
+							}
+
+							objArr.sort(function(a, b){return b - a });
+							for(var a=0; a<$limits; a++){
+								if(objs.eq(a).outerWidth() === objArr[0]){
+									objs.eq(a).addClass("big");
+								}
+							}
+						});
+						//console.log(objArr);
+						//console.log(objArr[0]); // 290
+
+						objs.find("b").html(small);
+						slide.find(".big").find("b").html(big);
+
+						var a = $groupSlider.find(".swiper-slide").length;
+						var b = $groupSlider.find(".swiper-slide").outerWidth();
+						var c = (5 * (a - 1))
+						var $gsWrap = a * b + c;
+						//console.log(b);
+				
+						var g = $(".swiper-slide").last();
+						var x0 = b - 0; 
+						var x1 = b - small;
+						var x2 = b - big;
+						var x3 = b - (small + big + between); 
+						var x4 = b - ((small*2) + (between*2));
+						//console.log(x0);
+						//console.log(x1);
+						//console.log(x2);
+						//console.log(x3);
+						//console.log(x4);
+
+						if(g.hasClass("type_0")){
+							console.log("type_0");
+							calcSize();
+						}
+						if(g.hasClass("type_1")){
+							console.log("type_1");
+							calcSize();
+						}
+						if(g.hasClass("type_2")){
+							console.log("type_2");
+							calcSize();
+						}
+
+						function calcSize(){
+							var r = $limits%5;
+							switch(r){
+								case 0 : console.log(0);
+									$groupSlider.width($gsWrap + between);
+										if(g.hasClass("type_0")){
+											$groupSlider.width($gsWrap + between);
+										}
+								break;
+								case 1 : console.log(1);
+									if(!g.hasClass("type_0")){
+										g.width(x3)
+										$groupSlider.width($gsWrap - (x1 - between));
+										if(g.hasClass("type_1")){
+											g.width(x3)
+											$groupSlider.width($gsWrap - (x1 - between));
+										}
+										if(g.hasClass("type_2")){
+											g.width(x4)
+											$groupSlider.width($gsWrap - (x2 - between));
+										}
+									} else {
+										g.width(x3 - between)
+										$groupSlider.width($gsWrap - (x1 - between));
+									}
+								break;
+								case 2 : console.log(2);  
+									if(!g.hasClass("type_0")){
+										g.width(x3)
+										$groupSlider.width($gsWrap - (x1 - between));
+										if(g.hasClass("type_1")){
+											g.width(x3 - between)
+											$groupSlider.width($gsWrap - (x1 - between));
+										}
+										if(g.hasClass("type_2")){
+											console.log("Tye");
+											g.width(x1 - between)
+											$groupSlider.width($gsWrap - (x3 - between));
+										}
+									} else {
+										g.width(x3 - between)
+										$groupSlider.width($gsWrap - (x1 - between));
+									}
+								break;
+								case 3 : console.log(3);
+									if(!g.hasClass("type_1")){
+										g.width(x1 - between)
+										$groupSlider.width($gsWrap - (x3 - between));
+									} else {
+										g.width(x2 - between)
+										$groupSlider.width($gsWrap - x4);
+									}
+								break;
+								case 4 : console.log(4);
+									if(!g.hasClass("type_1")){
+										g.width(x1)
+										$groupSlider.width(x1);
+										if(g.hasClass("type_0")){
+											g.width(x0);
+											$groupSlider.width($gsWrap + between);
+										}
+										if(g.hasClass("type_2")){
+											console.log("Tye");
+											g.width(x0)
+											$groupSlider.width($gsWrap + between);
+										}
+									} else {
+										console.log("aa");
+										g.width(x2 - between)
+										$groupSlider.width($gsWrap - x4);
+									}
+								//default : console.log("a");
+							};
+						};
+
+					}
+				}
+				reset.slider();
+			})(jQuery);
+			//]]>
+			</script>
+			</div><!-- // sampleWrap -->
+
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

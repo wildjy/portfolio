@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault();
+	}
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+		function move(){
+			$('.pt_2').stop().animate({'top':'70px'},1000,function(){
+				$('.pt_2').stop().animate({'top':'60px'},1000);
+			});
+			$('.pt_3').stop().animate({'top':'735px'},900,function(){
+				$('.pt_3').stop().animate({'top':'725px'},900);
+			});
+			$('.pt_4').stop().animate({'top':'246px'},800,function(){
+				$('.pt_4').stop().animate({'top':'236px'},800);
+			});
+			$('.pt_5').stop().animate({'top':'620px'},1000,function(){
+				$('.pt_5').stop().animate({'top':'610px'},1000);
+			});
+			$('.pt_6').stop().animate({'top':'145px'},900,function(){
+				$('.pt_6').stop().animate({'top':'135px'},900);
+			});
+			$('.pt_7').stop().animate({'top':'266px'},800,function(){
+				$('.pt_7').stop().animate({'top':'256px'},800);
+			});
+			$('.pt_8').stop().animate({'top':'608px'},1000,function(){
+				$('.pt_8').stop().animate({'top':'598px'},1000);
+			});
+		}
+
+		var owl = $('.textEvent');
+		owl.owlCarousel({
+			smartSpeed:3000,
+			autoWidth:true,
+			center: true,
+			loop:true,
+			margin:150,
+			onDrag : callback
+		});
+
+		function callback(event){
+			move();
+		}
+
+		$('body').on('mousewheel', function(e){
+			if(e.deltaY>0){
+				owl.trigger('prev.owl');
+			}else{
+				owl.trigger('next.owl');
+			}
+			move();
+			e.preventDefault();
+		});
+
+		$('.item a').on({
+			mouseenter:function(){
+				$('.item a').addClass('no-active');
+				$(this).addClass('active');
+			},
+			mouseleave:function(){
+				$('.item a').removeClass();
+			}
+		})
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{height:100%;}
+#wrap{min-width:1200px; width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+.main_txt{padding-top:110px}
+.main_txt p{width:1200px; margin:0 auto; font-size:16px; font-weight:300; line-height:30px; box-sizing:border-box; padding-left:49px;}
+.main_txt p:last-child{padding-top:540px;}
+
+.textEvent{position:absolute !important; top:50%; left:0; margin-top:-46px;}
+.textEvent .item a{display:inline-block; color:#fff; font-size:92px; line-height:92px; font-weight:700; word-break:break-all; -webkit-transition:all 0.5s; -moz-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s;}
+.textEvent .item a.active.no-active{color:#fff568; opacity:1}
+.textEvent .item a.no-active{color:#a5a5a5; opacity:0.2}
+
+.textEvent .item_1 a{color:#73f6a3;}
+
+.textEvent .item_1 a.active.no-active{color:#73f6a3;}
+.textEvent .item_2 a.active.no-active{color:#a6dbe1;}
+.textEvent .item_3 a.active.no-active{color:#f7f646;}
+.textEvent .item_4 a.active.no-active{color:#f6b1dd;}
+.textEvent .item_5 a.active.no-active{color:#faa994;}
+
+.owl-stage{transform:translate3d('0px,0px,0px') !important;}
+
+#footer{position:absolute; bottom:0; left:0;background:#222; text-align:center; padding:40px 0;}
+#footer ul li{color:#5e5e5e; line-height:22px; font-family:'noto', Dotum, "ë‹ì›€",Gulim, "êµ´ë¦¼", Verdana, Tahoma, AppleGothic, sans-serif;}
+#footer p{color:#767676; font-weight:300;}
+
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="contents">
+				<div class="textEvent owl-carousel">
+					<div class="item item_1">
+						<a href="/eng/sub/about.php">Choyang Industry Co., Ltd.</a>
+					</div>
+					<div class="item item_2">
+						<a href="/eng/sub/about.php">Star USA LLC</a>
+					</div>
+					<div class="item item_3" id="abc">
+						<a href="/eng/sub/about.php">Star Industry Co., Ltd.</a>
+					</div>
+					<div class="item item_4">
+						<a href="/eng/sub/about.php">FES CO., Ltd.</a>
+					</div>
+					<div class="item item_5">
+						<a href="/eng/sub/about.php">FESAM Incorporation.</a>
+					</div>
+				</div>
+
+				<link rel="stylesheet" href="../../css/owl.carousel.min.css" />
+				<script type="text/javascript" src="../../js/jquery.mousewheel.min.js"></script>
+				<script type="text/javascript" src="../../js/owl.carousel.js"></script>
+
+			</div><!-- end : id : contents -->
+
+			<footer id="footer">
+				<p class="copy">Industry Co., Ltd. Copyright 2017 All rights reserved.</p>
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

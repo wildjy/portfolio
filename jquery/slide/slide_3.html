@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1000px, initial-scale=0.1, user-scalable=yes, maximum-scale=1.0, minimum-scale=0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/slick.min.js"></script>
+
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%; height:100%;  }
+#contents{width:100%;}
+#footer{width:100%;}
+.in{width:100%;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+#wrap{}
+#wrap .group_Slider{width:1200px; margin:0 auto;}
+#wrap .group_Slider .slick-list{overflow:hidden;}
+#wrap .group_Slider .slide{width:100%; height:600px; border:1px solid #ddd; position:relative;}
+#wrap .group_Slider .slide:after{content:""; display:block; clear:both;}
+#wrap .group_Slider .slide>.obj{position:absolute; width:300px; height:294px; background-color:#eee; border:1px solid #ddd;}
+#wrap .group_Slider .slide>.obj>span{position:absolute; top:50%; left:50%; font-size:40px; color:#000; font-weight:600;
+-webkit-transform:translate(-50%,-50%);
+-moz-transform:translate(-50%,-50%);
+-o-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%);}
+
+#wrap .group_Slider .slide.type_0>.obj_1{top:0; left:0;}
+#wrap .group_Slider .slide.type_0>.obj_2{bottom:0; left:0;}
+#wrap .group_Slider .slide.type_0>.obj_3{top:0; left:310px; width:578px; height:100%;}
+#wrap .group_Slider .slide.type_0>.obj_4{top:0; right:0;}
+#wrap .group_Slider .slide.type_0>.obj_5{bottom:0; right:0;}
+
+#wrap .group_Slider .slide.type_1>.obj_1{top:0; left:0;}
+#wrap .group_Slider .slide.type_1>.obj_2{top:0; left:310px;}
+#wrap .group_Slider .slide.type_1>.obj_3{bottom:0; left:0;}
+#wrap .group_Slider .slide.type_1>.obj_4{bottom:0; left:310px;}
+#wrap .group_Slider .slide.type_1>.obj_5{bottom:0; right:0; width:578px; height:100%;}
+
+#wrap .group_Slider .slide.type_2>.obj_1{top:0; left:0; width:578px; height:100%;}
+#wrap .group_Slider .slide.type_2>.obj_2{top:0; right:310px;}
+#wrap .group_Slider .slide.type_2>.obj_3{top:0; right:0;}
+#wrap .group_Slider .slide.type_2>.obj_4{bottom:0; right:310px}
+#wrap .group_Slider .slide.type_2>.obj_5{bottom:0; right:0;}
+
+#wrap .group_Slider .slick-arrow{width:80px; height:40px; background-color:red}
+#wrap .group_Slider .slick-prev{left:-100px;}
+#wrap .group_Slider .slick-next{right:-100px;}
+#wrap .group_Slider .customPaging{position:absolute; bottom:-20px; right:0;}
+#wrap .group_Slider .customPaging li{display:none; font-size:15px; color:red;}
+#wrap .group_Slider .customPaging li.slick-active{display:block;}
+#wrap .group_Slider .test{position:absolute; top:0; left:0; font-size:20px; color:red; font-weight:600;}
+#wrap .group_Slider .fix_info{position:absolute; bottom:0; right:30px; font-size:15px; color:red; font-weight:600;}
+
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="code in">
+
+				<div class="sliderWrap">
+					<div class="group_Slider">
+						<div class="obj"><span>1</span></div>
+						<div class="obj"><span>2</span></div>
+						<div class="obj"><span>3</span></div>
+						<div class="obj"><span>4</span></div>
+						<div class="obj"><span>5</span></div>
+						<div class="obj"><span>6</span></div>
+						<div class="obj"><span>7</span></div>
+						<div class="obj"><span>8</span></div>
+						<div class="obj"><span>9</span></div>
+						<div class="obj"><span>10</span></div>
+						<div class="obj"><span>11</span></div>
+						<div class="obj"><span>12</span></div>
+						<div class="obj"><span>13</span></div>
+						<div class="obj"><span>14</span></div>
+						<div class="obj"><span>15</span></div>
+						<div class="obj"><span>16</span></div>
+						<div class="obj"><span>17</span></div>
+						<div class="obj"><span>18</span></div>
+						<div class="obj"><span>19</span></div>
+						<div class="obj"><span>20</span></div>
+						<div class="obj"><span>21</span></div>
+						<div class="obj"><span>22</span></div>
+						<div class="obj"><span>23</span></div>
+					</div>
+				</div>
+
+			</div>
+			<div class="sampleWrap">
+
+			<script type="text/javascript">
+			//<![CDATA[
+			$(document).ready(function(){
+				genHTML(); // codemirror 실행
+
+				var _num = 0;
+				var arr = [];
+				var tyN = 3; //slide_Type
+				var isN = 5; //slide obj length
+
+				var reset = {
+					slider : function(){
+						var slider = $(".group_Slider");
+						var objs = $(".group_Slider .obj");
+						var _num = 0;
+						var $limits = objs.length;
+
+						for(var i=0; i<$limits; i+=isN){
+							console.log($limits);
+							console.log(i);
+							//console.log(isN);
+							objs.slice(i, i + isN).wrapAll("<div class='slide'></div>");
+						};
+
+						$(".slide").each(function(i){
+							if(_num == tyN) _num=0;
+							//console.log(_num);
+							_num++;
+							$(this).addClass("type_" + (_num-1));
+							var obj = $(this).find(".obj"),
+							objL = $(this).find(".obj").length;
+							//console.log(obj);
+							var x = 0;
+							for(var a=0; a<objL; a++){
+								if(x==isN) x=0;
+								x++;
+								//console.log(x);
+								obj.eq(x -1).addClass("obj_"+x);
+							}
+
+							$(this).append("<span class='test'>테스트 " + (i + 1) + "</span>");
+						});
+
+						slider.on('init', function(event, slick){
+							//console.log(event);
+							//console.log(slick.currentSlide);
+							$('.dots-box').append("<div class='fix_info'></div>");
+							var test = $(".test").eq(slick.currentSlide + 1).html();
+							$(".fix_info").html(test);
+							//$(".slick-slide.v-1").addClass("active");
+						});
+
+						slider.slick({
+							autoplay: false,
+							dots: true,
+							dotsClass: "customPaging",
+							infinite: true,
+							speed: 300,
+							slidesToShow: 1,
+							adaptiveHeight: true,
+							customPaging : function(slider, i){
+								return (i+1) + "/" + slider.slideCount;
+							}
+						});
+
+						slider.find(".pause").on('click', function() {
+							slider.slick('slickPause');
+							//$(this).fadeOut();
+							//slider.find(".play").fadeIn();
+						});
+
+						slider.find(".play").on('click', function() {
+							slider.slick('slickPlay');
+							//$(this).fadeOut();
+							//slider.find(".pause").fadeIn();
+						});
+
+						slider.on('beforeChange', function(slider, event, slick, currentSlide, nextSlide){
+							//console.log(slick);
+							//console.log(currentSlide);
+							//console.log($(".test").eq(currentSlide + 1).html());
+							//console.log(nextSlide);
+							var test = $(".test").eq(currentSlide + 1).html();
+							$(".fix_info").html(test);
+
+							//var nextPanel = $('[data-slick-index=' + currentSlide + ']');
+							//$(".slick-slide").removeClass("active");
+							//$(nextPanel).addClass('active');
+						});
+
+					}
+				}
+				reset.slider();
+			});
+			//]]>
+			</script>
+			</div><!-- // sampleWrap -->
+
+			<script type="text/javascript">
+			function genHTML(valArr){
+				$('.sampleWrap').each(function(i){
+					var temp = valArr || $(this).html();
+					var $src = $('<div class="htmlsrc" ></div>');
+					$(this).after($src);
+					var myCodeMirror = CodeMirror($src[0], {
+						value: valArr ? temp[i] : temp,
+						mode: 'htmlmixed',
+						lineNumbers: !$(this).is('.inline'),
+						readOnly: true,
+						styleActiveLine: false,
+						autoClearEmptyLines:true,
+						lineWrapping: true,
+						matchBrackets: true
+					});
+					if($(this).hasClass('mine')) $(this).hide(); // 클래스 mine 이 붙으면 기존에 있던 텍스트는 삭제
+				});
+			}
+			</script>
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

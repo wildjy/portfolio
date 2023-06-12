@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+		//Parallax개념정리 : http://blog.naver.com/PostView.nhn?blogId=hsoojy_&logNo=220119019456&redirect=Dlog&widgetTypeCall=true
+		//참고사이트 : http://zameckezahrady.cz/
+		var $window = $(window);
+		
+		// **** history Line ****
+		$(".history-area").each(function(index){
+			var $self = $(this);
+			var offsetCoords = $self.offset();
+				
+			$(window).scroll(function(){
+				var $vu = $(this).scrollTop() - $(this).height();
+
+				if (($window.scrollTop()) > $window.height() && ((offsetCoords.top + $self.height()) > $window.scrollTop())) {
+					$(".line>span").css({"height" : $vu + 55 + "px"});
+				} else {
+					$(".line>span").css({"height":"0px"});
+				};
+			});
+		});
+
+		// **** history Object ****
+		$('.section').each(function(){
+			var $self = $(this);
+			var offsetCoords = $self.offset();
+			var flag = false;
+			$(window).scroll(function(){
+				/*
+				if ($window.scrollTop() > offsetCoords.top && ((offsetCoords.top + $self.height()) > $window.scrollTop())) {
+				}
+				*/
+				$('.fixed-object', $self).each(function() {
+					var $sprite = $(this);
+					var offsetCoords = $sprite.offset();
+
+					if($window.scrollTop() > offsetCoords.top && ((offsetCoords.top + $self.height() - 180) > $window.scrollTop()))  {
+						$sprite.addClass("on");
+					} else {
+						$sprite.removeClass("on");
+					};
+				});
+
+				$('.his-obj', $self).each(function() {
+					var $sprite = $(this);
+					var offsetCoords = $sprite.offset();
+
+					if(($window.scrollTop() + ($window.height() / 2)) > offsetCoords.top) {
+						$sprite.addClass("on");
+					} else {
+						$sprite.removeClass("on");
+					}
+				});
+			});
+		});
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; position:relative; z-index:10;}
+#header{width:100%; height:1390px;}
+#visual{width:100%;}
+#contents{width:100%; position:relative;}
+#footer{padding:10px 0; width:100%; background-color:#51535B;}
+.inner{width:100%; max-width:980px; margin:0 auto;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+img{width:100%;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+/* parallax object */
+#contents .history-area{padding:80px 0; margin-bottom:450px; width:100%; overflow:hidden; position:relative;}
+#contents .history-area .line{position:absolute; top:0; left:50%; margin-left:-.5px; width:1px; height:100%; background-color:#ddd; z-index:3;}
+#contents .history-area .line>span{position:absolute; top:0; left:0; width:100%; background-color:#000; z-index:4;}
+#contents .section{width:100%; position:relative; background-color:transparent; z-index:5;}
+#contents .section:after{content:""; display:block; clear:both;}
+#contents .section .fixed-object{width:980px; text-align:center; position:relative;}
+#contents .section .fixed-object .pic{position:absolute; top:0; left:50%; width:100%;
+-webkit-transform:translate(-50%, 0);
+-moz-transform:translate(-50%, 0);
+-o-transform:translate(-50%, 0);
+transform:translate(-50%, 0);}
+#contents .section .fixed-object .pic img{width:100%;}
+#contents .section .fixed-object.on .pic{position:fixed; top:30px; left:50%; width:980px;}
+#contents .section .fixed-object.on .pic img{position:absolute; top:0; width:40%;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+#contents .section .his-list{padding:500px 0 100px 0; position:relative;}
+#contents .section .his-obj{padding:0 0 30px 70px; position:relative;}
+#contents .section .his-obj>.ico{position:absolute; top:0; padding:4px; width:15px; height:15px; background-color:#FFF;}
+#contents .section .his-obj>.ico>i{display:block; width:100%; height:100%; border-radius:50%; background-color:#ddd;}
+#contents .section .his-obj.on>.ico>i{background-color:#333;}
+#contents .section .his-obj dl{}
+#contents .section .his-obj dl>dt{padding-bottom:15px; font-size:25px; color:#333; font-weight:600;}
+#contents .section .his-obj dl>dd{font-size:15px; color:#888; line-height:25px; position:relative;}
+#contents .section .his-obj dl>dd>span{position:absolute; top:0; font-size:100%; color:#555;}
+
+#contents .section.right_his{}
+#contents .section.right_his .fixed-object.on .pic img{left:0;}
+#contents .section.right_his .his-list{float:right; width:50%;}
+#contents .section.right_his .his-obj{padding:0 0 30px 70px;}
+#contents .section.right_his .his-obj>.ico{left:-7.5px;}
+#contents .section.right_his .his-obj dl>dd{padding-left:40px;}
+#contents .section.right_his .his-obj dl>dd>span{left:0;}
+
+#contents .section.left_his{}
+#contents .section.left_his .fixed-object.on .pic img{right:0;}
+#contents .section.left_his .his-list{float:left; width:50%;}
+#contents .section.left_his .his-obj{padding:0 70px 30px 0; text-align:right;}
+#contents .section.left_his .his-obj>.ico{right:-7.5px;}
+#contents .section.left_his .his-obj dl>dd{padding-right:40px;}
+#contents .section.left_his .his-obj dl>dd>span{right:0;}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="header"></div>
+
+			<div id="visual"></div>
+
+			<div id="contents">
+
+					<div class="history-area">
+						<div class="line"><span></span></div>
+						<section class="section right_his">
+							<div class="inner">
+								<div class="fixed-object"><div class="pic"><img src="../../images/contents/history_img1.jpg" alt="" /></div></div>
+								<div class="his-list">
+									<div class="his-obj">
+										<div class="ico"><i></i></div>
+										<dl>
+											<dt>1999</dt>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+										</dl>
+									</div>
+									<div class="his-obj">
+										<div class="ico"><i></i></div>
+										<dl>
+											<dt>1999</dt>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+										</dl>
+									</div>
+									<div class="his-obj">
+										<div class="ico"><i></i></div>
+										<dl>
+											<dt>1999</dt>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+										</dl>
+									</div>
+									<div class="his-obj">
+										<div class="ico"><i></i></div>
+										<dl>
+											<dt>1999</dt>
+											<dd><span>08</span>연혁내용이 들어갑니다.</dd>
+										</dl>
+									</div>
+								</div><!-- end : class : his-list -->
+							</div>
+						</section>
+
+						<section class="section left_his">
+							<div class="inner">
+								<div class="fixed-object"><div class="pic"><img src="../../images/contents/history_img2.jpg" alt="" /></div></div>
+								<div class="his-list">
+									<div class="his-obj">
+										<div class="ico"><i></i></div>
+										<dl>
+											<dt>1999</dt>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+										</dl>
+									</div>
+									<div class="his-obj">
+										<div class="ico"><i></i></div>
+										<dl>
+											<dt>1999</dt>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+										</dl>
+									</div>
+									<div class="his-obj">
+										<div class="ico"><i></i></div>
+										<dl>
+											<dt>1999</dt>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+										</dl>
+									</div>
+									<div class="his-obj">
+										<div class="ico"><i></i></div>
+										<dl>
+											<dt>1999</dt>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+											<dd>연혁내용이 들어갑니다.<span>08</span></dd>
+										</dl>
+									</div>
+								</div><!-- end : class : his-list -->
+							</div>
+						</section>
+					</div><!-- end : class : history-area -->
+
+			</div>
+
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

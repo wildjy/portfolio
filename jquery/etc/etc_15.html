@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.codeMirror();
+	},
+
+	codeMirror : function(){
+		genHTML(); // codemirror 실행
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{padding:15px; width:100%; overflow-x:hidden; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; position:relative;}
+#footer{width:100%; background-color:#51535B;}
+.inner{width:100%; max-width:1200px; margin:0 auto;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+img{width:100%;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="sampleWrap">
+				<p class="date1"></p>
+
+				<script type="text/javascript">
+				//<![CDATA[
+				Date.prototype.yyyymmdd = function() {
+				  var mm = this.getMonth() + 1; // getMonth() is zero-based
+				  var dd = this.getDate();
+
+				  return [this.getFullYear(),
+						  (mm>9 ? '' : '0') + mm,
+						  (dd>9 ? '' : '0') + dd
+						 ].join('');
+				};
+
+				var date = new Date();
+				$('.date1').html( date.yyyymmdd() );
+				//]]>
+				</script>
+			</div><!-- // sampleWrap -->
+
+			<div class="sampleWrap">
+				<p class="date2"></p>
+
+				<script type="text/javascript">
+				Date.prototype.yyyymmdd2 = function() {
+					var yyyy = this.getFullYear().toString();
+					var yy = yyyy.substring(2, 4);
+					var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+					var dd  = this.getDate().toString();
+
+					return yy + '-' + (mm[1] ? mm : "0" + mm[0]) + '-' + (dd[1] ? dd : "0" + dd[0]);
+				};
+
+				var date2 = new Date();
+				$('.date2').html(date2.yyyymmdd2());
+				</script>
+			</div><!-- // sampleWrap -->
+
+			<script type="text/javascript">
+			function genHTML(valArr){
+				$('.sampleWrap').each(function(i){
+					var temp = valArr || $(this).html();
+					var $src = $('<div class="htmlsrc" ></div>');
+					$(this).after($src);	
+					var myCodeMirror = CodeMirror($src[0], {
+						value: valArr ? temp[i] : temp,
+						mode: 'htmlmixed',
+						lineNumbers: !$(this).is('.inline'),
+						readOnly: true,
+						styleActiveLine: false,
+						autoClearEmptyLines:true,
+						lineWrapping: true,
+						matchBrackets: true
+					});
+					if($(this).hasClass('mine')) $(this).hide(); // 클래스 mine 이 붙으면 기존에 있던 텍스트는 삭제
+				});
+			}
+			</script>
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

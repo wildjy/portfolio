@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" />
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />  
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		//inputPlaceHolder
+		$(".inputPlace").find("input, textarea").each(function(){
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				}
+			});
+		});
+
+		//inputPlaceHolder
+		$(".datePlace").find("input").each(function(){
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				}
+			});
+		});
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%; background-color: #111; }
+#wrap{width:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; }
+#footer{width:100%; background-color:#eee;}
+.inner{width:100%; margin:0 auto; position:relative;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#contents .main_contents{padding:70px 0; width:1050px; height:100%; margin:0 auto;}
+#contents .main_contents:after{content:""; display:block; clear:both;}
+#contents .main_contents>.m_articel{float:left; padding:50px 30px; width:515px; height:480px; position:relative; background-color:#1B9ECA;}
+#contents .main_contents>.m_articel:first-child{margin-right:20px; background-color:#fff;}
+#contents .main_contents>.m_articel>.in{}
+#contents .main_contents>.m_articel .check{}
+
+#contents .main_contents>.m_articel .title{padding-bottom:50px; font-size:36px; color:#000; font-weight:400; text-align:center;}
+#contents .main_contents>.m_articel .title>span{display:block; padding-top:5px; font-size:50%; color:#777;}
+#contents .main_contents>.m_articel .title.wht{color:#fff;}
+#contents .main_contents>.m_articel .title.wht>b{display:inline-block; margin-right:-10px; padding-top:6px; width:60px; height:60px; font-size:96%; color:#0081b0; font-weight:400; border-radius:50%; background-color:#FFF;}
+#contents .main_contents>.m_articel .title.wht>span{color:#fff;}
+/* 보험료계싼 */
+#contents .itinerary-zip{}
+#contents .itinerary-zip:after{content:""; display:block; clear:both;}
+#contents .itinerary-zip>dt{float:left; width:115px;}
+#contents .itinerary-zip>dt label{display:block; padding:10px 0 0 0; font-size:16px; color:#777;}
+#contents .itinerary-zip>dd{float:left; margin-bottom:10px;}
+#contents .itinerary-zip>dd:after{content:""; display:block; clear:both;}
+#contents .itinerary-zip>dd>div{float:left;}
+#contents .itinerary-zip>dd>div.datepicker{margin-right:10px; width:200px; height:46px; border:1px solid #ddd; position:relative; z-index:15;}
+#contents .itinerary-zip>dd>div.datepicker>label{position:absolute; top:50%; left:10px; font-size:16px; color:#c8c8c8;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#contents .itinerary-zip>dd>div.datepicker>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+#contents .itinerary-zip>dd>div.select-div{width:130px;}
+#contents .itinerary-zip>dd>div.sexRadio{width:130px; height:46px; border:1px solid #ddd;}
+#contents .itinerary-zip>dd>div.sexRadio:after{content:""; display:block; clear:both;}
+#contents .itinerary-zip>dd>div.sexRadio>div{float:left; width:50%; height:100%; position:relative;}
+#contents .itinerary-zip>dd>div.sexRadio>div:first-child{border-right:1px solid #ddd;}
+#contents .itinerary-zip>dd>div.sexRadio>div label{position:absolute; top:0; left:0; display:block; padding-top:10px; width:100%; height:100%; font-size:16px; color:#777; text-align:center; background-color:#FFF; z-index:2;}
+#contents .itinerary-zip>dd>div.sexRadio>div a{position:absolute; top:0; left:0; display:block; padding-top:10px; width:100%; height:100%; font-size:16px; color:#777; text-align:center; background-color:#FFF; z-index:2;}
+#contents .itinerary-zip>dd>div.sexRadio>div input{position:absolute; top:-10px; left:-10px; z-index:1;}
+#contents .itinerary-zip>dd>div.sexRadio>div.on label{color:#fff; background-color:#777;}
+#contents .itinerary-zip>dd>div.sexRadio>div.on a{color:#fff; background-color:#777;}
+/* 보험료결과 */
+#contents .m_articel .result{position:absolute; top:0; left:0; right:0; bottom:0; padding:50px 30px; background:#fff url("images/ico/ico_checkResult.gif") 50% 170px no-repeat;z-index:20;}
+#contents .m_articel .result .result_price{padding:140px 0 0 0; font-size:25px; color:#777; text-align:center; font-weight:600;}
+#contents .m_articel .result .result_price>strong{font-size:27px; color:#0a9ece; }
+/* btn */
+#contents .m_articel .btn{position:absolute; bottom:0; left:0; right:0;}
+#contents .m_articel .btn:after{content:""; display:block; clear:both;}
+#contents .m_articel .btn>a{display:block; padding-top:18px; width:100%; height:70px; font-size:24px; color:#fff; font-weight:400; text-align:center; background-color:#1181AC;}
+#contents .m_articel .check .btn>a{display:block; padding-top:18px; width:100%; height:70px; font-size:24px; color:#fff; font-weight:400; text-align:center; background-color:#1181AC;}
+#contents .m_articel .result .btn>a{float:left; display:block; padding-top:18px; width:50%; height:70px; font-size:24px; color:#fff; font-weight:400; text-align:center; background-color:#1181AC;}
+#contents .m_articel .result .btn>a:first-child{background-color:#676767;}
+
+.select{display:block; padding:5px 25px 5px 5px; width:100%; max-width:200px; height:46px; font-size:16px; color:#c8c8c8; text-align:left; vertical-align:-2px; border:none; border:1px solid #ddd; background:#FFF url("images/ico/custom_Select_.gif") right 50% no-repeat; background-size:31px 46px;}
+.select option{padding:5px 25px 5px 5px; font-size:16px; color:#c8c8c8;}
+
+/* datepicker css */
+.ui-datepicker {padding:0; width:200px; background:#fff; display:none; border:none;}
+.ui-datepicker-header {background:#fff; border:none; color:#444; letter-spacing:-2px; font-size:26px; text-align:center;}
+.ui-datepicker .ui-datepicker-title {margin:0; padding:0 10px; font-weight:500;}
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover {top:2px; cursor:pointer;}
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {opacity: .35;}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {border:none; background:none;}
+.ui-datepicker td {width:0%; padding:2px 5px; border-top:none; border-bottom:none;}
+.ui-datepicker .ui-datepicker-title {font-size:21px; font-weight:400; letter-spacing:0px;}
+.ui-icon {width:11px; height:21px;}
+.ui-icon-circle-triangle-e {background-position:none;}
+.ui-datepicker .ui-icon {text-indent:-99999px; overflow:hidden; background-repeat:no-repeat;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {border:1px solid #003eff; background:#007fff; font-weight:normal; color:#fff;}
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next{width:11px; height:21px;}
+.ui-datepicker-next .ui-icon.ui-icon  {background:url('../../images/ico/next_icon.png') 0 0 no-repeat; }
+.ui-datepicker-prev .ui-icon.ui-icon  {background:url('../../images/ico/prev_icon.png') 0 0 no-repeat; }
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {top:50%;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+.ui-datepicker .ui-datepicker-prev {left:5px;}
+.ui-datepicker .ui-datepicker-next {right:5px;}
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span{position:relative; left:0; margin:0; top:0;}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {display:none;}
+.ui-datepicker .ui-datepicker-buttonpane {border:none; margin-bottom: 20px;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:none; background:#fff 50% 50% repeat-x; color:#666; font-size:12px; color:#666; text-align: center; letter-spacing: -1px; }
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {color:#fff; background:#484f59; border-radius: 50%;}
+.ui-datepicker-calendar > thead th {font-weight:500;}
+.ui-datepicker-calendar > thead th:first-child span {font-weight:500; color: #ff1d1d;}
+.ui-datepicker-calendar > thead th:last-child span {font-weight:500; color: #127cff;}
+.ui-datepicker .ui-datepicker-buttonpane button {margin:auto 20%; font-weight:500; color:#fff; background:#484f59; width:60%; border-radius:0px; padding:9px; margin-top:10px; margin-bottom:10px;}
+
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+	
+			</div><!-- end : id : visual -->
+
+			<div id="contents">
+				<section class="main_contents">
+					<article class="m_articel">
+						<form method="get" action="#self">
+							<legend class="hid">내 보험료 확인하기</legend>
+
+							<!-- start : 보험료 계산하기 -->
+							<div class="in check">
+								<h1 class="title">내 보험료 확인하기
+									<span>여행일정과 가입자  정보를 입력해 주세요.</span>
+								</h1>
+
+								<dl class="itinerary-zip">
+									<dt><label for="testDatepicker_1">출국 예정일시</label></dt>
+									<dd>
+										<div class="datepicker datePlace"><label for="testDatepicker_1">연도-월-일</label><input type="text" id="testDatepicker_1" value="" /></div>
+										<div class="select-div">
+											<select name="" id="leave" class="select" title="출국 예정일시를 선택하세요">
+												<option value="선택">시간</option>
+											</select>
+										</div>
+									</dd>
+									<dt><label for="testDatepicker_2">입국 예정일시</label></dt>
+									<dd>
+										<div class="datepicker datePlace"><label for="testDatepicker_2">연도-월-일</label><input type="text" id="testDatepicker_2" value="" /> </div>
+										<div class="select-div">
+											<select name="" id="leave" class="select" title="출국 예정일시를 선택하세요">
+												<option value="선택">시간</option>
+											</select>
+										</div>
+									</dd>
+									<dt><label for="birth">생년월일</label></dt>
+									<dd>
+										<div class="datepicker inputPlace"><label for="birth">생년월일 예:19901105</label><input type="text" id="birth"  /> </div>
+										<div class="sexRadio">
+											<div><a href="#self">남</a></div><!-- addClass=on -->
+											<div><a href="#self">여</a></div>
+										</div>
+									</dd>
+								</dl>
+
+								<div class="btn"><a href="#self">보험료 확인하기</a></div>
+							</div>
+							<!-- end : 보험료 계산하기 -->
+							
+							<!-- start : 보험료 결과 : hidden -->
+							<div class="in result" style="display:none">
+								<h1 class="title">내 보험료 조회 결과</h1>
+								<p class="result_price">나의 총 보험료는 <strong>999,900</strong>원 입니다.</p>
+
+								<div class="btn">
+									<a href="#self">다시계산하기</a>
+									<a href="#self">가입하기</a>
+								</div>
+							</div>
+							<!-- end : 보험료 결과 -->
+						</form>
+					</article><!-- end : class : m_articel -->
+
+					<script type="text/javascript">
+					//<![CDATA[
+					$(document).ready(function(){
+						$( "#testDatepicker_1" ).datepicker({
+							  closeText: '확인',
+							  currentText: '오늘',
+							  minDate:0,
+							  maxDate:"+3M",
+							  yearRange: "2017:2018",
+							  changeYear: false,
+							  changeMonth: false,
+							  dateFormat:"yy-mm-dd",
+							  yearSuffix : '년',
+							  showButtonPanel: true,
+							  showMonthAfterYear:true,
+							  dayNamesMin: ['일','월','화','수','목','금','토'],
+							  monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+							  monthNames: ['01월','02월','03월','04월','05월','06월','07월','08월','09월','10월','11월','12월'],
+							  onClose : function() {//선택후 이벤트
+								  var $this = $(this);//this값 체크
+								  console.log($this);
+								  $this.siblings("label").hide();
+							  },
+						   	 beforeShow: function(input) {//선택과 동시에 이벤트
+								var i_offset = jQuery(input).offset();// 클릭된 input의 위치값 체크
+								console.log(i_offset);
+							 }
+						});
+
+						$( "#testDatepicker_2" ).datepicker({
+							  closeText: '확인',
+							  currentText: '오늘',
+							  minDate:0,
+							  maxDate:"+3M",
+							  yearRange: "2017:2018",
+							  changeYear: false,
+							  changeMonth: false,
+							  dateFormat:"yy-mm-dd",
+							  yearSuffix : '년',
+							  showButtonPanel: true,
+							  showMonthAfterYear:true,
+							  dayNamesMin: ['일','월','화','수','목','금','토'],
+							  monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+							  monthNames: ['01월','02월','03월','04월','05월','06월','07월','08월','09월','10월','11월','12월'],
+							  onClose : function() {//선택후 이벤트
+								  var $this = $(this);//this값 체크
+								  console.log($this);
+								  $this.siblings("label").hide();
+							  },
+						   	 beforeShow: function(input) {//선택과 동시에 이벤트
+								var i_offset = jQuery(input).offset();// 클릭된 input의 위치값 체크
+								console.log(i_offset);
+							 }
+						});
+					});
+					//]]>
+					</script>
+				</section><!-- end : class : main_contents -->
+			</div><!-- end : id : contents -->
+
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

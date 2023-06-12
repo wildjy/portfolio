@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.mousewheel.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+
+<style type="text/css">
+/* layout */
+html,body{width:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+
+.section{width:100%; overflow:hidden; background-color:#FFF;}
+.wrap_Scroll{}
+.wrap_Scroll>div{height:1000px;}
+
+
+
+table {width: 100%;height: 100%;}
+table tr td {font-size: 40px; color:#111; font-weight:600; text-align: center; vertical-align: middle;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="section section_00">
+				<table>
+					<tr>
+						<td>1</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section section_01">
+				<table>
+					<tr>
+						<td>2</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section section_02">
+				<table>
+					<tr>
+						<td>3</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section section_03">
+				<table>
+					<tr>
+						<td>4</td>
+					</tr>
+				</table>
+			</div>
+			<div class=" wrap_Scroll">
+				<div class="contents">11</div>
+				<div class="contents">22</div>
+				<div class="contents">33</div>
+				<div class="contents">44</div>
+				<div class="contents">55</div>
+			</div>
+		</div><!-- end : id : wrap -->
+		<script type="text/javascript">
+		//<![CDATA[
+		$(function(){
+			mouse.init();
+		});
+
+		var mouse = {
+			init : function(){
+				var index = 0;
+				var isAni = false;
+				var preventScroll = true;
+
+				var wH = $(window).height();
+				$('#wrap div.section').height(wH);
+
+				var a = $("#wrap");
+				var b = a.find(".section").length;
+				var c = $("#wrap div.section_01").offset().top;
+
+				setTimeout(function () {
+					$(".section").eq(0).addClass("active");
+				}, 500);
+
+				$('html, body').on('mousewheel', function(event) {
+					//console.log(event.deltaX, event.deltaY, event.deltaFactor);
+					if(!isAni) {
+						isAni = true;
+
+						if (event.deltaY < 0) {
+							//Down
+							console.log("down");
+							if(index < 4) {
+								index++;
+
+								console.log(index)
+								//console.log(c*index)
+								$(".section").removeClass("active");
+								$(".section").eq(index).addClass("active");
+								$("html, body").stop().animate({"scrollTop":c*index}, 500);
+								preventScroll = true;
+								setTimeout(function () {
+									if(index == 3) {
+										//$("html").removeClass("full");
+
+										preventScroll = false;
+									}
+									isAni = false;
+								}, 500);
+							}else{
+								isAni = false;
+							}
+
+						} else {
+							//Up
+							console.log("Up");
+							if(index > 0 && $(".wrap_Scroll").scrollTop() == 0) {
+								preventScroll = true;
+								console.log("Back");
+								index--;
+								console.log(index)
+								//console.log(c*index)
+								$("html, body").stop().animate({"scrollTop":c*index}, 500);
+								setTimeout(function () {
+									isAni = false;
+								}, 500);
+							}else{
+								isAni = false;
+								preventScroll = false;
+							}
+
+						}
+					}else{
+						console.log("XX")
+					}
+				});
+			}
+		}
+		//]]>
+		</script>
+	</body>
+</html>

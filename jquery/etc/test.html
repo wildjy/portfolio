@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width,target-densitydpi=medium-dpi" name="viewport">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- <meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:url" content="" /> -->
+		<!-- <link rel="shortcut icon" type="text/css" href="images/ico/favicon_ns.ico" /> -->
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/ui.js"></script>
+		<script type="text/javascript" src="../../js/slick.min.js"></script>
+		<script type="text/javascript" src="../../js/swiper.min.js"></script>
+		<!--[if lt IE 9]><script src="js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	test.slider();
+});
+
+var test = {
+	slider : function(){
+		$(".insu_slider").slick({
+			autoplay: true,
+			autoplaySpeed: 4000,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			arrows: false,
+			fade: true,
+			dots: true
+		});
+
+		//ezwel lnb
+		mySwiper = new Swiper('.swiper-container', {
+			slidesPerView: "auto",
+			spaceBetween: 0,
+			freeMode: true,
+			paginationClickable: true,
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			}
+		});
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; overflow-x:hidden; position:relative; }
+#header{width:100%; height:120px; border-bottom:1px solid #E8EBEE; z-index:150;}
+#visual{width:100%;}
+#contents{width:100%; background-color:#fff;}
+#footer{width:100%; height:290px; background-color:#6D6E6E;}
+.inner{width:100%; max-width:1000px; margin:0 auto;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:200;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+/* contents */
+img{width:100%;}
+#contents .intro{width:100%;}
+
+.intro .insu_Box{}
+.intro .insu_slider{width:100%; position:relative;}
+.intro .insu_slider>div{}
+.intro .insu_slider .controls{display:none;}
+.intro .insu_slider .dots-box{position: absolute; bottom:30px; width:100%;}
+.intro .insu_slider .dots-box .slick-dots li button{content:""; border-radius:50%; background-color:#BDBDBD;}
+.intro .insu_slider .dots-box .slick-dots li.slick-active button{content:""; border-radius:50%; background-color:#FFF;}
+.intro .insu_slider .dots-box .slick-dots li button:before{content:"";}
+	.swiper-wrapper{width:100%}
+	.top_list2 li{width:auto !important; padding:15px; }
+	.top_list2 li>a{font-size:14px; color:#fff;}
+	.top_list2 li.active>a{color:#1A97FC;}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="top_list2 swiper-container">
+				<ul class="swiper-wrapper">
+					<li class="swiper-slide"><a href="#self">운전자보험</a></li>
+					<li class="swiper-slide"><a href="#self">운전자보험</a></li><!-- li class=active : 해당페이지 이동시 부여 -->			
+					<li class="swiper-slide"><a href="#self">동승자 운전자 안심서비스</a></li>
+					<li class="swiper-slide"><a href="#self">실버 운전자 안심서비스</a></li>
+					<li class="swiper-slide"><a href="#self">상해보장서비스</a></li>
+					<li class="swiper-slide"><a href="#self">프리미엄상해보장서비스</a></li>
+					<li class="swiper-slide"><a href="#self">유학생보험</a></li>
+					<li class="swiper-slide"><a href="#self">공항라운지서비스</a></li>
+					<li class="swiper-slide"><a href="#self">재해상해보험</a></li>
+					<li class="swiper-slide"><a href="#self">자녀안심보험</a></li>			
+					<li class="swiper-slide"><a href="#self">특장차 운전자 안심서비스</a></li>
+					<li class="swiper-slide"><a href="#self">가입조회및취소</a></li>
+				</ul>
+			</div>
+
+			<div id="contents">
+				<div class="intro">
+					<div class="top"><img src="https://m.inbyu.com/img/extend/ezwel_add/m_intro_top.jpg" alt="" /></div>
+					<div class="insu_Box">
+						<div class="insu_slider">
+							<div><a href="#self"><img src="http://m.inbyu.com/img/extend/ezwel_add/m_insuItem_4.jpg" alt="운전자보험" /></a><span></span></div>
+							<div><a href="#self"><img src="http://m.inbyu.com/img/extend/ezwel_add/m_insuItem_2.jpg" alt="실버 운전자<br />안심 서비스" /></a></div>
+							<div><a href="#self"><img src="http://m.inbyu.com/img/extend/ezwel_add/m_insuItem_3.jpg" alt="상해보장<br />서비스" /></a></div>
+							<div><a href="#self"><img src="http://m.inbyu.com/img/extend/ezwel_add/m_insuItem_4.jpg" alt="프리미엄<br />상해보장서비스" /></a></div>
+						</div>
+					</div>
+					<div class="bottom"><img src="https://m.inbyu.com/img/extend/ezwel_add/m_intro_bottom.jpg" alt="" /></div>
+				</div>
+			</div><!-- end : id : contents -->
+
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

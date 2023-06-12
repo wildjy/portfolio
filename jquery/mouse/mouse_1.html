@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.mousewheel.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+
+<style type="text/css">
+/* layout */
+html,body{width:100%;}
+#wrap{width:100%;}
+#header{position:fixed; top:0; width:100%; height:70px; background-color:rgba(0,0,0,.5); z-index:10;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%; height:2000px; background-color:#ddd;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#scrollWrap{position: relative; width: 100%;}
+#scrollWrap>div{width:100%;}
+.stop{position:fixed; top:50px; left:50px; width:100px; height:100px; font-size:20px; color:#000; font-weight:600; text-align:center; background-color:red; z-index:50}
+.box1{background-color: #b3c4f8;}
+.box2{background-color: #f8bfb4;}
+.box3{background-color: #b4f8b6;}
+.box4{height:1050px; background-color:#fff;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="contents">
+
+	<div id="scrollWrap">
+		<div class="box1"></div>
+		<div class="box2"></div>
+		<div class="box3"></div>
+	</div>
+
+	<div class="box4"></div>
+			</div>
+
+			<div class="stop">
+				STOP
+			</div>
+
+			<!-- footer  -->
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+
+		<script type="text/javascript">
+		//<![CDATA[
+		$(document).ready(function(){
+			project.init();
+		});
+
+		var project = {
+			init : function(){
+				project.common();
+				project.main();
+				project.sub();
+			},
+
+			common : function(){
+
+			},
+
+			main : function(){
+				var isVisible = false;
+				var preventScroll = true;
+				var count = 0;
+				var up = 0;
+				var wH = $(window).height();
+				$('#scrollWrap>div').height(wH);
+
+				if (document.addEventListener) {
+					document.addEventListener("mousewheel", MouseWheelHandler(), false);
+					document.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
+				} else {
+					sq.attachEvent("onmousewheel", MouseWheelHandler());
+				}
+
+				$('#wrap .stop, #footer').on("mousewheel", function(event){
+					if(preventScroll) {
+						console.log("stop");
+						event.stopPropagation();
+						event.preventDefault();
+						return false;
+					}
+				});
+
+				function MouseWheelHandler() {
+					return function (e) {
+						// cross-browser wheel delta
+						var e = window.event || e;
+						var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+
+						var a = $("#scrollWrap");
+						var b = a.find("div").length;
+						var c = $("#scrollWrap div.box2").offset().top;
+						
+						if (delta < 0) {
+							//scrolling down?
+							if(count < 4){
+								//return false;
+								console.log("Down");
+								console.log(count);
+								count++;
+								$("html, body").stop().animate({"scrollTop":c*count}, 500);
+							} else {
+								console.log("move");
+							}
+						} else {
+							//scrolling up?
+							if(count < 1) {
+								console.log("stop");
+							} else {
+								console.log("Up");
+								count--;
+								console.log(count);
+								$("html, body").stop().animate({"scrollTop":c*count}, 500);
+							}
+						}
+						return false;
+					}
+				}
+			},
+
+			sub : function(){
+
+			}
+		}
+
+		//]]>
+		</script>
+	</body>
+</html>

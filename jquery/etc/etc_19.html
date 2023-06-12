@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1000px, initial-scale=0.5, user-scalable=yes, maximum-scale=1.0, minimum-scale=0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/slick.js"></script>
+
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%; height:100%; background-color: #111; }
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+.code{width:1000px; margin:0 auto; font-size:15px; color:#333; line-height:24px;}
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+
+.select{display:block; padding:5px 10px 5px 10px; width:100%; max-width:200px; height:46px; font-family: 'Nanum Gothic', sans-serif; font-size:14px; color:#222; text-align:left; vertical-align:-2px; border:none; border:1px solid #ddd; background:#FFF url("../../img/v3/ico/custom_Select_.gif") right 50% no-repeat; background-size:31px 46px;}
+.select.on{background:#f7f7f7 url("../../img/v3/ico/custom_Select_on.gif") right 50% no-repeat; background-size:31px 46px;}
+.select option{padding:5px 25px 5px 10px; font-family: 'Nanum Gothic', sans-serif; font-size:14px; color:#777;}
+
+
+
+/* chkModule */
+#contents .chkModule{position:absolute; top:50%; left:0; display:block; width:22px; height:22px; font-family: 'Nanum Gothic', sans-serif; text-indent:0; border:1px solid #ddd; border-radius:3px;
+background:#FFF url("../../img/v3/ico/terms_chk_off.gif") 50% 50% no-repeat; background-size:22px 22px; cursor:pointer;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#contents .chkModule.active{color:#1B9ECA; border:1px solid #1B9ECA; background:#fff url("../../img/v3/ico/terms_chk_on.gif") 50% 50% no-repeat; background-size:22px 22px;
+-webkit-transition:all .1s ease-in;
+-moz-transition:all .1s ease-in;
+-o-transition:all .1s ease-in;
+transition:all .1s ease-in;}
+#contents .chkModule>label{position:absolute; top:0; left:30px; display:block; width:100px; font-family:inherit; font-size:15px;; color:#333; font-weight:600;}
+#contents .chkModule>span{position:absolute; top:0; left:30px; display:block; width:100px; font-family:inherit; font-size:15px;; color:#333; font-weight:600;}
+
+
+#contents .in{width:1020px; margin:0 auto;}
+#contents .process-Box{margin-bottom:60px; border-top:1px solid #000;  border-bottom:1px solid #E1E5EE;}
+#contents .process-Box>.block{border-top:1px solid #E1E5EE}
+#contents .process-Box>.block .close{padding:15px 0; margin:30px auto; width:20%; font-size:20px; color:#222; font-weight:600; text-align:center; border:1px solid #222;}
+#contents .process-Box>.block .title{padding:30px 0; font-size:17px; color:#222;}
+#contents .process-Box>.block .title>span{display:block; padding-top:10px; font-size:85%; color:#777;}
+#contents .process-Box>.block .top{position:relative;}
+#contents .process-Box>.block .top.on{border-bottom:1px solid #E1E5EE}
+#contents .process-Box>.block .top .chkZip{position:absolute; top:50%; right:0; margin-top:-15px;}
+#contents .process-Box>.block .top .chkZip:after{content:""; display:block; clear:both;}
+#contents .process-Box>.block .top .chkZip>div{float:left; margin-left:10px; padding-top:7px; width:80px; height:30px; font-size:14px; color:#222; text-align:center; border:1px solid #E1E5EE; border-radius:5px; cursor:pointer;}
+#contents .process-Box>.block .top .chkZip>div.active{color:#1A97FC; border:1px solid #1A97FC;}
+
+#contents .process-Box .bottom{display:none; border-top:1px solid #E1E5EE}
+#contents .process-Box .bottom .option{margin-top:5px; padding:10px 30px; min-height:59px; background-color:#F5F7FA; position:relative;}
+#contents .process-Box .bottom .option.type{}
+#contents .process-Box .bottom .option:after{content:""; display:block; clear:both;}
+#contents .process-Box .bottom .option.first{margin-top:0;}
+#contents .process-Box .bottom .option .r_box{float:left; padding-left:150px; width:100%; min-height:40px; font-size:15px; color:#222; position:relative;}
+#contents .process-Box .bottom .option .r_box input{padding:10px; font-size:15px; color:#222; border:1px solid #ddd; background-color:#FFF;}
+#contents .process-Box .bottom .option .r_box .chkModule{left:150px;}
+#contents .process-Box .bottom .option .r_box .sel_ul{}
+#contents .process-Box .bottom .option .r_box .sel_ul>li{margin-top:5px;}
+#contents .process-Box .bottom .option .r_box .sel_ul>li:first-child{margin-top:0;}
+#contents .process-Box .bottom .option .r_box .sel_ul>li:after{content:""; display:block; clear:both;}
+#contents .process-Box .bottom .option .r_box .sel_ul>li>label{float:left; display:block; padding-top:13px; width:170px; font-family: 'Nanum Gothic', sans-serif; font-size:14px; color:#555;}
+#contents .process-Box .bottom .option .r_box .sel_ul>li>.select{float:left;}
+#contents .process-Box .bottom .option .r_box .chkNo{height:40px; position:relative;}
+#contents .process-Box .bottom .option .r_box .chkNo .chkModule{left:170px;}
+#contents .process-Box .bottom .option .r_box .opt_zip{margin-top:15px; padding:20px 0 10px 0; border-top:1px solid #E1E5EE}
+#contents .process-Box .bottom .option .r_box .opt_zip:after{content:""; display:block; clear:both;}
+#contents .process-Box .bottom .option .r_box .opt_zip>div{float:left; margin-left:15px; font-family: 'Nanum Gothic', sans-serif; font-size:14px; color:#555;}
+#contents .process-Box .bottom .option .r_box .opt_zip>div:first-child{margin-left:0px;}
+#contents .process-Box .bottom .option .r_box .opt_zip>div>label{display:inline-block; padding-right:5px; font-family:inherit; font-size:100%;}
+#contents .process-Box .bottom .option .lv_text{padding-top:10px; font-size:17px; color:#555; font-weight:600; text-align:center;}
+#contents .process-Box .bottom .option .lv_text>b{color:#1a97fc}
+
+
+#contents .l_box{position:absolute; top:50%; left:30px; display:block; font-family: 'Nanum Gothic', sans-serif; z-index:5;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#contents .l_box>label{display:block; width:120px; font-family:inherit; font-size:15px;; color:#333; font-weight:600;}
+#contents .l_box>span{display:block; width:120px; font-family:inherit; font-size:15px;; color:#333; font-weight:600;}
+
+#contents .area_Box{}
+#contents .area_Box:after{content:""; display:block; clear:both;}
+#contents .area_Box>div{float:left; margin:2.5px 5px 2.5px 0; padding:10px 10px 10px 35px; font-family: 'Nanum Gothic', sans-serif;  font-size:14px; color:#777; text-align:center; background:#FFF url("../../img/v3/ico/ico_corpCheck_off.png") 10px 50% no-repeat; border:1px solid #E1E5EE; cursor:pointer;}
+#contents .area_Box.type>div{width:150px; text-align:left;}
+#contents .area_Box>div.on{color:#1a97fc; background:#F7FAFF url("../../img/v3/ico/ico_corpCheck_on.png") 10px 50% no-repeat; border:1px solid #1a97fc;}
+
+.btn_C_Area{width:100%; text-align:center;}
+a.addBtn{display:inline-block; margin:0 0 60px 0; padding:17px 0; width:25%; font-size:18px; color:#1A97FC; font-weight:400; text-align:center; border:1px solid #1A97FC; border-radius:3px;}
+a.addBtn>i{display:inline-block; margin-right:10px; width:13px; height:13px; background:#FFF url("../../img/v3/ico/ico_addPlus.jpg") 0 0 no-repeat;}
+
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+			<div id="contents">
+				<div class="in">
+			<div class="code"></div>
+			<div class="sampleWrap">
+				<script type="text/javascript">
+/*
+정의하는부분init에는 초기상태 그려주는게 잇어야겟고 init안에다가 fn.create(); 로호출해주고
+create안에서 ui객체를 선언하고 ui안에다가 현재값을 알수있는 여러가지 값들을 넣어주는것이지요
+글고 create 에 draw메써드로 obj를 물고가서 draw메써드안에서 재영씨가말한 html += "DIV~~~" 
+obj.ui = $(html)
+그러고나서 event메써드 호출하는데 걔또한 obj물고들어가서 이벤트메써드안에서 obj.ui.find 옵션 선택하는태그 change 되엇을때 컨트롤
+글고나서 data메써드호출ㅋㅋ
+
+클로져, 렉시컬스코프, 변수유효범의 항상 이 개념들이 주도/
+
+해당index 셋/리셋
+var arr = []; 최상단에 저장소 만들고 var _num = 0; 기본셋팅
+init 안에 ++;
+addBtn 누를시 ++;
+
+for in문인데 var arr = [1,2,3,4] 라면 arr[0] = 1,
+arr.push로 obj 객체를 하나씩 넣어주고 arr.splice 로 하나씩  빼주그 마지막에 객체값 삽입
+
+※ splice :
+첫번째 인자는 시작할 인덱스
+두번째 인자는 삭제할 인자의 갯수(추가하고 싶을때는 0입력)
+세번째는 추가할 인자를 넣어주면 된다. 
+
+var arr = [0,1,2,3,4,5]
+
+arr.splice(0, 1);    //[1,2,3,4,5]
+
+arr.splice(2, 2);    //[1,2,5]
+
+var add_arr = [3, 4];
+
+arr.splice(2, 0, add_arr);    //[1,2,3,4,5]
+
+출처: https://guitarhero03.tistory.com/entry/JavascriptSplice [감성개발Story]
+*/
+				$(document).ready(function(){
+					$(".area_Box div").on("click", function(){
+						if($(this).hasClass("on")){
+							$(this).removeClass("on");
+						} else {
+							$(this).addClass("on");
+						}
+					});
+
+					$(".option .chkModule").on("click", function(){
+						if($(this).hasClass("active")){
+							$(this).removeClass("active");
+						} else {
+							$(this).siblings().removeClass("active");
+							$(this).addClass("active");
+						};
+					});
+					var _num = 0;
+					var arr = [];
+
+					var optModule = {
+						init : function(){
+							//_num++;
+
+							optModule.create();
+							$(".block").find(".bottom").eq(0).show();
+							$(".addBtn").on("click", function(e){
+								_num++;
+								//console.log(_num);
+								optModule.create();
+								e.preventDefault();
+							});
+						},
+						
+						create : function(){
+							var obj = {};
+							obj.num = _num;
+							//console.log(obj.num);
+							optModule.draw(obj);
+						},
+						
+						draw : function(obj){
+							//console.log(obj);
+							var $html = '';
+							$html += '<div class="block" data-id='+ obj.num +'>';
+								$html += '<div class="top">';
+									$html += '<div class="top_select">';
+										$html += '<select name="" id="sel_'+ obj.num +'" class="selectOp select">';
+											$html += '<option value="0">건물</option>';
+											$html += '<option value="1">기계</option>';
+											$html += '<option value="2">건물</option>';
+											$html += '<option value="3">건물</option>';
+										$html += '</select>';
+									$html += '</div>';
+								$html += '</div>';
+
+								$html += '<div class="bottom">';
+									$html += '<div class="option first">';
+										$html += '<div class="l_box" title="보장범위"><span>보장범위</span></div>';
+										$html += '<div class="r_box">';
+											$html += '<div class="area_Box type">';
+												$html += '<div>화재</div>';
+												$html += '<div>폭발</div>';
+												$html += '<div>파손 및 도난</div>';
+												$html += '<div>풍수재</div>';
+											$html += '</div>';
+										$html += '</div>';
+									$html += '</div>';
+									$html += '<div class="option">';
+										$html += '<div class="l_box" title="보험가입금액"><label for="opt_'+ obj.num +'">보험가입금액</label></div>';
+										$html += '<div class="r_box">';
+											$html += '<input type="text" id="opt_'+ obj.num +'" style="width:200px" title="보험가입금액을 입력하세요" /> 원';
+										$html += '</div>';
+									$html += '</div>';
+									$html += '<div class="option">';
+										$html += '<div class="l_box" title="보험가입금액"><span>목적물 상세</span></div>';
+										$html += '<div class="r_box">';
+											$html += '<ul class="sel_ul">';
+												$html += '<li><label for="sel_1_'+ obj.num +'">① 기둥보를 선택하세요.</label>';
+													$html += '<select name="" class="select" id="sel_1_'+ obj.num +'">';
+														$html += '<option value="선택">선택</option>';
+													$html += '</select>';
+												$html += '</li>';
+												$html += '<li><label for="sel_2_'+ obj.num +'">② 지붕을 선택하세요.</label>';
+													$html += '<select name="" class="select" id="sel_2_'+ obj.num +'">';
+														$html += '<option value="선택">선택</option>';
+													$html += '</select>';
+												$html += '</li>';
+												$html += '<li><label for="sel_3_'+ obj.num +'">③ 외벽을 선택하세요.</label>';
+													$html += '<select name="" class="select" id="sel_3_'+ obj.num +'">';
+														$html += '<option value="선택">선택</option>';
+													$html += '</select>';
+												$html += '</li>';
+											$html += '</ul>';
+											$html += '<div class="chkNo"><div class="chkModule" title="건물구조 모름"><span>건물구조 모름</span></div></div>';
+
+											$html += '<div class="opt_zip">';
+												$html += '<div>';
+													$html += '<label for="op_1_'+ obj.num +'">④ 지상층수</label>';
+													$html += '<input type="text" id="op_1_'+ obj.num +'" style="width:70px" title="지상층수을 입력하세요" />';
+												$html += '</div>';
+												$html += '<div>';
+													$html += '<label for="op_2_'+ obj.num +'">⑤ 지하층수</label>';
+													$html += '<input type="text" id="op_2_'+ obj.num +'" style="width:70px" title="지하층수을 입력하세요" />';
+												$html += '</div>';
+												$html += '<div>';
+													$html += '<label for="op_3_'+ obj.num +'">⑥ 가입층수</label>';
+													$html += '<input type="text" id="op_3_'+ obj.num +'" style="width:70px" title="가입층수을 입력하세요" />';
+												$html += '</div>';
+												$html += '<div>';
+													$html += '<label for="op_4_'+ obj.num +'">⑦ 가입면적</label>';
+													$html += '<input type="text" id="op_4_'+ obj.num +'" style="width:100px" title="가입면적을 입력하세요" /> ㎡';
+												$html += '</div>';
+											$html += '</div>';
+										$html += '</div>';
+									$html += '</div>';
+
+									$html += '<div class="option">';
+										$html += '<p class="lv_text">작성하신 목적물 상세에 따른 <b>건물급수는 1급</b> 입니다.</p>';
+									$html += '</div>';
+								$html += '</div>';
+							
+								$html += '<div class="bottom">';
+									$html += '<div class="option first">';
+										$html += '<div class="l_box" title="보장금액"><label for="price_'+ (obj.num +1)+'">보장금액</label></div>';
+										$html += '<div class="r_box">';
+											$html += '<input type="text" id="price_'+ (obj.num +1)+'" setyle="width:300px" title="보장금액을 입력하세요" /> 원';
+										$html += '</div>';
+									$html += '</div>';
+									$html += '<div class="option">';
+										$html += '<div class="l_box" title="보장범위"><span>보장범위</span></div>';
+										$html += '<div class="r_box">';
+											$html += '<div class="area_Box type">';
+												$html += '<div>화재</div>';
+												$html += '<div>폭발</div>';
+												$html += '<div>파손 및 도난</div>';
+												$html += '<div>풍수재</div>';
+												$html += '<div>전기적사고</div>';
+												$html += '<div>기계적사고</div>';
+												$html += '<div>과부화/결함</div>';
+												$html += '<div>종업원 부주의</div>';
+											$html += '</div>';
+										$html += '</div>';
+									$html += '</div>';
+									$html += '<div class="option type">';
+										$html += '<div class="l_box" title="보험료 인하"><span>보험료 인하</span></div>';
+										$html += '<div class="r_box">';
+											$html += '<div class="chkModule" title="보험료 인하"><span>선택</span></div>';
+										$html += '</div>';
+									$html += '</div>';
+									$html += '<div class="option">';
+										$html += '<div class="l_box" title="보장범위"><label for="area_'+ (obj.num +1)+'">기타</label></div>';
+										$html += '<div class="r_box">';
+											$html += '<input type="text" id="area_'+ (obj.num +1)+'"style="width:100%" title="보장금액을 입력하세요" />';
+										$html += '</div>';
+									$html += '</div>';
+								$html += '</div>';
+								$html += '<div class="close">삭제</div>';
+							$html += '</div>';
+							//obj.ui = $html;
+							obj.ui = $($html);
+							//console.log(obj.ui);
+							$(".process-Box").append(obj.ui);
+							arr.push(obj);
+							console.log(arr);
+							optModule.event(obj);
+						},
+
+						event : function(obj){
+							console.log(obj);
+							obj.ui.find(".selectOp").on("change", function(){
+								var $val = $(this).val();
+								console.log($val);
+								obj.ui.find(".area_Box div").removeClass("on");
+								obj.ui.find(".bottom").hide();
+								obj.ui.find(".bottom").eq($val).show();
+							});
+							obj.ui.find(".area_Box div").on("click", function(){
+								if($(this).hasClass("on")){
+									$(this).removeClass("on");
+								} else {
+									$(this).addClass("on");
+								}
+							});
+							obj.ui.find(".close").on("click", function(){
+								obj.ui.remove();
+								arr.splice(obj.num, 1);
+								optModule.change(arr);
+								_num--;
+							});
+
+							obj.ui.find(".option .chkModule").on("click", function(){
+								if($(this).hasClass("active")){
+									$(this).removeClass("active");
+								} else {
+									$(this).siblings().removeClass("active");
+									$(this).addClass("active");
+								};
+							});
+
+							optModule.change(arr);
+						},
+						
+						change : function(arr){
+							for(var i in arr){
+								var obj = arr[i];
+								console.log(obj);
+								obj.num = parseInt(i);
+								console.log(obj.num);
+								obj.ui.attr("data-id", obj.num + 1);
+							}
+						}
+					}
+					optModule.init();
+				});
+				</script>
+							<div class="process-Box"></div><!-- end : class : process-Box -->
+							<div class="btn_C_Area">
+								<a href="#self" class="addBtn"><i></i>목적물 유형 추가</a>
+							</div>
+						</div><!-- end : class : corp_Area -->
+			</div><!-- // sampleWrap -->
+
+			<script type="text/javascript">
+			$(document).ready(function(){
+				genHTML(); // codemirror 실행
+			});
+
+			function genHTML(valArr){
+				$('.sampleWrap').each(function(i){
+					var temp = valArr || $(this).html();
+					var $src = $('<div class="htmlsrc" ></div>');
+					$(this).after($src);	
+					var myCodeMirror = CodeMirror($src[0], {
+						value: valArr ? temp[i] : temp,
+						mode: 'htmlmixed',
+						lineNumbers: !$(this).is('.inline'),
+						readOnly: true,
+						styleActiveLine: false,
+						autoClearEmptyLines:true,
+						lineWrapping: true,
+						matchBrackets: true
+					});
+					if($(this).hasClass('mine')) $(this).hide(); // 클래스 mine 이 붙으면 기존에 있던 텍스트는 삭제
+				});
+			}
+			</script>
+			</div>
+			</div>
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.popup();
+	},
+
+	popup : function(){
+
+		//쿠키저장 함수
+		function setCookie( name, value, expiredays ) { 
+			var todayDate = new Date(); 
+			todayDate.setDate( todayDate.getDate() + expiredays ); 
+			document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+		}
+
+		$(document).ready(function(){
+			$("#main_Popup .close").click(function(){
+				//오늘만 보기 체크박스의 체크 여부를 확인 해서 체크되어 있으면 쿠키를 생성한다.
+				if($("#today").is(':checked')){
+					//$.cookie('topPop','done',{expores:1, path:'/'});
+					setCookie( "topPop", "done" , 1 ); 
+					//alert("쿠키를 생성하였습니다.");
+				}
+				//팝업창을 위로 애니메이트 시킨다. 혹은 slideUp()
+				//$('#promotionBanner').animate({height: 0}, 500);
+				$('#main_Popup').fadeOut(); 
+			});
+
+			//저장된 해당 쿠키가 있으면 창을 안 띄운다 없으면 뛰운다.
+			cookiedata = document.cookie;    
+			if ( cookiedata.indexOf("topPop=done") < 0 ){      
+				document.all['main_Popup'].style.display = "block";
+				} 
+			else {
+				document.all['main_Popup'].style.display = "none"; 
+			}
+		});
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; overflow-x:hidden; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; position:relative;}
+#footer{width:100%; background-color:#51535B;}
+.inner{width:100%; max-width:1200px; margin:0 auto;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+img{width:100%;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+				<div class="example"></div>
+				<div class="example2"></div>
+				<div class="sampleWrap"></div>
+<script>
+(function($){
+	$.fn.plugin = function(options){
+		var opt = $.extend({
+			num: 0,
+			max: 25,
+			size: 30,
+			wrapBg: '#999',
+			boxBg: '#000',
+			txtColor: '#fff'
+		}, options);
+
+		$(this).css('position', 'relative');
+		$(this).append('<div class="boxWrap"></div>');
+		$(this).append('<a href="#" class="btnPlus">+</a>');
+		$(this).append('<a href="#" class="btnMinus">-</a>');
+		var $boxWrap = $(this).find('.boxWrap');
+		var $btnPlus = $(this).find('.btnPlus');
+		var $btnMinus = $(this).find('.btnMinus');
+
+		var Fn = {
+			Init: function(){
+				$boxWrap.css({
+					'width': opt.size*5,
+					'height': opt.size*5,
+					'background': opt.wrapBg,
+					'box-shadow': 'inset 0px 0px 5px '+opt.boxBg
+				});
+				$btnPlus.css({
+					'position': 'absolute',
+					'left': opt.size*5,
+					'bottom': 0
+				});
+				$btnMinus.css({
+					'position': 'absolute',
+					'left': opt.size*5+20,
+					'bottom': 0
+				});
+				if(opt.num > 0){
+					for(var n=0; n<opt.num; n++){
+						Fn.Create(n);
+					}
+					$btnPlus.css('display', 'block');
+					$btnMinus.css('display', 'block');
+				}else{
+					$btnPlus.css('display', 'block');
+				}
+				$btnPlus.on('click', function(e){
+					opt.num++;
+					if(opt.num>=1) $btnMinus.css('display', 'block');
+					if(opt.num==opt.max) $btnPlus.css('display', 'none');
+					Fn.Create();
+					e.preventDefault();
+				});
+				$btnMinus.on('click', function(e){
+					opt.num--;
+					if(opt.num==0) $btnMinus.css('display', 'none');
+					if(opt.num==opt.max-1) $btnPlus.css('display', 'block');
+					$boxWrap.find('.box').last().remove();
+					e.preventDefault();
+				});
+			},
+			Create: function(n){
+				var o = {};
+				o.num = opt.num;
+				o.ui = null;
+				Fn.Draw(o, n);
+			},
+			Draw: function(o, n){
+				var html = '';
+				if(n != null){
+					html += '<div class="box">'+(n+1)+'</div>';
+				}else{
+					html += '<div class="box">'+opt.num+'</div>';
+				}
+				o.ui = $(html);
+				$boxWrap.append(o.ui);
+				o.ui.css({
+					'width': opt.size,
+					'height': opt.size,
+					'line-height': opt.size +'px',
+					'background': opt.boxBg,
+					'font-size': '12px',
+					'color': opt.txtColor,
+					'text-align': 'center',
+					'display': 'inline-block',
+					'box-shadow': 'inset 0px 0px 3px '+opt.wrapBg
+				});
+			}
+		}
+
+		return this.each(function(){
+			Fn.Init();
+		});
+	}
+})(jQuery);
+
+$('.example').plugin({
+	size: 25
+});
+
+$('.example2').plugin({
+	size: 50,
+	wrapBg: 'green',
+	boxBg: '#fff',
+	txtColor: '#000',
+	num: 3
+});
+</script>
+
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

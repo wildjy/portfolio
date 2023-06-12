@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		$('.youtube iframe').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' }); 
+	   $(window).resize(function(){ 
+		  $('.youtube iframe').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' }); 
+	   }); 
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#visual .test_bxslider{width:100%;}
+#visual .test_bxslider>div .youtube{text-align:center; background-color:#eee; position:relative;}
+#visual .test_bxslider>div iframe{display:block;}
+#visual .test_bxslider>div .text{opacity:0; visibility:hidden; display:block; position:absolute; top:50%; left:50%; margin-top:80px; font-size:25px; color:#fff; font-weight:600;
+-webkit-transform:translate(-50%,-50%);
+-moz-transform:translate(-50%,-50%);
+-o-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%);}
+#visual .test_bxslider>div.active-slide .text{opacity:1; visibility:visible; margin-top:0px;
+-webkit-transition:all 1.5s ease-in;
+-moz-transition:all 1.5s ease-in;
+-o-transition:all 1.5s ease-in;
+transition:all 1.5s ease-in;}
+#visual .test_bxslider>div .text>b{display:block; padding-bottom:10px; font-size:150%;}
+#visual .bx-wrapper .bx-pager,
+#visual .bx-wrapper .bx-controls-auto {bottom:10px;}
+#visual .bx-wrapper .bx-pager.bx-default-pager a {width: 15px; height: 15px; background-color:#FFF;
+-moz-border-radius: 50%;
+-webkit-border-radius: 50%;
+border-radius: 50%;}
+#visual .bx-wrapper .bx-pager.bx-default-pager a:hover,
+#visual .bx-wrapper .bx-pager.bx-default-pager a.active,
+#visual .bx-wrapper .bx-pager.bx-default-pager a:focus {background:red;}
+#visual .bx-wrapper .bx-controls-direction a {margin-top: -35px; width: 35px; height:70px;}
+#visual .bx-wrapper .bx-prev {left: 10px; background-color:#000;}
+#visual .bx-wrapper .bx-prev:hover,
+#visual .bx-wrapper .bx-prev:focus {background-position: 0 0;}
+#visual .bx-wrapper .bx-next {right: 10px; background-color:#000;}
+#visual .bx-wrapper .bx-next:hover,
+#visual .bx-wrapper .bx-next:focus {background-position: 0 0;}
+
+@media all and (max-width:1000px){
+	#visual .test_bxslider>div .youtube{height:auto;}
+	#visual .test_bxslider>div iframe{position:relative; top:0; left:0; width:100%; 
+	-webkit-transform:translate(0,0);
+	-moz-transform:translate(0,0);
+	-o-transform:translate(0,0);
+	transform:translate(0,0);}
+	#visual .test_bxslider>div .text{margin-top:40px; font-size:18px;}
+}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+				<div class="test_bxslider">
+					<div><div class="youtube"><iframe src="https://www.youtube.com/embed/V2hlQkVJZhE?enablejsapi=1" frameborder="0" allowfullscreen></iframe></div></div>
+					<div><div class="youtube"><iframe src="https://www.youtube.com/embed/GU7icQFVzHo?enablejsapi=1" frameborder="0" allowfullscreen></iframe></div></div>
+					<div><div class="youtube"><iframe src="https://www.youtube.com/embed/lXvPaWvaoO4?enablejsapi=1" frameborder="0" allowfullscreen></iframe></div></div>
+				</div>
+				<script type="text/javascript">
+					//<![CDATA[
+					var $ids = $('iframe'), tgs = [];
+					var tag; 
+					var firstScriptTag; 
+					tag = document.createElement('script'); 
+					tag.src = "https://www.youtube.com/iframe_api"; 
+					firstScriptTag = document.getElementsByTagName('script')[0]; 
+					firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); 
+
+					function onYouTubeIframeAPIReady(){ 
+					  for(var i = 0 ; i < $ids.length ; i++){
+						var player = new YT.Player($ids[i], {  
+						  events: {'onReady':onPlayerReady} 
+						}); 
+					  }
+					} 
+
+					function onPlayerReady(event){ 
+					  tgs.push(event.target);
+					  event.target.setVolume(60);
+					  if(tgs.length == $ids.length){
+						tgs.sort(function(a,b){return a.g-b.g});
+						tgs[0].playVideo();
+					  }
+					}
+					
+					var done = false;
+					function onPlayerStateChange(event) {
+						// 동영상상태가 종료상태가 되면 구동.
+						if (event.data == YT.PlayerState.ENDED) {
+							alert("동영상 플레이가 종료되었습니다.");
+							return;
+						}
+					}
+
+					var slider = $('.test_bxslider').bxSlider({
+						mode: 'fade',//'horizontal', 'vertical', 'fade'
+						auto:false,
+						pause:4000,
+						speed:500,
+						pager:true,
+						//video:true,
+						controls:true,
+						onSliderLoad: function(currentIndex) {
+							//console.log(currentIndex);
+							$(".test_bxslider").children().eq(currentIndex).addClass('active-slide');
+							onPlayerStateChange();
+						},
+						onSlideBefore:function($slideElement, $curIndex, $nextIndex){
+							//console.log($curIndex);
+							tgs.forEach(function(e,i){
+							  e.stopVideo();
+							});
+						},
+						onSlideAfter:function($slideElement, oldIndex, newIndex){
+							//console.log(newIndex);
+							$(".test_bxslider").children().removeClass('active-slide');
+							$slideElement.addClass('active-slide');
+							tgs[newIndex].playVideo();
+
+							//slider.stopAuto();
+							//slider.startAuto();
+						}
+					});
+
+					$(window).resize(function(){
+						//slider.reloadSlider();
+					});
+					//]]>
+				</script>
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents">
+
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

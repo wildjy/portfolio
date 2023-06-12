@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="format-detection" content="telephone=no">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- <meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:url" content="" /> -->
+		<!-- <link rel="shortcut icon" type="text/css" href="images/ico/favicon_ns.ico" /> -->
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/fonts.css" />
+		<script type="text/javascript" src="../../js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.rwdImageMaps.min.js"></script>
+		<script type="text/javascript" src="../../js/ui.js"></script>
+		<!--[if lt IE 9]><script src="../../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../../js/html5shiv.js"></script><![endif]-->
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	project.init();
+});
+$(window).resize(function(){
+	project.change();
+});
+
+var project = {
+	init : function(){
+		project.main();
+		project.change();
+	},
+
+	main : function(){
+
+	},
+
+	change : function(){
+		//$('img[usemap]').rwdImageMaps();
+		$(".re_Img").each(function(){
+			console.log($(this).length);
+			if($(window).width() < 900){
+				$(this).attr("src", $(this).attr("src").replace("_pc.png","_m.png"));
+			} else {
+				$(this).attr("src", $(this).attr("src").replace("_m.png","_pc.png"));
+			}
+		});
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%; }
+#wrap{width:100%; overflow-x:hidden; position:relative; }
+#header{width:100%; border-bottom:1px solid #E8EBEE; position:relative; z-index:150;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%; background-color:#1B2654;}
+.inner{width:100%; max-width:100%; margin:0 auto; text-align:center; position:relative;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:200;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+/* ---- project_common_guide ----
+* main 상하여백 : 상 / 하
+* sub 상하여백 : 상 / 하
+* font-size : 
+* font-color : 
+* font-weight : 
+* boder : #E8EBEE;
+*/
+
+/* header */
+#header>.inner{max-width:1155px;}
+#header .logo{position:absolute; top:40px; left:-160px;}
+#header .nav{position:absolute; top:40px; right:-140px;}
+#header .gnb{}
+#header .gnb:after{content:""; display:block; clear:both;}
+#header .gnb>li{float:left; padding-left:20px;}
+#header .gnb>li:first-child{padding-left:0;}
+#header .gnb>li>a{display:block; font-family:"맑은 고딕", "Malgun Gothic"; ,"돋움", dotum, sans-serif; font-size:17px; color:#fff;}
+
+@media all and (max-width:1155px){
+	.inner{padding:0 30px;}
+
+	#header .logo{left:20px;}
+	#header .nav{ right:20px;}
+}
+
+@media all and (max-width:900px){
+	.inner{padding:0 15px;}
+}
+
+/* contents */
+#contents .section{width:100%; position:relative;}
+#contents .section.top{height:2451px; background: url("../../images/landing/top_bg.jpg") 50% 0 no-repeat;}
+#contents .section.sec_1{height:2646px; background: url("../../images/landing/cont_bg_1.jpg") 50% 0 no-repeat;}
+#contents .section.sec_2{height:2660px; background: url("../../images/landing/cont_bg_2.jpg") 50% 0 no-repeat;}
+#contents .section.sec_3{height:2129px; background: url("../../images/landing/cont_bg_3.jpg") 50% 0 no-repeat;}
+
+/* common */
+#contents .section .cont_Area{position:absolute; left:50%; width:100%;
+-webkit-transform:translate(-50%,0);
+-moz-transform:translate(-50%,0);
+-o-transform:translate(-50%,0);
+transform:translate(-50%,0);}
+#contents .section .title{text-align:center;}
+#contents .section .obj{position:relative;}
+#contents .section .day{padding:60px 0; text-align:center;}
+#contents .section .obj>div.obj_pic{/* position:absolute; top:0; left:50%; 
+-webkit-transform:translate(-50%,0);
+-moz-transform:translate(-50%,0);
+-o-transform:translate(-50%,0);
+transform:translate(-50%,0); */}
+#contents .section .btn{text-align:center;}
+/* #contents .section .btn>a{display:inline-block; box-shadow: 10px 20px 40px rgba(0,0,0,.2);} */
+
+/* top */
+#contents .section.top .title{padding-top:1070px; font-size:30px; color:#e8efff; line-height:44px; position:relative;}
+#contents .section.top .title>span{color:#ffd441;}
+#contents .section.top .title>span>b{font-weight:bold;}
+#contents .section.top .title>strong{font-size:44px; color:#fff; font-weight:bold;}
+#contents .section.top .title>.btn{position:absolute; bottom:-290px; left:50%; border:1px solid #fff;
+-webkit-transform:translate(-50%,0);
+-moz-transform:translate(-50%,0);
+-o-transform:translate(-50%,0);
+transform:translate(-50%,0);}
+#contents .section.top .title>.btn>a{display:block; width:400px; height:200px; font-size:0; line-height:0;}
+
+/* sec_1 */
+#contents .section.sec_1{}
+#contents .section.sec_1 .cont_Area{top:-800px;}
+#contents .section.sec_1 .cont_Area .text{padding-bottom:40px; font-size:38px; color:#fff; text-align:center; line-height:53px;}
+#contents .section.sec_1 .cont_Area .text>strong{font-size:64px;}
+#contents .section.sec_1 .cont_Area .terms{margin:100px auto; padding:30px 0; width:100%; max-width:1155px; border-top:6px solid #fff; border-bottom:6px solid #fff;}
+#contents .section.sec_1 .cont_Area .terms dl{display:inline-block; margin:0 auto; text-align:left; }
+#contents .section.sec_1 .cont_Area .terms dl>dt{padding-bottom:15px; font-size:30px; color:#fff; font-weight:600; text-align:center;}
+#contents .section.sec_1 .cont_Area .terms dl>dt>span{display:block; padding-top:10px; font-size:80%;}
+#contents .section.sec_1 .cont_Area .terms dl>dd li{padding:5px 0; font-size:24px; color:#fff; line-height:30px; position:relative;}
+#contents .section.sec_1 .cont_Area .terms dl>dd li>span{display:inline-block; margin-right:10px; padding:2px 0; width:70px; text-align:center; font-weight:600; background-color:#0A1D55; border-radius:10px;}
+
+/* sec_2 */
+#contents .section.sec_2 .cont_Area .obj_pic img{width:100%;}
+#contents .section.sec_2 .cont_Area .text{padding:50px 0 100px 0; font-size:43px; color:#252F50;}
+#contents .section.sec_2 .cont_Area .text>b{display:block;}
+#contents .section.sec_2 .cont_Area .text span{display:inline-block; position:relative;}
+#contents .section.sec_2 .cont_Area .text span>i{position:absolute; top:-5px; left:50%; width:5px; height:5px; border-radius:50%; background-color:#FFF300;
+-webkit-transform:translate(-50%,0);
+-moz-transform:translate(-50%,0);
+-o-transform:translate(-50%,0);
+transform:translate(-50%,0);}
+#contents .section.sec_2 .cont_Area .info_txt{padding-top:50px; display:inline-block; text-align:left; margin:0 auto;}
+#contents .section.sec_2 .cont_Area .info_txt>li{font-size:22px; color:#262f4e; line-height:32px;}
+
+
+@media all and (max-width:1155px){
+	#contents .section .cont_Area{padding:0 30px}
+	#contents .section .cont_Area img{width:100%;}
+
+	img{width:100%;}
+ 	#contents .section.top{height:auto; background: url("../../images/landing/top_bg_m.jpg") 50% 0 no-repeat;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;}
+	#contents .section.sec_1{height:auto; background: url("../../images/landing/cont_bg_1_m.jpg") 50% 0 no-repeat; 
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;}
+	#contents .section.sec_2{padding:15% 0; height:auto; background: url("../../images/landing/cont_bg_2_m.jpg") 50% 0 no-repeat; 
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;}
+	#contents .section.sec_3{height:auto; background:#1C41A8 url("../../images/landing/cont_bg_3_m.jpg") 50% top no-repeat; 
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;}
+ 
+	#contents .section .cont_Area{position:relative; top:-0px; padding:0 0;}
+	#contents .section.sec_1 .cont_Area{top:-0px;}
+	#contents .section .day{padding:30px 15%;}
+	#contents .section .btn img{width:50%;}
+
+	#contents .section.top .title{padding:120% 0 15% 0; font-size:15px; line-height:26px;}
+	#contents .section.top .title>strong{font-size:22px;}
+	#contents .section.top .title>.btn{position:relative; bottom:0; margin-top:6%; width:50%;}
+	#contents .section.top .title>.btn>a{padding:21%; height:auto;}
+
+	#contents .section.sec_1 .cont_Area .text{padding-bottom:40px; font-size:19px; line-height:26px;}
+	#contents .section.sec_1 .cont_Area .text>strong{font-size:32px;}
+	#contents .section.sec_1 .cont_Area .terms{margin:10% auto; padding:30px 0;}
+	#contents .section.sec_1 .cont_Area .terms dl>dt{font-size:25px;}
+	#contents .section.sec_1 .cont_Area .terms dl>dd li{font-size:13px; line-height:24px;}
+	#contents .section.sec_1 .cont_Area .terms dl>dd li>span{margin-right:5px; padding:2px 0; width:45px;}
+
+	#contents .section.sec_2 .cont_Area .text{padding:35px 0 80px 0; font-size:30px; color:#252F50;}
+	#contents .section.sec_2 .cont_Area .text span>i{width:5px; height:5px;}
+	#contents .section.sec_2 .cont_Area .info_txt{padding-top:50px;}
+	#contents .section.sec_2 .cont_Area .info_txt>li{font-size:18px; line-height:30px;}
+}
+@media all and (max-width:640px){
+	#contents .section .btn img{width:90%;}
+
+	#contents .section.sec_1 .cont_Area .text{font-size:15px; line-height:26px;}
+	#contents .section.sec_1 .cont_Area .text>strong{font-size:28px;}
+
+	#contents .section.sec_2 .cont_Area .text{padding:25px 0 50px 0; font-size:16px; color:#252F50;}
+	#contents .section.sec_2 .cont_Area .text span>i{width:5px; height:5px;}
+	#contents .section.sec_2 .cont_Area .info_txt{padding-top:50px;}
+	#contents .section.sec_2 .cont_Area .info_txt>li{font-size:13px; line-height:25px;}
+}
+@media all and (max-width:375px){
+	.inner{padding:0 15px;}
+	#contents .section.top .title{padding:118% 0 15% 0; font-size:13px; line-height:20px;}
+	#contents .section.top .title>strong{font-size:16px;}
+
+	#contents .section.sec_1 .cont_Area .text{font-size:13px;}
+	#contents .section.sec_1 .cont_Area .text>strong{font-size:24px;}
+	#contents .section.sec_1 .cont_Area .terms dl>dt{font-size:22px;}
+	#contents .section.sec_1 .cont_Area .terms dl>dd li{font-size:12px; line-height:24px;}
+	#contents .section.sec_1 .cont_Area .terms dl>dd li>span{margin-right:5px; padding:2px 0; width:45px;}
+}
+
+/* footer */
+#footer .notice_txt{padding:50px 0 110px 0; font-size:30px; color:#a6b4e8; text-align:center;}
+#footer .notice_txt>b{font-weight:600;}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#gnd">주메뉴 바로가기</a></dd>
+				<dd><a href="#contents">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+				<div class="inner">
+					<h1 class="logo"><a href="#self"><img src="../../images/landing/logo.png" alt="Bdok's" /></a></h1>
+					<nav  class="nav">
+						<ul class="gnb">
+							<li><a href="#self">사전가입</a></li>
+							<li><a href="#self">로그인</a></li>
+							<!-- <li><a href="#self">로그아웃</a></li> -->
+						</ul>
+					</nav>
+				</div>
+			</header><!-- end : id : header -->
+
+			<div id="contents">
+				<h2 class="hide">컨텐츠</h2>
+				<div class="section top">
+					<div class="inner">
+						<div class="title">
+							코인의 가치를 아는 <span>블록체인 플랫폼 <b>비닥스</b></span>에서<br />
+							베타오픈을 맞이하여 역대 거래소<br />
+							<strong>최고의 상품</strong>들을 준비했습니다 !
+
+							<div class="btn"><a href="#self">자세히보기</a></div>
+						</div>
+					</div>
+				</div><!-- end : class : section -->
+
+				<div class="section sec_1">
+					<div class="inner">
+						<div class="cont_Area">
+							<h3 class="title"><img src="../../images/landing/title_1_pc.png" class="re_Img" alt="" /></h3>
+							<div class="day"><img src="../../images/landing/day.png" alt="2018.11.28~2019.12.12" /></div>
+							<div class="text">
+								이벤트 기간 내 <b>비닥스 원화마켓에서 <br />
+								거래한 회원님들 중 <br />
+								거래 수량(매도, 매수합계)과 보유자산이</b> <br />
+								아래조건에 충족되시는 회원님들 중 추첨을 통해<br />
+								<strong>벤틀리 뮬산, 벤츠 E-Class</strong>를 포함한 <br />
+								 어마어마한 상품을 드립니다!
+							</div>
+							<div class="obj"><div class="obj_pic"><img src="../../images/landing/obj_1_pc.png" class="re_Img" alt="" /></div></div>
+							<div class="terms">
+								<dl>
+									<dt>추첨 대상자 조건
+										<span>3단계 인증을 완료한 회원.</span>
+									</dt>
+									<dd>
+										<ul>
+											<li><span>1,2등</span><b>거래 대금</b>30억원 이상 / 순매수 : 2,000만원 이상</li>
+											<li><span>3등</span><b>거래 대금</b>10억원 이상 / 순매수 : 1,000만원 이상</li>
+											<li><span>4등</span><b>거래 대금</b>1,000만원 이상 / 순매수 : 200만원 이상</li>
+											<li><span>5등</span><b>거래 대금</b>1,000만원 이상 / 순매수 : 100만원 이상</li>
+										</ul>
+									</dd>
+								</dl>
+							</div>
+							<div class="btn"><a href="#self"><img src="../../images/landing/join_btn.jpg" alt="" /></a></div>
+						</div>
+					</div>
+				</div><!-- end : class : section -->
+
+				<div class="section sec_2">
+					<div class="inner">
+						<div class="cont_Area">
+							<div class="obj"><div class="obj_pic"><img src="../../images/landing/obj_2_pc.png" class="re_Img" alt="사전가입 하러가기" /></div></div>
+							<p class="text">
+								<b>* 사전가입자 <span>회<i></i></span><span>원<i></i></span><span>수<i></i></span>에 따라 상품수량 증가</b>
+							   ( 3천명-3대 추가, 5천명 5대 추가, 최대 10대 )
+						   </p>
+							<div class="btn"><a href="#self"><img src="../../images/landing/join_btn.jpg" alt="" /></a></div>
+
+							<ul class="info_txt">
+								<li>* 베타오픈 후 이벤트기간동안의 거래대금 기준.</li>
+								<li>* 이벤트 종료일 2018 / 12 / 12, 00:00 스냅샷 기준</li>
+								<li>* 당첨자발표 : 2018 / 12 / 20 </li>
+								<li>* 순매수 : 현재 보유하고있는 코인의 원화가치 기준. ( * 단 원화가치는 매수했을 당시의 거래내역 기준으로 평가함)</li>
+								<li>* 모니터링 후 불법적인 방법으로 취득한 대상은 당첨자에서 제외됩니다.</li>
+							</ul>
+						</div>
+					</div>
+				</div><!-- end : class : section -->
+
+				<div class="section sec_3">
+					<div class="inner">
+						<div class="cont_Area">
+							<h3 class="title"><img src="../../images/landing/title_2_pc.png" class="re_Img" alt="" /></h3>
+							<h3 class="obj"><div class="obj_pic"><img src="../../images/landing/obj_3_pc.png" class="re_Img" alt="" /></div></h3>
+						</div>
+					</div>
+				</div><!-- end : class : section -->
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+				<h2 class="hide">푸터</h2>
+				<div class="inner">
+					<p class="notice_txt"><b>유의사항</b> : 당첨자의 제세공과금 33%는 본인 부담입니다</p>
+				</div>
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<div class="item">
+콘텐츠
+</div>
+
+<style type="text/css">
+::-webkit-scrollbar{-webkit-appearance: none;}
+  /* 기본 스크롤바를 안 보이게 함 */
+::-webkit-scrollbar-track-piece{background-color:#e7e7e7}
+  /* 양 끝 화살표와 몸통 바를 제외한 길 */
+::-webkit-scrollbar:vertical{height:18px;}
+  /* 가로 스크롤바의 크기, 세로는 horizontal을 vertical로 바꾸면 된다 */
+::-webkit-scrollbar-thumb{background-color:#a8a8a8;border-radius:10px;border:2px solid #eeeeee;} 
+  /* 실제로 움직이는 몸통 바 */
+::-webkit-scrollbar-button{width:16px;background-color:#a8a8a8;}
+  /* 양 끝 화살표부분 */
+::-webkit-scrollbar-button:start:decrement:vertical{
+  /* 가로 스크롤의 왼쪽 화살표부분 */
+  width:16px;height:16px;background:#cacaca;
+  background-image:url(/wp-content/custom/img/larrow.png);
+  /* 화살표는 이미지를 정해줘야 한다 */
+  background-repeat:no-repeat;background-position:center center;}
+::-webkit-scrollbar-button:end:increment:vertical{
+  /* 가로 스크롤의 오른쪽 화살표부분 */
+  width:16px;height:16px;background:#cacaca;
+  background-image:url(/wp-content/custom/img/rarrow.png);
+  background-repeat:no-repeat;background-position:center center;}}
+</style>
+
+<style type="text/css">
+  @media only screen and (max-device-width:35.5em) {
+  /* 모바일에서만 보이게 하기 위함 */
+.item::-webkit-scrollbar{-webkit-appearance:none;}
+  /* 사파리 버전으로 다시 없애고 */
+.item::-webkit-scrollbar:vertical{height:16px;}
+  /* 사파리 버전으로 크기 정하고 */
+.item::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 9px rgba(0,0,0,0.3);} 
+  /* 이건 몸통 바에 그림자를 주는 데코레이션 */
+.item::-webkit-scrollbar:vertical{padding-left:50px;width:100%;background-color:#e7e7e7;
+background-image:url(/wp-content/custom/img/rarrow50.png); 
+  /* 사파리 용으로 자신이 원하는 만큼의 공백이 있는 화살표 이미지를 만들어야 한다, 개꿀몬(GKKmon)은 가로 50픽셀 맨 끝에 화살표가 있는 이미지를 만듦 */
+background-repeat:repeat-x;
+  /* 배경 화살표를 가로로 반복 */
+background-position:center;}}
+  /* 배경 화살표를 세로 중앙에 위치 */
+</style>

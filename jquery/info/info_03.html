@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="format-detection" content="telephone=no">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- <meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:url" content="" /> -->
+		<!-- <link rel="shortcut icon" type="text/css" href="images/ico/favicon_ns.ico" /> -->
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/study.css" />
+		<link type="text/css" rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<link type="text/css" rel="stylesheet" href="https://codemirror.net/2/theme/monokai.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/study.js"></script>
+		<!--[if lt IE 9]><script src="../../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../../js/html5shiv.js"></script><![endif]-->
+
+	</head>
+
+	<body>
+		<h1>Javascript</h1>
+		<h2 class="tit">객체공장</h2>
+
+		<ul>
+			<li><strong style="color:blue">this</strong> 메소드 내에서 메소드가 속한 객체를 참조</li>
+			<li><strong style="color:blue">constructor</strong> new를 붙인다면 새로운 객체를 생성하는 생성자가 됨</li>
+			<li>함수에 인자를 만든후 각 함수호출시 값을 주면 됨</li>
+		</ul>
+		<div class="studyArea sm">
+		<script type="text/javascript">
+			function Person(name, first, second, third){
+				this.name = name,
+				this.first = first,
+				this.second = second,
+				this.third = third,
+				this.sum = function(){
+					return this.first+this.second+this.third;
+				}
+			}
+
+			//그냥 함수호출
+			console.log("Person()", Person());
+			//constructor = new를 붙인다면 새로운 객체를 생성하는 생성자가 됨
+			console.log("new Person()", new Person());
+
+			var kim = new Person("kim", 10, 20, 30);
+			var lee = new Person("leel", 10, 10, 10);
+
+			//sum 재정립
+			kim.sum = function(){
+				return 'modified : ' + (this.first+this.second);
+			}
+			/*
+			var kim = {
+				name : "kim",
+				first : 10,
+				second : 20,
+				third : 30,
+				sum : function(){
+					return this.first+this.second+this.third;
+				}
+			}
+
+
+			var lee = {
+				name : "kim",
+				first : 10,
+				second : 10,
+				third : 10,
+				sum : function(){
+					return this.first+this.second+this.third;
+				}
+			}
+			*/
+			console.log("kim.sum()", kim.sum());
+			console.log("lee.sum()", lee.sum());
+
+			var d1 = new Date("2019-05-09");
+			console.log("d1.getFullYear()", d1.getFullYear());
+			console.log("d1.getMonth()", d1.getMonth() + 1);
+			console.log("d1.getDay()", d1.getDay());
+
+			console.log("Date",Date);
+
+		</script>
+		</div>
+		</div>
+	</body>
+</html>

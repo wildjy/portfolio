@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault();
+	}
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		var $on = true;
+		$(".gnb_Btn").on("click", function(){
+			if($on){
+				$on = false;
+				$(this).removeClass("hover").addClass("active");
+			} else {
+				$on = true;
+				$(this).removeClass("active").addClass("hover");
+				//mobile 기기터치감지
+				var is_touch_device = "ontouchstart" in document.documentElement;
+				if(is_touch_device){
+					$(this).removeClass("hover");//mobile 기기터치시 :hover 이벤트삭제하기 위함
+				}
+			};
+		});
+	},
+
+	main : function(){
+		//inputPlaceHolder
+		$(".input-Box").find("input, textarea").each(function(){
+			if($(this).val() == ""){
+				$(this).parent().removeClass("active");
+			} else {
+				$(this).parent().addClass("active");
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() ==""){
+					$(this).parent().addClass("active");
+				};
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val()==""){
+					$(this).parent().removeClass("active");
+				};
+			});
+		});
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{width:100%;}
+#wrap{width:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+#wrap .contact_Area{padding:100px 15px; width:100%; max-width:1100px; margin:0 auto;}
+#wrap .contact_Area .input-Box{padding:10px 0; width:100%; border-bottom:1px solid rgba(255,255,255,.35); position:relative;}
+#wrap .contact_Area .input-Box input{padding:10px 15px; width:100%; font-size:15px; color:rgba(255,255,255,1); border:none; background-color:transparent;
+-webkit-transition:all .3s ease-in; 
+-moz-transition:all .3s ease-in; 
+-o-transition:all .3s ease-in; 
+transition:all .3s ease-in;}
+#wrap .contact_Area .input-Box label{position:absolute; top:50%; left:15px; font-size:15px; color:rgba(255,255,255,1);
+-webkit-transform:translate(0, -50%);
+-moz-transform:translate(0, -50%);
+-o-transform:translate(0, -50%);
+transform:translate(0, -50%);}
+#wrap .contact_Area .ul_infoType>li>span{display:inline-block; width:70px; font-size:100%; color:#8C8C8C; line-height:24px;}
+#wrap .contact_Area .input-Box.active{padding:18px 0 2px 0;}
+#wrap .contact_Area .input-Box.active label{top:7px; font-size:11px; color:rgba(255,255,255,.65);
+-webkit-transform:translate(0, 0);
+-moz-transform:translate(0, 0);
+-o-transform:translate(0, 0);
+transform:translate(0, 0);
+-webkit-transition:all .3s ease-in; 
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in; 
+transition:all .3s ease-in;}
+#wrap .contact_Area .input-Box label.a{top:20px;
+-webkit-transform:translate(0, 0);
+-moz-transform:translate(0, 0);
+-o-transform:translate(0, 0);
+transform:translate(0, 0);}
+#wrap .contact_Area .input-Box.active label.a{top:7px;}
+#wrap .contact_Area .input-Box textarea{padding:15px; width:100%; height:200px; font-size:14px; color:rgba(255,255,255,1);  background-color:transparent; border:none; resize:none;}
+#wrap .contact_Area .send{margin-top:3%; width:100%;}
+#wrap .contact_Area .send button{padding:15px 0; width:100%; font-family:"Raleway", sans-serif; font-size:15px; color:#fff; font-weight:600; text-align:center; background-color:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.35); border-radius:4px; cursor:pointer;}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	appearance:none;
+};
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents">
+				<div class="contact_Area">
+					<form method="post" action="">
+						<fieldset>
+							<legend>체크박스 테스트</legend>
+								<div class="contact_Input">
+									<div class="input-Box"><input type="text" id="name" title="이름을 입력하세요" /><label for="name">Name *</label></div>
+									<div class="input-Box"><input type="email" id="email" title="이메일을 입력하세요" /><label for="email">E-mail *</label></div>
+									<div class="input-Box"><input type="number" id="phone" title="연락처를 입력하세요" /><label for="phone">Phone *</label></div>
+									<div class="input-Box"><textarea name="" id="message" cols="30" rows="10" title="메시지를 입력하세요"></textarea><label for="message" class="a">Message *</label></div>
+									<div class="send"><button>SEND</button></div>
+								</div>
+						</fieldset>
+					</form>
+				</div>
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

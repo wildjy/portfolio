@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.10.2.min.js"></script><!-- jquery-1.11.2.min.js : ie8 호환x-->
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+		//checkbox
+		$(".radioMdu").find("input:radio").each(function(){
+			if($(this).is(":checked")){
+				$(this).parent().addClass("on");
+			};
+
+			$(this).on("click",function(){
+				if($(this).prop("checked")){
+					var radioName = $(this).attr("name");
+					$(this).closest(".radioMdu ").find("input").parent().removeClass("on");
+					$(this).parent().addClass("on");
+					$(this).closest(".radioMdu").find("input:radio").prop("checked", false);
+					$(this).prop("checked", true);
+				}
+			});
+
+			$(this).on("focus", function(){
+				console.log("a");
+				$(this).closest(".radioMdu").find("input").parent().removeClass("focus");
+				$(this).parent().addClass("focus");
+			})
+
+			$(this).on("focusout", function(){
+				$(this).parent().removeClass("focus");
+				if($(this).hasClass("last")){
+					//$(this).parent().removeClass("focus");
+				}
+			})
+		});
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+.chkBox-Area{padding:100px 15px; width:100%; max-width:1100px; margin:0 auto;}
+.radioMdu{}
+.radioMdu:after{content:""; display:block; clear:both;}
+.radioMdu p{float:left;}
+.radioMdu p:first-child{margin-right:15px;}
+.radioMdu p>span{display:inline-block; width:18px; height:18px; position:relative; overflow:hidden;}
+.radioMdu p>span label{display:block; width:100%; height:100%; position:relative; border:3px solid #777; background-color:#fff; border-radius:50%; z-index:5;}
+.radioMdu p>span.on label{background-color:#2886BC; border:4px double #eee;}
+.radioMdu p>span.focus label{background-color:red; border:4px double #eee;}
+.radioMdu p>span input{position:absolute; top:2px; left:2px; display:block; width:0; height:0; font-size:0; line-height:0; z-index:1;}
+.radioMdu p>label{display:inline-block; padding-left:5px; font-size:14px; color:#fff; vertical-align:5px;}
+
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents">
+				<div class="chkBox-Area">
+					<form method="post" action="">
+						<fieldset>
+							<legend>체크박스 테스트</legend>
+								<div class="radioMdu">
+									<p><span><label for="chk_1"></label><input type="radio" name="privacy1" id="chk_1" title="체크하시오" checked="checked" /></span><label for="chk_1">동의합니다.</label></p>
+									<p><span><label for="chk_2"></label><input type="radio" name="privacy2" id="chk_2" title="체크하시오" /></span><label for="chk_2">동의하지 않습니다.</label></p>
+								</div>
+								<div class="radioMdu">
+									<p><span><label for="chk_3"></label><input type="radio" name="privacy3" id="chk_3" title="체크하시오" checked="checked" /></span><label for="chk_3">동의합니다.</label></p>
+									<p><span><label for="chk_4"></label><input type="radio" name="privacy4" id="chk_4" title="체크하시오" /></span><label for="chk_4">동의하지 않습니다.</label></p>
+								</div>
+						</fieldset>
+					</form>
+				</div>
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

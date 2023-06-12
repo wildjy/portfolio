@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="format-detection" content="telephone=no">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- <meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:url" content="" /> -->
+		<!-- <link rel="shortcut icon" type="text/css" href="images/ico/favicon.ico" /> -->
+		<link rel="stylesheet" type="text/css" href="css/v3/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/v3/slick.css" />
+		<link rel="stylesheet" type="text/css" href="css/v3/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="css/v3/jquery.bxslider.css" />
+		<link rel="stylesheet" type="text/css" href="css/v3/jquery-ui.css" /> 
+		<link rel="stylesheet" type="text/css" href="css/v3/jquery.mCustomScrollbar.min.css" /> 
+		<script type="text/javascript" src="js/v3/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="js/v3/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="js/v3/ui.js"></script>
+		<script type="text/javascript" src="js/v3/jquery.bxslider.js"></script>
+		<script type="text/javascript" src="js/v3/slick.min.js"></script>
+		<script type="text/javascript" src="js/v3/jquery.superscrollorama.js"></script>
+		<script type="text/javascript" src="js/v3/TweenMax.min.js"></script>
+		<script type="text/javascript" src="js/v3/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/v3/jquery.mCustomScrollbar.concat.min.js"></script>
+		<!--[if lt IE 9]><script src="js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
+
+<script type="text/javascript">
+//<![CDATA[
+	function setCookie( name, value, expiredays ) { 
+		var todayDate = new Date(); 
+		todayDate.setDate( todayDate.getDate() + expiredays ); 
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+	}
+
+	$(document).ready(function(){
+		$("#main_Popup .close").click(function(){
+			if($("#today").is(':checked')){
+				setCookie( "topPop", "done" , 1 ); 
+			};
+
+			$('#main_Popup').fadeOut(); 
+		});
+
+		cookiedata = document.cookie;    
+		if ( cookiedata.indexOf("topPop=done") < 0 ){      
+			document.all['main_Popup'].style.display = "block";
+		} else {
+			document.all['main_Popup'].style.display = "none"; 
+		}
+	});
+//]]>
+</script>
+
+	</head>
+
+	<body>
+		<div id="wrap">
+			
+
+			<!-- *** Layer Popup *** -->
+			<div id="main_Popup">
+				<div class="Popup open"><!-- open = 리뉴얼 팝업 -->
+					<div class="in_p">
+						<div class="renewal">
+							<div class="renewal_obj"><img src="img/v3/contents/renewal_obj.gif" alt="RENEWAL OPEN" /></div>
+							<dl class="renewal_info">
+								<dt>인바이유 개편 안내</dt>
+								<dd>
+									안녕하세요. 보험 공동구매 플랫폼 인바이유 입니다.<br />
+									2018년 4월 25일부터 인바이유 웹사이트가 개편 되었습니다!<br />
+									<br />
+									개편된 웹사이트에서 회원가입 기능이 추가되었으며<br />
+									회원가입 후, 보험/서비스를 가입하신 경우 [가입내역 조회]에서 <br />
+									기존에 가입하신 상품내역은 보이지 않습니다.<br />
+									<br />
+									기존 가입내역 확인을 원하시면<br />
+									[1:1 문의]를 통해 ‘가입내역 복원 신청’을 해 주시기 바라며,<br />
+									내역을 확인하실 수 있도록 처리해 드리겠습니다.<br />
+									감사합니다.
+								</dd>
+							</dl>
+						</div>
+					</div><!-- end : class : in_p -->
+					<div class="close"><img src="img/v3/btn/btn_popClose.png" alt="레이어팝업 닫기" /></div>
+					<div class="todayClose">
+						<p class="chkMdu">
+							<label for="today" class="chkLabel"><input type="checkbox" id="today" title="오늘 하루 열지 않기" /></label>
+							<label for="today">오늘 하루 열지 않기</label>
+						</p>
+					</div>
+				</div><!-- end : class : Popup -->
+			</div><!-- end : id : main_Popup -->
+			<!-- *** Layer Popup *** -->
+
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

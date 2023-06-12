@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		//gnb
+		var $a = true,
+		$navBtn = $(".navBtn"),
+		$nav = $(".gnb_Area");
+		$gnb = $(".gnb>li>a"),
+		$sub = $(".sub"),
+		$bg = $("<div class='navBg'></div>");
+
+		$navBtn.on("click", function(){
+			if($a){
+				$a = false;
+				$nav.slideDown();
+				$("#wrap").append($bg);
+					$(".navBg").click(function(){
+						$a = true;
+						$nav.slideUp();
+						$(this).remove();
+					});
+			} else {
+				$a = true;
+				$nav.stop().slideUp();
+				$("#wrap .navBg").remove();
+			};
+		});
+		
+
+		$gnb.on("click", function(){
+			var $this = $(this).next($sub);
+			console.log($this.find("li").length);
+			/*
+			if($this.is(":visible")){
+				$gnb.removeClass("on");
+				$this.slideUp();
+			} else {
+				$sub.slideUp();
+				$gnb.removeClass("on");
+				$(this).addClass("on");
+				$this.slideDown();
+				if($this.is(":visible")){
+					$(this).parent().find("a").attr("href", "javascript:void(0)");
+				};
+			};
+			*/
+			
+			if($this.css("display") == "none" && $this.find("li").length > 0){
+				$sub.slideUp();
+				$gnb.removeClass("on");
+				$(this).addClass("on");
+				$this.slideDown();
+				if($this.is(":visible")){
+					$(this).parent().children("a").attr("href", "javascript:void(0)");
+				};
+			} else {
+				$gnb.removeClass("on");
+				$this.slideUp();
+			};
+			
+		});
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; }
+#footer{width:100%; background-color:#eee;}
+.inner{width:100%; margin:0 auto; position:relative;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+/* header */
+#header>.inner{padding:15px 0; height:75px; border-bottom:1px solid #ddd; position:relative; background-color:#FFF; z-index:99;}
+#header .logo{width:45px; margin:0 auto;}
+#header .navBtn{position:absolute; top:50%; left:30px; width:25px; height:auto;
+-webkit-transform:translate3d(0,-50%,0);
+-moz-transform:translate3d(0,-50%,0);
+-o-transform:translate3d(0,-50%,0);
+transform:translate3d(0,-50%,0);}
+#header .navBtn img{width:100%; cursor:pointer;}
+#header .lang{position:absolute; top:50%; right:30px; width:25px; height:auto;
+-webkit-transform:translate3d(0,-50%,0);
+-moz-transform:translate3d(0,-50%,0);
+-o-transform:translate3d(0,-50%,0);
+transform:translate3d(0,-50%,0);}
+
+#header .gnb_Area{display:none; position:absolute; top:75px; left:0; width:100%; background-color:#FFF; z-index:99;}
+#header .gnb{width:100%;}
+#header .gnb>li{width:100%;}
+#header .gnb>li>a{display:block; padding:15px 30px; width:100%; font-size:16px; color:#555; font-weight:400; border-bottom:1px solid #ddd; background:#FFF url("../../images/ico/ico_gnb_off.gif") 96% 50% no-repeat; background-size:20px 8px;}
+#header .gnb>li>a.on{background:#FFF url("../../images/ico/ico_gnb_on1.gif") 96% 50% no-repeat; background-size:20px 8px;}
+#header .sub{display:none; padding:10px 0; width:100%; border-bottom:1px solid #ddd; background-color:#F5F5F5;}
+#header .sub>li{width:100%;}
+#header .sub>li>a{display:block; padding:10px 30px; width:100%; font-size:13px; color:#555;}
+.navBg{position:fixed; top:0; left:0; bottom:0; right:0; background:rgba(0,0,0,.75); z-index:30;}
+
+/* 640px mobile */
+@media all and (max-width:640px){
+	.inner{padding:0 4%;}
+	#header .navBtn{left:4%;}
+	#header .lang{right:4%;}
+	#header .gnb>li>a{padding:15px 4%;}
+	#header .sub>li>a{padding:10px 4%;}
+}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+				<div class="inner">
+					<div class="navBtn"><img src="../../images/btn/btn_gnb.gif" alt="MENU 주메뉴 보기 버튼" /></div>
+				</div>
+
+				<nav class="gnb_Area">
+					<ul class="gnb">
+						<li><a href="#self">zecraft</a>
+							<ul class="sub">
+								<li><a href="#self">어원</a></li>
+								<li><a href="#self">소개</a></li>
+								<li><a href="#self">생각</a></li>
+								<li><a href="#self">만드는사람들</a></li>
+								<li><a href="#self">오시는길</a></li>
+							</ul>
+						</li>
+						<li><a href="#self">Portfolio</a>
+							<ul class="sub">
+								<li><a href="#self">은기</a></li>
+								<li><a href="#self">전통장신구</a></li>
+								<li><a href="#self">현대장신구</a></li>
+								<li><a href="#self">문화상품</a></li>
+							</ul>
+						</li>
+						<li><a href="http://lucky8401.dothome.co.kr/jquery/menu/gnb_6.html">News</a></li>
+					</ul>
+				</nav>
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+	
+			</div><!-- end : id : visual -->
+
+			<div id="contents">
+
+			</div><!-- end : id : contents -->
+
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

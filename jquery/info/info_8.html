@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1000px, initial-scale=0.5, user-scalable=yes, maximum-scale=1.0, minimum-scale=0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%; height:100%;  }
+#contents{width:100%;}
+#footer{width:100%;}
+.in{padding:0 2%; width:100%; max-width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#wrap .in{font-size:17px; color:#fff; line-height:25px;}
+.code{width:1000px; margin:0 auto; font-size:15px; color:#fff; line-height:24px;}
+.block{margin-bottom:30px; padding:10px 0; width:100%; text-align:center; border:1px solid #fff;}
+.block>b{display:inline-block; padding:5px 0; font-size:20px; color:yellow; font-weight:600; }
+.add{padding:10px 0; width:20%; margin:0 auto; font-size:20px; color:#fff; font-weight:600; text-align:center; border:1px solid red; cursor:pointer;}
+.reset{padding:10px 0; width:20%; margin:0 auto; font-size:20px; color:#fff; font-weight:600; text-align:center; border:1px solid red; cursor:pointer;}
+.del{font-size:20px; color:#fff; text-align:center; cursor:pointer;}
+.total{margin-top:30px; font-size:20px; color:#fff; text-align:center; cursor:pointer;}
+.total>span{font-size:120%; color:red; font-weight:600;}
+
+
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="code in">
+				<div class="area"></div>
+				<div class="add">추가</div>
+				<div class="reset">리셋</div>
+
+				<div class="total">데이터 갯수 : <span></span></div>
+			</div>
+			<div class="sampleWrap">
+
+			<script type="text/javascript">
+			//<![CDATA[
+/*
+정의하는부분init에는 초기상태 그려주는게(event) 있어야겟고
+init안에다가 fn.create(); 로 호출해주고
+create안에서 ui객체를 선언하고 ui안에다가 현재값을 알수있는 여러가지 값들을 넣어주는것이지요
+글고 create 에 draw메써드로 obj를 물고가서 draw메써드안에서 재영씨가말한 html += "DIV~~~" 
+obj.ui = $(html)
+그러고나서 del메써드 호출하는데 걔또한 obj물고들어가서 이벤트메써드안에서 obj.ui.find 옵션 선택하는태그 change 되엇을때 컨트롤
+글고나서 data메써드호출ㅋㅋ
+
+클로져, 렉시컬스코프, 변수유효범의 항상 이 개념들이 주도/
+
+해당index 셋/리셋
+var arr = []; 최상단에 저장소 만들고 var _num = 0; 기본셋팅
+init 안에 ++;
+addBtn 누를시 ++;
+
+* reset 클릭시 
+  전역변수 재선언으로 reset
+  _num = 0;
+  arr = [];
+
+
+for in문인데 var arr = [1,2,3,4] 라면 arr[0] = 1,
+arr.push로 obj 객체를 하나씩 넣어주고 arr.splice 로 하나씩  빼주그 마지막에 객체값 삽입
+
+※ splice :
+첫번째 인자는 시작할 인덱스
+두번째 인자는 삭제할 인자의 갯수(추가하고 싶을때는 0입력)
+세번째는 추가할 인자를 넣어주면 된다. 
+
+var arr = [0,1,2,3,4,5]
+
+arr.splice(0, 1);    //[1,2,3,4,5]
+arr.splice(2, 2);    //[1,2,5]
+
+var add_arr = [3, 4];
+
+arr.splice(2, 0, add_arr);    //[1,2,3,4,5]
+
+출처: https://guitarhero03.tistory.com/entry/JavascriptSplice [감성개발Story]
+
+*/
+			$(document).ready(function(){
+				genHTML(); // codemirror 실행
+				var _num = 0;
+				var arr = [];
+
+				var reset = {
+					init : function(){
+						//reset.create(); 초기 생성 _num=1; 셋팅
+						$(".total>span").text(_num);
+						$(".add").on("click", function(){
+							_num++;
+							reset.create();
+						});
+						$(".reset").on("click", function(){
+							_num = 0;
+							arr = [];
+							$(".block").remove();
+						});
+					},
+
+					create : function(){
+						var obj = {};
+						obj.num = _num;
+						console.log("갯수_" + obj.num);
+						$(".total>span").text(obj.num);
+						reset.draw(obj);
+					},
+
+					draw : function(obj){
+						console.log(obj);
+						var $html = "";
+						$html += "<div class='block' id="+ obj.num +"><b>"+ obj.num +"</b>";
+						$html += "<div class='del'>삭제</div>";
+						$html += "</div>";
+						obj.ui = $($html);
+						$(".area").append(obj.ui);
+						arr.push(obj);
+						//console.log(arr);
+						reset.del(obj);
+					},
+
+					del : function(obj){
+						obj.ui.find(".del").on("click", function(){
+							obj.ui.remove();
+							arr.splice(obj.num, 1);
+							reset.change(arr);
+							_num--;
+							console.log("갯수_"+_num);
+							$(".total>span").text(_num);
+						});
+						reset.change(arr);
+						console.log(_num);
+					},
+
+					change : function(arr){
+						for(var i in arr){
+							var obj = arr[i];
+							obj.num = parseInt(i);
+							obj.ui.attr("id", obj.num);
+							obj.ui.find("b").text(obj.num);
+						};
+					}
+				}
+				reset.init();
+			});
+			//]]>
+			</script>
+			</div><!-- // sampleWrap -->
+
+			<script type="text/javascript">
+			function genHTML(valArr){
+				$('.sampleWrap').each(function(i){
+					var temp = valArr || $(this).html();
+					var $src = $('<div class="htmlsrc" ></div>');
+					$(this).after($src);	
+					var myCodeMirror = CodeMirror($src[0], {
+						value: valArr ? temp[i] : temp,
+						mode: 'htmlmixed',
+						lineNumbers: !$(this).is('.inline'),
+						readOnly: true,
+						styleActiveLine: false,
+						autoClearEmptyLines:true,
+						lineWrapping: true,
+						matchBrackets: true
+					});
+					if($(this).hasClass('mine')) $(this).hide(); // 클래스 mine 이 붙으면 기존에 있던 텍스트는 삭제
+				});
+			}
+			</script>
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

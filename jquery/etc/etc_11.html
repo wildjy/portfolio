@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+		project.placeHolder();
+		project.addUser();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	},
+	//placeHolder
+	placeHolder : function(){
+		$(".inputPlace").find("input, textarea").each(function(){
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				} else {
+					$(this).parent().removeClass("on");
+				}
+			});
+		});
+	},
+
+	//add User
+	addUser : function(){
+		var $i = 0;
+		$(".add_Btn").on("click", function(){
+			var $userCount = $(".join-input").length,
+			html = "";
+			html += "<div class='join-input lineT'>";
+			html += "<dl class='input-zip'>";
+			html += "<dt><label for='name"+ $i +"'>동행자 이름</label></dt>";
+			html += "<dd><div class='input inputPlace'><label for='name"+ $i +"'>이름을 입력하세요.</label><input type='text' id='name"+ $i +"' title='이름을 입력하세요'  /> </div></dd>";
+			html += "<dt><label for='engName"+ $i +"'>영문이름</label></dt>";
+			html += "<dd><div class='input inputPlace'><label for='engName"+ $i +"'>여권에 기재된 영문으로 입력</label><input type='text' id='engName"+ $i +"' title='영문이름을 입력하세요' /> </div></dd>";
+			html += "<dt><label for='rrn1"+ $i +"'>주민등록 번호</label></dt>";
+			html += "<dd><div class='rrtInput inputPlace'><label for='rrn1"+ $i +"'>주민번호 앞자리</label><input type='tel' id='rrn1"+ $i +"' maxlength='6' title='주민등록번호 앞자리를 입력하세요' /> </div>";
+			html += "<div class='bullet'>@</div>";
+			html += "<div class='rrtInput inputPlace'><label for='rrn2"+ $i +"'>주민번호 뒷자리</label><input type='password' id='rrn2"+ $i +"' maxlength='7' title='주민등록번호 뒷자리를 입력하세요' /> </div>";
+			html += "</dd>";
+			html += "<dt><label for='phone"+ $i +"'>휴대폰번호</label></dt>";
+			html += "<dd><div class='input inputPlace'><label for='phone"+ $i +"'>휴대폰번호 입력</label><input type='tel' id='phone"+ $i +"' maxlength='11' title='휴대폰번호을 입력하세요' /> </div></dd>";
+			html += "</dl>";
+			html += "<div class='delBtn'><div class='delete' id='add_"+ $i +"'>삭제</div></div>";
+			html += "</div>";
+
+			if($userCount > 5){
+				alert("최대 4명까지만 추가할수 있습니다.");
+				return;
+			};
+
+			$(".joinInput-Area .in").append(html);
+			project.placeHolder();
+
+			$("#add_" + $i).on("click", function(){
+				$(this).parent().parent().remove();
+			});
+			++$i;	
+		});
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; overflow-x:hidden; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; position:relative;}
+#footer{width:100%; background-color:#51535B;}
+.inner{width:100%; max-width:1200px; margin:0 auto;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+img{width:100%;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+#contents .joinInput-Area{width:100%; max-width:455px; margin:0 auto;}
+#contents .join-input{padding:30px 0 20px 0; width:100%;}
+#contents .join-input.lineT{padding:20px 0; border-top:1px solid #ddd;}
+#contents .input-zip{}
+#contents .input-zip:after{content:""; display:block; clear:both;}
+#contents .input-zip>dt{float:left; width:115px; font-size:16px; color:#333; position:relative;}
+#contents .input-zip.result{padding:20px 0 10px 0; width:500px; margin:0 auto;}
+#contents .input-zip.result>dt{padding:8px 0;}
+#contents .input-zip.result>dd{padding:8px 0;}
+#contents .input-zip.result>dd .price{position:absolute; bottom:0px; right:-150px; display:block; font-size:16px; color:#222; font-weight:400;}
+#contents .input-zip.result>dd .price b{display:inline-block; padding-right:10px; font-size:16px; color:#222; font-weight:400;}
+#contents .input-zip.result>dd .price a{display:inline-block; padding:5px; font-size:14px; color:#333; border:1px solid #ddd; background-color:#FFF; border-radius:3px;}
+#contents .input-zip>dt .info{position:absolute; top:12px; left:55px; display:block; width:18px; height:18px; background: url("../../images/btn/btn_info.gif") 0 0 no-repeat; cursor:pointer; z-index:5;}
+#contents .input-zip>dt .infoB{display:none; position:absolute; top:0px; right:-170px; padding:10px; width:185px; font-size:12px; color:#777; background-color:#FFF; border:1px solid #1181AC; border-radius:5px; z-index:20;}
+#contents .input-zip>dt label{display:inline-block; padding:10px 0 0 0; font-size:16px; color:#777;}
+#contents .input-zip>dd{float:left; margin-bottom:10px; width:340px; font-size:16px; color:#777; position:relative;}
+#contents .input-zip>dd:after{content:""; display:block; clear:both;}
+#contents .input-zip>dd>div{float:left;}
+#contents .input-zip>dd>div.on{border:1px solid red !Important;}
+#contents .input-zip>dd>div label{position:absolute; top:50%; left:10px; font-size:16px; color:#c8c8c8;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#contents .input-zip>dd>div.input{margin-right:10px; width:100%; height:46px; position:relative; z-index:15;}
+#contents .input-zip>dd>div input{width:100%; height:46px; border:1px solid #ddd;}
+#contents .input-zip>dd>div.input>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+#contents .input-zip>dd>div.rrtInput{width:160px; height:46px; position:relative; z-index:15;}
+#contents .input-zip>dd>div.bullet{padding-top:12px; width:20px; height:46px; text-align:center;}
+#contents .input-zip>dd>div.rrtInput>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+#contents .input-zip>dd>div.datepicker{margin-right:10px; width:200px; height:46px; position:relative; z-index:15;}
+#contents .input-zip>dd>div.datepicker>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+#contents .input-zip>dd>div.select-div{width:130px;}
+#contents .input-zip>dd>.p_txt{float:left; padding-top:5px;}
+#contents .addBtn-box{padding-top:20px; border-top:1px solid #ddd;}
+#contents .addBtn-box .add_Btn{padding:15px 0; width:100%; max-width:455px; margin:0 auto 20px; font-size:20px; color:#fff; font-weight:400; text-align:center; background-color:#22BDF8; border-radius:5px; cursor:pointer;}
+#contents .delBtn{padding-top:10px; width:100%; max-width:455px; margin:0 auto;}
+#contents .delBtn>.delete{padding:10px 0; width:100%; font-size:18px; color:#fff; font-weight:400; text-align:center; background-color:#A3A3A3; border-radius:5px; cursor:pointer;}
+
+@media all and (max-width:455px){
+	#contents .joinInput-Area{padding:0 15px;}
+	#contents .input-zip>dt{padding-bottom:10px; font-size:15px;}
+	#contents .input-zip>dt .infoB{position:absolute; top:0px; right:-150px;}
+	#contents .input-zip>dt label{padding:5px 0 0 0; font-size:14px;}
+	#contents .input-zip>dd{margin-bottom:10px; width:100%; font-size:14px;}
+	#contents .input-zip>dd>div.rrtInput{width:calc(100%/2 - 5px);}
+	#contents .input-zip>dd>div.rrtInput:first-child{margin-right:10px;}
+	#contents .input-zip>dd>div.bullet{display:none;}
+	#contents .input-zip>dd>div.datepicker{margin-right:10px; width:calc(70% - 5px);}
+	#contents .input-zip>dd>div.datepicker>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+	#contents .input-zip>dd>div.select-div{width:calc(30% - 5px);}
+}
+
+.select{display:block; padding:5px 25px 5px 5px; width:100%; max-width:200px; height:46px; font-size:16px; color:#c8c8c8; text-align:left; vertical-align:-2px; border:none; border:1px solid #ddd; background:#FFF url("../../images/ico/custom_Select_.gif") right 50% no-repeat; background-size:31px 46px;}
+.select option{padding:5px 25px 5px 5px; font-size:16px; color:#c8c8c8;}
+@media all and (max-width:720px){
+	.select{font-size:13px;}
+	.select option{font-size:13px;}
+}
+
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual" style="height:50px">
+				<h2 class="hide">비쥬얼</h2>
+
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents">
+
+				<!-- :: scroll import :: -->
+				<link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.min.css" /> 
+				<script type="text/javascript" src="../../js/jquery.mCustomScrollbar.3.1.5.js"></script>
+				<script type="text/javascript">
+				//<![CDATA[
+					$(document).ready(function(){
+						$(".inScroll").mCustomScrollbar({
+							axis:"x",
+							theme:"light-3",
+							advanced:{autoExpandHorizontalScroll:true}
+						});
+					});
+				//]]>
+				</script>
+				<!-- :: scroll import :: -->
+				<div class="inner">
+					
+								<div class="joinInput-Area">
+									<div class="in">
+										<div class="join-input">
+											<dl class="input-zip">
+												<dt><label for="datePic_1">출국 예정일시</label></dt>
+												<dd>
+													<div class="datepicker datePlace"><label for="datePic_1">연도-월-일</label><input type="text" class="dateVal_1" id="datePic_1" value=""  /></div>
+													<div class="select-div">
+														<select name="" id="leave" class="select" title="출국 예정일시를 선택하세요">
+															<option value="선택">시간</option>
+														</select>
+													</div>
+													<div class="cal-wrap">
+														<div id="datepicker_1"></div>
+													</div>
+												</dd>
+												<dt><label for="datePic_2">입국 예정일시</label></dt>
+												<dd>
+													<div class="datepicker datePlace"><label for="datePic_2">연도-월-일</label><input type="text" class="dateVal_2"  id="datePic_2" value="" /> </div>
+													<div class="select-div">
+														<select name="" class="select" title="출국 예정일시를 선택하세요">
+															<option value="선택">시간</option>
+														</select>
+													</div>
+													<div class="cal-wrap">
+														<div id="datepicker_2"></div>
+													</div>
+												</dd>
+											</dl>
+										</div>
+										<div class="join-input lineT">
+											<dl class="input-zip">
+												<dt><label for="name">가입자 이름</label></dt>
+												<dd>
+													<div class="input inputPlace"><label for="name">이름을 입력하세요.</label><input type="text" id="name" title="이름을 입력하세요"  /> </div>
+												</dd>
+												<dt><label for="engName">영문이름</label></dt>
+												<dd>
+													<div class="input inputPlace"><label for="engName">여권에 기재된 영문으로 입력</label><input type="text" id="engName" title="영문이름을 입력하세요" /> </div>
+												</dd>
+												<dt><label for="rrn1">주민등록 번호</label></dt>
+												<dd>
+													<div class="rrtInput inputPlace"><label for="rrn1">주민번호 앞자리</label><input type="tel" id="rrn1" maxlength="6" title="주민등록번호 앞자리를 입력하세요" /> </div>
+													<div class="bullet">@</div>
+													<div class="rrtInput inputPlace"><label for="rrn2">주민번호 뒷자리</label><input type="password" id="rrn2" maxlength="7" title="주민등록번호 뒷자리를 입력하세요" /> </div>
+												</dd>
+												<dt><label for="phone">휴대폰번호</label></dt>
+												<dd>
+													<div class="input inputPlace"><label for="phone">휴대폰번호 입력</label><input type="tel" id="phone" maxlength="11" title="휴대폰번호을 입력하세요" /> </div>
+												</dd>
+												<dt><label for="email">이메일</label><i class="info"></i>
+													<div class="infoB">
+														회사 메일의 경우 보험가입 확인서 
+														및 약관이 수신되지 않는 경우가 
+														있으니 <b>네이버, 다음, Gmail 등 
+														개인 메일 주소로 적어주세요!</b>
+													</div>
+												</dt>
+												<dd>
+													<div class="input inputPlace"><label for="email">이메일 입력</label><input type="email" id="email" maxlength="11" title="휴대이메일 주소을 입력하세요" /> </div>
+												</dd>
+												<dt><label for="emailChk">이메일 확인</label></dt>
+												<dd>
+													<div class="input inputPlace"><label for="emailChk">이메일 확인</label><input type="email" id="emailChk" maxlength="11" title="휴대이메일 주소을 확인하세요" /> </div>
+													<p class="p_txt">* 입력한 이메일로 보험증서를 보내드립니다.</p>
+												</dd>
+											</dl>
+										</div>
+									</div>
+									
+									<div class="addBtn-box">
+										<div class="add_Btn">동행자 추가</div>
+									</div>
+								</div>
+
+				</div>
+
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+				</div><!-- end : class : in_Layer -->
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; overflow-x:hidden; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; position:relative;}
+#footer{width:100%; background-color:#51535B;}
+.inner{width:100%; max-width:1200px; margin:0 auto;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+img{width:100%;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+/* 가입내역조회 */
+#contents .resTable{margin-bottom:45px; width:100%; max-width:1200px; overflow:hidden;}
+#contents .resTable .inScroll{}
+#contents .resTable .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{background:rgba(0,0,0,.5);}
+#contents .tableStyle{margin-bottom:15px; width:100%; border-top:1px solid #000;}
+#contents .tableStyle th{padding:20px 0; font-size:14px; color:#333; border-bottom:1px solid #ddd; background-color:#f7f7f7;}
+#contents .tableStyle td{padding:20px 0; font-size:14px; color:#333; /* font-weight:400;  */text-align:center; border-bottom:1px solid #ddd;}
+#contents .tableStyle td .emptyItem{font-size:16px; color:#111; font-weight:600;}
+#contents .tableStyle td .status{color:#ff0000; font-weight:600;}
+#contents .tableStyle td .viewCerti{display:inline-block; padding:3px 5px; font-size:13px; color:#777; text-align:center; border:1px solid #ddd; background-color:#FFF; border-radius:3px;}
+#contents .tableStyle td .viewCerti:hover{background-color:#f3f3f3;
+-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+#contents .tableStyle td .delete{display:inline-block; padding:3px 10px; font-size:13px; color:#fff; text-align:center; border:1px solid #676767; background-color:#676767; border-radius:3px; cursor:pointer;}
+
+@media all and (max-width:1200px){
+	#contents .resTable{padding:0 15px;}
+}
+@media all and (max-width:640px){
+	#contents .resTable{margin-bottom:45px; padding:0 15px; max-width:100%;}
+	#contents .tableStyle, #contents .tableStyle thead, #contents .tableStyle tbody, #contents .tableStyle th, #contents .tableStyle td, #contents .tableStyle tr{display: block;}
+	#contents .tableStyle thead tr{position: absolute; top: -9999px; left: -9999px;}
+	#contents .tableStyle td{padding:10px 0 10px 100px; text-align:left; border: none; border-bottom: 1px solid #eee; position: relative; white-space: normal;}
+	#contents .tableStyle td:before{position: absolute; top:0; bottom:0; left:0; padding:10px; width:70px; color:#333; text-align:left; font-weight:600; white-space: nowrap; background-color:#f7f7f7;}
+	#contents .tableStyle td:before {content: attr(data-title);}
+	#contents .tableStyle th:first-child,
+	#contents .tableStyle td:first-child{display:none;}
+	#contents .tableStyle td.empty{display:block; padding:20px 0;}
+	#contents .tableStyle th:last-child,
+	#contents .tableStyle td:last-child{padding-left:0; text-align:center; border-bottom: 1px solid #000;}
+	#contents .tableStyle td:last-child:before{display:none;}
+	#contents .tableStyle td .delete{padding:10px 0px; width:100%; font-size:15px; background-image:none;}
+}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual" style="height:50px">
+				<h2 class="hide">비쥬얼</h2>
+
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents">
+
+				<!-- :: scroll import :: -->
+				<link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.min.css" /> 
+				<script type="text/javascript" src="../../js/jquery.mCustomScrollbar.3.1.5.js"></script>
+				<script type="text/javascript">
+				//<![CDATA[
+					$(document).ready(function(){
+						$(".inScroll").mCustomScrollbar({
+							axis:"x",
+							theme:"light-3",
+							advanced:{autoExpandHorizontalScroll:true}
+						});
+					});
+				//]]>
+				</script>
+				<!-- :: scroll import :: -->
+				<div class="inner">
+					
+					<div class="resTable">
+						<div class="inScroll">
+							<table class="tableStyle">
+								<caption>가입내역 테이블</caption>
+								<colgroup>
+									<col style="width:5%" /><col style="width:11%" /><col style="width:11%" /><col style="width:11%" /><col style="width:*%" />
+									<col style="width:11%" /><col style="width:11%" /><col style="width:11%" /><col style="width:11%" />
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">번호</th>
+										<th scope="col">구매일자</th>
+										<th scope="col">주문번호</th>
+										<th scope="col">구매채널</th>
+										<th scope="col">상품명</th>
+										<th scope="col">결제금액</th>
+										<th scope="col">결제상태</th>
+										<th scope="col">가입증명서</th>
+										<th scope="col">삭제</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- :: 가입내역이 없을경우 :: -->
+									<!-- 
+									<tr>
+										<td colspan="9" class="empty"><div class="emptyItem">가입한내역이 없습니다.</div></td>
+									</tr>
+									-->
+									<!-- :: 가입내역이 없을경우 :: -->
+									<tr>
+										<td data-title="번호">1</td>
+										<td data-title="구매일자">20180202</td>
+										<td data-title="주문번호">102030350650</td>
+										<td data-title="구매채널">인바이유</td>
+										<td data-title="상품명">한화해외여행보험</td>
+										<td data-title="결제금액">8,641원</td>
+										<td data-title="결제상태">
+											<p class="status">입금 전</p>
+											<!-- <p class="status">입금 전 취소</p>
+											<p class="status">입금완료</p> -->
+										</td>
+										<td data-title="가입증명서">
+											<a href="#self" target="_blank" class="viewCerti">KOR</a>
+											<a href="#self" target="_blank" class="viewCerti">ENG</a>
+										</td>
+										<td data-title="">
+											<div class="delete">삭제</div>
+										</td>
+									</tr>
+									<tr>
+										<td data-title="번호">1</td>
+										<td data-title="구매일자">20180202</td>
+										<td data-title="주문번호">102030350650</td>
+										<td data-title="구매채널">인바이유</td>
+										<td data-title="상품명">한화해외여행보험</td>
+										<td data-title="결제금액">8,641원</td>
+										<td data-title="결제상태">
+											<p class="status">입금 전</p>
+											<!-- <p class="status">입금 전 취소</p>
+											<p class="status">입금완료</p> -->
+										</td>
+										<td data-title="가입증명서">
+											<a href="#self" target="_blank" class="viewCerti">KOR</a>
+											<a href="#self" target="_blank" class="viewCerti">ENG</a>
+										</td>
+										<td data-title="">
+											<div class="delete">삭제</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+				</div><!-- end : class : in_Layer -->
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

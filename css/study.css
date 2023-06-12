@@ -1,0 +1,32 @@
+*{line-height:150%;}
+body{padding:2%;}
+#wrap{width:100%;}
+a, span, em, i{font-size:inherit; font-weight:inherit;}
+strong, b{font-size:inherit; color:#000; font-weight:bold;}
+
+h1{padding-bottom:30px; font-size:25px; color:#222;}
+h2{padding-bottom:20px; font-size:20px; color:#222;}
+h3{padding-bottom:20px; font-size:18px; color:#222;}
+
+p{padding-bottom:20px; font-size:13px;}
+ul{padding-bottom:20px; }
+ul>li{font-size:14px; color:#555;}
+
+.studyArea{padding-bottom:20px; font-size:18px; line-height:inherit;}
+.studyArea>.CodeMirror{height:auto;}
+
+.tool_Area{width:100%; text-align:center;}
+.tool_Area img{max-width:auto;}
+.tool_Area .link{font-size:20px; color:#222; font-weight:600; line-height:120%;}
+.tool_Area .link>a{display:block; padding-top:10px; font-size:100%; color:inherit; text-decoration:underline;}
+.tool_Area .link span{display:block; font-size:90%; font-weight:#555;}
+.tool_Area div{padding-top:40px;}
+.tool_Area div p{font-size:15px; color:#222;}
+.tool_Area div p>b{color:#111;}
+.tool_Area div p span{display:block;}
+.tool_Area div ol{padding-bottom:20px; text-align:center;}
+.tool_Area div ol>li{font-size:15px; color:#222;}
+
+@media all and (max-width:640px){
+    .tool_Area img{width:100%;}  
+}

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+/*
+	var $body = $('body'), 
+	$html = $('html'), 
+	$scroll;
+
+	$(".gnbOpen").click(function(){
+		$("#aside .scroll").css({"overflow-y":"auto"});
+		TweenMax.to($("#aside"), .5, {"right" :"0%", ease: Power3.easeInOut});
+		$(".bg").fadeIn();
+		//asied 오픈시 html, body 스크롤 막기
+		$scroll = window.pageYOffset;
+		$html.css({"overflow": "hidden"});
+		$body.css({"position":"fixed", "top": -$scroll});
+	});
+
+	$(".bg").click(function(){
+		TweenMax.to($("#aside"), .5, {"right" :"-100%", ease: Power3.easeInOut});
+		$(this).fadeOut();
+		//asied 오픈시 html, body 스크롤 해지
+		$html.css({"overflow":"auto" });
+		$body.css({"position":"", "top":""});
+		window.scrollTo(0, $scroll);
+	});
+*/
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		function add(){
+			$(".add_zone p").each(function(index){
+				index++;
+				$(this).attr("class","op_"+index);
+			});
+		};
+
+		$(".op_1depth>li>a").on("click", function(){
+			var $2depth = $(this).parent().children(".op_2depth");
+			if($2depth.is(":visible")){
+				$2depth.hide();
+				$(this).parent().removeClass("show");
+				$(".op_3depth").hide();
+			} else {
+				$(".op_2depth").hide();
+				$(this).parent().addClass("show");
+				$2depth.show();
+			};
+		});
+		
+		$(".op_2depth").children("dt").on("click", function(){
+			if(!$(this).hasClass("on")){
+				$(this).addClass("on");
+				$(this).parent().parent().addClass("on");
+				$(this).parent().children("dd").removeClass("on");
+				$(this).parent().find(".op_3depth").find("dt").removeClass("on");
+				$(this).parent().find("dd").removeClass("on");
+			} else {
+				$(this).removeClass("on");
+				$(this).parent().parent().removeClass("on");
+			}
+		});
+
+		$(".op_2depth>dd>a").on("click", function(){
+			var $3depth = $(this).parent().children(".op_3depth");
+			
+			if(!$3depth.is(":visible")){
+				$(this).parent().addClass("show");
+				$3depth.show();
+			} else {
+				$(this).parent().removeClass("show");
+				$3depth.hide();
+			}
+		});
+
+		$(".op_3depth").children("dt").on("click", function(){
+			console.log($(this).index());
+			if(!$(this).hasClass("on")){
+				$(this).addClass("on");
+				$(this).parent().parent().addClass("show on");
+				$(this).parent().children("dd").removeClass("on");
+				$(this).parent().parent().parent().parent().addClass("show on");
+				$(this).parent().parent().parent().children("dt").removeClass("on");
+				var $text1 = $(this).parent().parent().parent().parent().children("a").text(),
+				$text2 = $(this).parent().parent().children("a").text(),
+				$text3 = $(this).children("a").text();
+				$thisAdd = "<p>"+$text1+"&gt;"+$text2+"&gt;"+$text3+"</p>";
+				console.log($text1);
+				console.log($text2);
+				console.log($text3);
+
+				$(".add_zone").prepend($thisAdd);
+				//add();
+			} else {
+				$(this).removeClass("on");
+				$(this).parent().parent().removeClass("on");
+				$(this).parent().parent().parent().parent().removeClass("show on");
+			}
+			
+			$(".op_3depth").each(function(){
+				if($(this).children("dt.on").is(":visible")){
+					$(this).parent().parent().parent().addClass("on");
+				}
+			});
+		});
+
+		$(".op_3depth>dd>a").on("click", function(){
+			if(!$(this).parent().hasClass("on")){
+				$(this).parent().addClass("on");
+				$(this).parent().parent().children("dt").removeClass("on");
+				$(this).parent().parent().parent().parent().children("dt").removeClass("on");
+			} else {
+				$(this).parent().removeClass("on");
+				$(this).parent().parent().parent().parent().parent().removeClass("on");
+			}
+			
+			$(".op_3depth").each(function(){
+				if($(this).children("dd.on").is(":visible")){
+					$(this).parent().addClass("on");
+					$(this).parent().parent().parent().addClass("on");
+					//$(this).parent().parent().parent().parent().addClass("on");
+				} else {
+					$(this).parent().removeClass("on");
+				}
+			});
+
+		});
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; position:relative; z-index:10;}
+#header{width:100%; border-bottom:1px solid #ddd; z-index:999;}
+#visual{width:100%;}
+#contents{width:100%; }
+#footer{width:100%; background-color:#eee;}
+.inner{width:1100px; margin:0 auto; position:relative;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+#header:after{content:""; display:block; clear:both;}
+#header .test_option{float:left;width:300px; overflow:hidden;}
+#header .test_option .op_1depth{}
+#header .test_option .op_1depth>li{background: url("../../images/ico/arrow_t2.png") 95% 15px no-repeat;}
+#header .test_option .op_1depth>li>a{display:block; padding:10px 25px; font-size:15px; color:#111; font-weight:600; border-left:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
+#header .test_option .op_1depth>li.show{background: url("../../images/ico/arrow_t.png") 95% 15px no-repeat;}
+#header .test_option .op_1depth>li.on>a{color:#1A97FC; background: url("../../images/ico/chkIco01.png") 10px 50% no-repeat;}
+#header .test_option .op_2depth{display:none; border-left:1px solid #ddd; border-right:1px solid #ddd; background-color:#f9f9f9;}
+#header .test_option .op_2depth>dt>a{display:block; padding:10px 35px; font-size:15px; color:#555; font-weight:600; border-bottom:1px solid #ddd;}
+#header .test_option .op_2depth>dt.on>a{color:#1A97FC; background: url("../../images/ico/chkIco01.png") 20px 50% no-repeat;}
+#header .test_option .op_2depth>dd{background: url("../../images/ico/arrow_t2.png") 95% 15px no-repeat;}
+#header .test_option .op_2depth>dd>a{display:block; padding:10px 35px; font-size:15px; color:#555; font-weight:600; border-bottom:1px solid #ddd;}
+#header .test_option .op_2depth>dd.show{background: url("../../images/ico/arrow_t.png") 95% 15px no-repeat;}
+#header .test_option .op_2depth>dd.on>a{color:#1A97FC; background: url("../../images/ico/chkIco01.png") 20px 50% no-repeat;}
+#header .test_option .op_3depth{display:none; background-color:#eee;}
+#header .test_option .op_3depth>dt{border-bottom:1px solid #ddd;}
+#header .test_option .op_3depth>dt>a{display:block; padding:10px 45px; font-size:15px; color:#777; font-weight:600;}
+#header .test_option .op_3depth>dt.on>a{color:#1A97FC; background:#eee url("../../images/ico/chkIco01.png") 30px 50% no-repeat;}
+#header .test_option .op_3depth>dd{border-bottom:1px solid #ddd;}
+#header .test_option .op_3depth>dd>a{display:block; padding:10px 45px; font-size:15px; color:#777; font-weight:600;}
+#header .test_option .op_3depth>dd.on>a{color:#1A97FC; background:#eee url("../../images/ico/chkIco01.png") 30px 50% no-repeat;}
+#header .add_zone{float:left;}
+
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<header id="header">
+				<div class="test_option">
+					<ul class="op_1depth">
+						<li><a href="#self">여성</a>
+							<dl class="op_2depth">
+								<dt><a href="#self">전체</a></dt>
+								<dd><a href="#self">코트</a>
+									<dl class="op_3depth">
+										<dt><a href="#self">전체</a></dt>
+										<dd><a href="#self">롱</a></dd>
+										<dd><a href="#self">오버핏</a></dd>
+										<dd><a href="#self">트렌치</a></dd>
+									</dl>
+								</dd>
+								<dd><a href="#self">점퍼</a>
+									<dl class="op_3depth">
+										<dt><a href="#self">전체</a></dt>
+										<dd><a href="#self">롱</a></dd>
+										<dd><a href="#self">쇼쇼쇼쇼숏</a></dd>
+									</dl>
+								</dd>
+								<dd><a href="#self">니트</a></dd>
+								<dd><a href="#self">가디건</a></dd>
+							</dl>
+						</li>
+						<li><a href="#self">남성</a>
+							<dl class="op_2depth">
+								<dt><a href="#self">전체</a></dt>
+								<dd><a href="#self">코트</a>
+									<dl class="op_3depth">
+										<dt><a href="#self">전체</a></dt>
+										<dd><a href="#self">롱</a></dd>
+										<dd><a href="#self">오버핏</a></dd>
+										<dd><a href="#self">트렌치</a></dd>
+									</dl>
+								</dd>
+								<dd><a href="#self">점퍼</a></dd>
+								<dd><a href="#self">니트</a></dd>
+								<dd><a href="#self">가디건</a></dd>
+							</dl>
+						</li>
+						<li><a href="#self">신발</a></li>
+						<li><a href="#self">미래</a></li>
+						<li><a href="#self">선혜</a></li>
+					</ul>
+				</div>
+
+
+				<div class="add_zone">
+				
+				</div>
+			</header><!-- end : id : header -->
+			
+			<aside id="aside">
+			
+			</aside><!-- end : id : aside -->
+
+			<div id="visual">
+	
+			</div><!-- end : id : visual -->
+
+			<div id="contents">
+
+			</div><!-- end : id : contents -->
+
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

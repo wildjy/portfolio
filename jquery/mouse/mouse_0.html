@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1000px, initial-scale=0.1, user-scalable=yes, maximum-scale=1.0, minimum-scale=0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.mousewheel.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{padding:100px; width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+
+.section{width:100%; overflow:hidden; background-color:#FFF;}
+.wrap_Scroll{}
+.wrap_Scroll>div{height:1000px;}
+
+table {width:100%; height:100%; background-color:#555;}
+table tr td {height:100%; font-size: 40px; color:#fff; font-weight:600; text-align:left; vertical-align: middle;  overflow:hidden; overflow-y:scroll;}
+
+.code{width:1000px; margin:0 auto; font-size:15px; color:#333; line-height:24px;}
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<table>
+				<tr>
+					<td>
+			<div class="code"></div>
+			<div class="sampleWrap">
+		<script type="text/javascript">
+		//<![CDATA[
+		$(function(){
+			mouse.init();
+			genHTML(); // codemirror 실행
+		});
+
+		var mouse = {
+			init : function(){
+				var i = 0;
+				var a = 1;
+				var ingChk = false;
+				var preventScroll = true;
+				
+				//스크롤 이벤트 제거
+				//scroll 존재시, preventScroll = true 일 경우 제거
+				$('#wrap table').on("mousewheel", function(event){
+					if(preventScroll) {
+						console.log("stop");
+						event.stopPropagation();
+						event.preventDefault();
+						return false;
+					}
+				});
+
+				$('html, body').on('mousewheel', function(event) {
+					//console.log(event.deltaX, event.deltaY, event.deltaFactor);
+					
+					if(!ingChk){
+						ingChk = true;
+						if (event.deltaY < 0) {
+							//Down
+							console.log("down");
+							if(i < 10){
+								i++;
+								console.log(i);
+								setTimeout(function(){
+									/*
+									if(i == 10) {
+										console.log("free Scroll");
+										preventScroll = false;
+									}
+									*/
+									ingChk = false;
+								}, 0);
+								
+							} else {
+								ingChk = false;
+							}
+						} else {
+							//Up
+							console.log("Up");
+							if(i > 0){
+								console.log(i);
+								i--;
+								setTimeout(function(){
+									ingChk = false;
+								}, 0);
+							} else {
+								ingChk = false;
+							}
+						}
+					} else {
+						console.log("XX");
+					};
+				});
+			}
+		}
+		//]]>
+		</script>
+			</div><!-- // sampleWrap -->
+					</td>
+				</tr>
+			</table>
+		</div><!-- end : id : wrap -->
+
+
+		<script type="text/javascript">
+		function genHTML(valArr){
+			$('.sampleWrap').each(function(i){
+				var temp = valArr || $(this).html();
+				var $src = $('<div class="htmlsrc" ></div>');
+				$(this).after($src);	
+				var myCodeMirror = CodeMirror($src[0], {
+					value: valArr ? temp[i] : temp,
+					mode: 'htmlmixed',
+					lineNumbers: !$(this).is('.inline'),
+					readOnly: true,
+					styleActiveLine: false,
+					autoClearEmptyLines:true,
+					lineWrapping: true,
+					matchBrackets: true
+				});
+				if($(this).hasClass('mine')) $(this).hide(); // 클래스 mine 이 붙으면 기존에 있던 텍스트는 삭제
+			});
+		}
+		</script>
+	</body>
+</html>

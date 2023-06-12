@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault();
+	}
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+			//1. https://www.instagram.com/developer/clients/manage/ 접속하여 CLIENT ID 생성해야함.
+			//2. 
+			//https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token //CLIENT-ID, REDIRECT-URI(웹사이트url) 입력후 주소창에 입력하여 액세스토큰 받기
+			var accessToken = "1329834794.a627109.c49775a83e174ea3be9190a64e091a8c";
+
+			jQuery(function($) {
+			//var tocken = ""; /* Access Tocken 입력 */  
+			var count = "18";
+			$.ajax({
+					type: "GET",
+					dataType: "jsonp",
+					cache: false,
+					url: "https://api.instagram.com/v1/users/self/media/recent/?access_token=" + accessToken + "&count=" + count,
+					success: function(response) {
+					if ( response.data.length > 0 ) {
+						for(var i = 0; i < response.data.length; i++) {
+							var insta = '<div class="insta-box">';
+							insta += "<a target='_blank' href='" + response.data[i].link + "'>";
+							insta += '<div class="image-layer">';
+							//insta += "<img src='" + response.data[i].images.thumbnail.url + "'>";
+							insta += '<img src="' + response.data[i].images.standard_resolution.url + '">';
+							//img-size = "thumbnail : 150x150, low_resolution : 320x320, standard_resolution :"
+							insta += "</div>";
+							//console.log(response.data[i].caption.text);
+							if ( response.data[i].caption !== null ) {
+								insta += "<div class='caption-layer'>";
+								if ( response.data[i].caption.text.length > 0 ) {
+									insta += "<p class='insta-caption'>" + response.data[i].caption.text + "</p>"
+								}
+								insta += "<span class='insta-likes'>" + response.data[i].likes.count + " Likes</span>";
+								insta += "</div>";
+							}
+							insta += "</a>";
+							insta += "</div>";
+							//alert(response.data[i].images.thumbnail.url);
+							$("#instaPics").append(insta);
+						}
+					}
+						/* vertical-align */
+						var imglength = $(".image-layer").length;
+						console.log(imglength);
+						for(var i = 0; i<=imglength; i++){
+							var imgH = $(".image-layer img").eq(i).height();
+							console.log(imgH);
+							$(".image-layer img").eq(i).css({"margin-top":-imgH /2});
+						};
+
+						$(".insta-box").hover(function(){
+							$(this).find(".caption-layer").css({"backbround" : "rgba(255,255,255,0.7)", "display":"block"});
+						}, function(){
+							$(this).find(".caption-layer").css({"display":"none"});
+						});
+					}
+				});
+			});
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+		
+#instaPics {width: 100%;}
+.insta-box {position: relative; width:300px; height:300px; float: left; margin: 4px; border:1px solid #ddd;  overflow: hidden;}
+.insta-box>a{display:block; height:100%;}
+.insta-box>a .image-layer{ width:100%; height:100%;}
+.insta-box div{width:100%;}
+.insta-box img {position:absolute; top:50%; width:100%;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+.caption-layer {display: none; position: absolute; top: 0; background: rgba(255,255,255,0.8); height: 100%; width: 100%; padding:10px; font-size: 12px;  color: #333; overflow:hidden;}
+.insta-likes{float: right;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents">
+					<div id="instaPics"></div>
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

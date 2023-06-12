@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />  
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		//inputPlaceHolder
+		$(".inputPlace").find("input, textarea").each(function(){
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				}
+			});
+		});
+
+		//inputPlaceHolder
+		$(".datePlace").find("input").each(function(){
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				}
+			});
+		});
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%; background-color: #111; }
+#wrap{width:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; }
+#footer{width:100%; background-color:#eee;}
+.inner{width:100%; margin:0 auto; position:relative;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+#contents{padding:0 15px;}
+.visit-date{margin:30px 0 15px}
+.visit-date p.tit{position:relative;padding:12px 35px 12px 15px;height:45px;font-size:16px;color:#333;border:1px solid #c2c2c2; background-color:#FFF;}
+.visit-date p.tit:after{position:absolute;right:12px;top:9px;content:"";display:block;width:22px;height:23px;background:url('../../images/ico/icon_cal_off.png') 0 0 no-repeat;background-size:auto 23px}
+.visit-date .cal-wrap{display:none}
+.visit-date.on p.tit{border:1px solid #4c51f7}
+.visit-date.on p.tit:after{background:url('../../images/ico/icon_cal_on.png') 0 0 no-repeat;background-size:auto 23px}
+.visit-date.on .cal-wrap{display:block}
+
+/* datepicker css */
+.cal-wrap{width:100%;}
+.ui-datepicker {padding:0; width:100%; background:#fff; display:none; border:none;}
+.ui-datepicker-header {font-size:26px; color:#444; text-align:center; letter-spacing:-2px; background:#fff; border:none;}
+.ui-datepicker .ui-datepicker-title {margin:0; padding:5px 10px 0 10px; font-size:18px; }
+.ui-datepicker td {padding:0; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {display:block; padding:15px 0; color:#666; font-size:13px; text-align:center; border:none; background:none;}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {color:#fff; letter-spacing:0; background:#484f59; border-radius: 5px;}
+.ui-icon {width:11px; height:21px;}
+.ui-icon-circle-triangle-e {background-position:none;}
+.ui-datepicker .ui-icon {text-indent:-99999px; overflow:hidden; background-repeat:no-repeat;}
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next{display:block; top:10px; width:30px; height:30px; z-index:100;}
+.ui-datepicker .ui-datepicker-prev{left:0;}
+.ui-datepicker .ui-datepicker-next{right:0;}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {margin:0; top:0; left:0;}
+.ui-datepicker-next .ui-icon.ui-icon  {width:100%; height:100%; background:url("../../images/ico/next_icon.png") 50% 50% no-repeat; }
+.ui-datepicker-prev .ui-icon.ui-icon  {width:100%; height:100%; background:url("../../images/ico/prev_icon.png") 50% 50% no-repeat; }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {opacity: .35;}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {}
+.ui-datepicker-calendar > thead th {}
+.ui-datepicker-calendar > thead th:first-child span { color: #ff1d1d;}
+.ui-datepicker-calendar > thead th:last-child span { color: #127cff;}
+.ui-datepicker .ui-datepicker-buttonpane {border:none; margin-bottom: 20px;}
+.ui-datepicker .ui-datepicker-buttonpane button {margin:auto 20%;  color:#fff; background:#484f59; width:60%; border-radius:0px; padding:9px; margin-top:10px; margin-bottom:10px;}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {display:none;}
+
+@media all and (max-width:425px){
+	.ui-datepicker th{font-size:13px;}
+	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {padding:5px 0; font-size:13px;}
+}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+	
+			</div><!-- end : id : visual -->
+
+			<div id="contents">
+				<div class="visit-date">
+					<p class="tit">방문 예정일</p>
+					<div class="cal-wrap">
+						<div id="datepicker"></div>
+					</div>
+				</div>
+			</div><!-- end : id : contents -->
+
+		<script type="text/javascript">
+		//<![CDATA[
+		$(document).ready(function(){
+			$.datepicker.setDefaults({
+				showMonthAfterYear: true,
+				yearSuffix: '<span class="ui-datepicker-dot">.</span>',
+				monthNames: ['01','02','03','04','05','06','07','08','09','10','11','12'],
+				dayNamesMin: ['SUN','MON','TUE','WED','THU','FRI','SAT'],
+				showOtherMonths: true,
+				selectOtherMonths: false
+			});
+
+			$('.visit-date p.tit').on('click', function(){
+				if(!$(this).parent().hasClass('on')){
+					$(this).parent().addClass('on');
+				}else{
+					$(this).parent().removeClass('on');
+				}
+			});
+			$('#datepicker').datepicker({
+				onSelect: function(selectedDate){
+					var year = selectedDate.substring(6,10);
+					var month = selectedDate.substring(0,2);
+					var day = selectedDate.substring(3,5);
+					$('.visit-date').removeClass('on');
+					$('.visit-date p.tit').text(year+'-'+month+'-'+day);
+				}
+			});
+		});
+		//]]>
+		</script>
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

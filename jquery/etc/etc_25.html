@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="format-detection" content="telephone=no">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- <meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:url" content="" /> -->
+		<!-- <link rel="shortcut icon" type="text/css" href="images/ico/favicon_ns.ico" /> -->
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/study.css" />
+		<link type="text/css" rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<link type="text/css" rel="stylesheet" href="https://codemirror.net/2/theme/monokai.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/study.js"></script>
+		<!--[if lt IE 9]><script src="../../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../../js/html5shiv.js"></script><![endif]-->
+
+	</head>
+
+	<body>
+		<h1>Javascript</h1>
+		<h2 class="tit">다른 라이브러리, 다른 버전의 jQuery와 충돌 방지하기</h2>
+
+
+		<div class="studyArea">
+		<p class="test1">- 다른 라이브러리와 충돌</p>
+		<script>
+		$(function(){
+			console.log($ == jQuery); // true
+			jQuery.noConflict();
+			console.log($ == jQuery); // false
+			jQuery(document).ready(function($){
+				// jQuery가 $로 사용됨
+				console.log($);
+			});
+			// 다른 라이브러리가 $로 사용됨
+			console.log($); // undefined
+
+			// jQuery의 alias(별명)를 ja로 만듦
+			var ja = jQuery.noConflict();
+			ja('p.test1').css('margin-top', '15px');
+		});
+		</script>
+		</div>
+
+		<div class="studyArea">
+		<p>- 다른 버전의 jQuery와 충돌</p>
+		<p class="con mt10">흔한 경우는 아니지만 여러 버전의 jQuery를 사용하는 경우 버전별로 alias를 따로 만들어 주어야 한다.</p>
+		<script src='https://code.jquery.com/jquery-1.11.1.js'></script>
+		<script>
+		$(function(){
+			var jb = jQuery.noConflict();
+		});
+		</script>
+		<script src='https://code.jquery.com/jquery-2.1.1.js'></script>
+		<script>
+		$(function(){
+			var hs = jQuery.noConflict();
+		});
+		</script>
+		<p class="con">1.11.1을 사용할 때는 jb를, 2.1.1을 사용할 때는 hs를 alias로 사용한다.</p>
+		</div>
+
+	</body>
+</html>

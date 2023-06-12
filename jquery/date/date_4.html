@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />  
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		//inputPlaceHolder
+		$(".inputPlace").find("input, textarea").each(function(){
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				}
+			});
+		});
+
+		//datePicker
+		$('.datepicker').on('click', function(){
+			if(!$(this).parent().find(".cal-wrap").hasClass('show')){
+				$(".cal-wrap").removeClass('show');
+				$(this).parent().find(".cal-wrap").addClass('show');
+			}else{
+				$(this).parent().find(".cal-wrap").removeClass('show');
+			}
+		});
+		$('.datepicker label').on('click', function(){
+			if(!$(this).parent().parent().find(".cal-wrap").hasClass('show')){
+				$(".cal-wrap").removeClass('show');
+				$(this).parent().parent().find(".cal-wrap").addClass('show');
+			}else{
+				$(this).parent().parent().find(".cal-wrap").removeClass('show');
+			}
+		});
+
+		//inputPlaceHolder - datepicker
+		$(".datePlace").find("input").each(function(){
+			if($(window).width() < 750){
+				$(this).attr("readonly", true);
+			}
+
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+
+				if($(window).width() < 750){
+					$(this).on("click focus", function(){
+						var $thisP = $(this).offset().top - 280;
+						//console.log($(this));
+						$("html, body").animate({"scrollTop":$thisP},300);
+					});
+				};
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				}
+			});
+		});
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%; background-color: #111; }
+#wrap{width:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; }
+#footer{width:100%; background-color:#eee;}
+.inner{margin:0 auto; position:relative;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+		.datePicker_wrap{width:1000px; margin:0 auto;}
+		.check-info div{overflow:hidden;padding:10px 0}
+		.check-info div.check-out{border-top:1px solid #ddd}
+		.check-info p.tit{float:left}
+		.check-info p.res{float:right;}
+
+		.wrap-select-date {background:#f8f8f8;}
+		.wrap-select-date .c-fix-btn {display: none;}
+		.s-chk-area {width:100%; background:#fff;}
+		.s-chk-area .chk-date {padding-left:15px;margin-bottom:10px;}
+		.s-chk-area .chk-date li {position: relative;font-size:22px;color: #000;font-weight: 300;border-top: 1px solid #b2b2b2;padding: 10px 0;}
+		.s-chk-area .chk-date li em {font-family:'Roboto';font-weight: 600;font-size:23px;}
+		.s-chk-area .chk-date li:first-child {border-top: 0;}
+		.s-chk-area .chk-date .cd-date {position: absolute;right: 30px;}
+		.s-chk-area .chk-date input[type="text"] {border: 0;clip: rect(0 0 0 0);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}
+		.s-chk-area .result-days {text-align: center;position: absolute;top:23px; left:50%;display: none;
+		-webkit-transform:(-50%,0);
+		-moz-transform:(-50%,0);
+		-o-transform:(-50%,0);
+		transform:(-50%,0);}
+		.s-chk-area .result-days .inner {display:inline-block;font-size:17px;color: #fff;font-weight: 300;background-color: #f14406;text-align: center;min-width:50px;height: 50px;line-height: 50px;border-radius: 50px;padding: 0 13px;}
+		.s-chk-area .result-days em {font-family:'Roboto';font-weight: 600;font-size:18px;}
+		.u-datepicker-weekend {padding: 0 15px;background-color: #f8f8f8;}
+		.u-datepicker-weekend ul {border-bottom: 1px solid #e6e6e5;display: table;table-layout: fixed;width: 100%;background-color: #f8f8f8;}
+		.u-datepicker-weekend li {display: table-cell;width: 14.28571428571429%;font-size:12px;color: #000;font-family:'Roboto';font-weight: 300;text-align: center;padding: 19px 0;}
+		.u-datepicker-weekend li:first-child {color: #f35600;}
+		.u-datepicker-weekend li:last-child {color: #337be8;}
+
+		/* datepicker */
+		.ui-datepicker.ui-datepicker-multi{position:relative;background-color: #f8f8f8;border-radius:0;text-align:center;font-family:'Roboto';}
+		.ui-datepicker-multi .ui-datepicker-group {float: none;}
+		.ui-datepicker-multi .ui-datepicker-group table {width: 100%;margin: 0 auto;table-layout: fixed;}
+		.ui-widget-header {background: none;border: 0;color: #000;font-weight: normal;}
+		.ui-widget.ui-widget-content {border: 0;}
+		.ui-datepicker .ui-datepicker-header {padding: 30px 0 20px 0;}
+		.ui-datepicker .ui-datepicker-header .ui-corner-all {display: none;}
+		.ui-datepicker .ui-datepicker-title {padding:0;font-size:17px;color:#000;font-weight: 600;}
+		.ui-datepicker-calendar{width:100%;padding-top: 20px;}
+		.ui-datepicker-calendar > thead {display: none;}
+		.ui-datepicker-today .ui-state-default,
+		.ui-state-active, 
+		.ui-widget-content .ui-state-active, 
+		.ui-widget-header .ui-state-active, 
+		a.ui-button:active, 
+		.ui-button:active, 
+		.ui-button.ui-state-active:hover {background: none;}
+		.ui-datepicker td.ui-datepicker-week-end:nth-child(1n) a,
+		.ui-datepicker td.ui-datepicker-week-end:nth-child(1n) span{color:#f35600}
+		.ui-datepicker td.ui-datepicker-week-end:nth-child(7n) a,
+		.ui-datepicker td.ui-datepicker-week-end:nth-child(7n) span{color:#337be8}
+		.ui-state-default,
+		.ui-widget-content .ui-state-default,
+		.ui-widget-header .ui-state-default, .ui-button,
+		html .ui-button.ui-state-disabled:hover,
+		html .ui-button.ui-state-disabled:active {width: 40px;height: 40px;line-height: 40px;display:block;font-size:15px;color:#181818;border: 0;text-align: center;padding: 0;margin: 0 auto;background: #f8f8f8;}
+		.ui-datepicker {padding: 0 15px;}
+		.ui-datepicker td {padding: 0;}
+		.dp-highlight .ui-state-default {background: #fb4e02;color: #fff !important;font-weight: 600;border-radius: 50%;}
+		.dp-highlight.pd-between {background: #fb4e02;}
+		.dp-highlight.dp-first {
+			-webkit-background: linear-gradient(to right,#f8f8f8 0%,#f8f8f8 50%,#fb4e02 50%,#fb4e02 100%);
+			-moz-background: linear-gradient(to right,#f8f8f8 0%,#f8f8f8 50%,#fb4e02 50%,#fb4e02 100%);
+			background: linear-gradient(to right,#f8f8f8 0%,#f8f8f8 50%,#fb4e02 50%,#fb4e02 100%);
+		}
+		.dp-highlight.dp-end {
+			-webkit-background: linear-gradient(to right,#fb4e02 0%,#fb4e02 50%,#f8f8f8 50%,#f8f8f8 100%);
+			-moz-background: linear-gradient(to right,#fb4e02 0%,#fb4e02 50%,#f8f8f8 50%,#f8f8f8 100%);
+			background: linear-gradient(to right,#fb4e02 0%,#fb4e02 50%,#f8f8f8 50%,#f8f8f8 100%);	
+		}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+
+			<div id="contents">
+				<div class="datePicker_wrap">
+
+					<div class="wrap-select-date">
+						<div class="s-chk-area">
+							<ul class="chk-date">
+								<li class="chk-in">
+									<span class="cd-label">체크인</span>
+									<span class="cd-date"><!--<em class="month">12</em>월 <em class="day">26</em>일--></span>
+									<input type="text" class="selectDay" size="10">
+								</li>
+								<li class="chk-out">
+									<span class="cd-label">체크아웃</span>
+									<span class="cd-date"><!--<em class="month">12</em>월 <em class="day">29</em>일--></span>
+									<input type="text" class="selectDay" size="10">
+								</li>
+							</ul>
+							<span class="result-days"><span class="inner"><em class="days"></em>박</span></span>
+							<div class="u-datepicker-weekend">
+								<ul>
+									<li>SUN</li>
+									<li>MON</li>
+									<li>TUE</li>
+									<li>WED</li>
+									<li>THU</li>
+									<li>FRI</li>
+									<li>SAT</li>
+								</ul>
+							</div>
+						</div>
+
+						<div id="datepicker"></div>
+
+						<div class="c-fix-btn">
+							<div class="ly-cfb ly-item-sb">
+								<span class="c-btn b-st1"><a href="#">완료</a></span>
+							</div>
+						</div>
+					</div><!-- // wrap-select-date -->
+
+
+					<!-- 스크립트 -->
+					<script type="text/javascript">
+					$('#datepicker').datepicker({
+						showMonthAfterYear: true,
+						//yearSuffix: '<span class="ui-datepicker-dot">.</span>',
+					    dayNamesMin: ["일","월","화","수","목","금","토"],
+					    monthNamesShort: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+					    monthNames: ["01월","02월","03월","04월","05월","06월","07월","08월","09월","10월","11월","12월"],
+						minDate: '1',
+						maxDate: '+362',
+			            //yearRange: "2018:2020",
+						numberOfMonths:[13,1],
+						dateFormat: 'yy-mm-dd',
+						beforeShowDay: function(date) {
+							var date1 = $.datepicker.parseDate('yy-mm-dd', $(".chk-in .selectDay").val());
+							var date2 = $.datepicker.parseDate('yy-mm-dd', $(".chk-out .selectDay").val());
+							var addClassName = '';
+							if(date1){
+								if(date.getTime() == date1.getTime()){
+									if(date2){
+										addClassName = 'dp-highlight dp-first';
+									}
+									else{
+										addClassName = 'dp-highlight';
+									}
+								}
+								else if(date2){
+									if(date.getTime() == date2.getTime()){
+										addClassName = 'dp-highlight dp-end';
+									}
+									else if(date > date1 && date < date2){
+										addClassName = 'dp-highlight pd-between';
+									}
+								}
+							}
+							else{
+								addClassName = '';
+							}
+							return [true, addClassName];
+						},
+						onSelect: function(dateText, inst) {
+							var date1 = $.datepicker.parseDate('yy-mm-dd', $(".chk-in .selectDay").val());
+							var date2 = $.datepicker.parseDate('yy-mm-dd', $(".chk-out .selectDay").val());
+							var selectedDate = $.datepicker.parseDate('yy-mm-dd', dateText);
+							var month = (selectedDate.getMonth()+1) < 10 ? '0' + (selectedDate.getMonth()+1)  : selectedDate.getMonth()+1;
+							var day = selectedDate.getDate() < 10 ? '0' + selectedDate.getDate()  : selectedDate.getDate();
+							
+							if (!date1 || date2) {
+								$(".chk-in .selectDay").val(dateText);
+								$(".chk-out .selectDay").val('');
+								$(".chk-in .cd-date").html('<em class="month">'+month+'</em>월 <em class="day">'+day+'</em>일');
+								$(".chk-out .cd-date").html('');
+								$('.wrap-select-date .c-fix-btn, .result-days').hide();
+								$(this).datepicker();
+							} else {
+								if( selectedDate < date1 ) {
+									$(".chk-out .selectDay").val( $(".chk-in .selectDay").val() );
+									$(".chk-in .selectDay").val(dateText);
+									$(".chk-out .cd-date").html($(".chk-in .cd-date").html());
+									$(".chk-in .cd-date").html('<em class="month">'+month+'</em>월 <em class="day">'+day+'</em>일');
+								} else {
+									if($(".chk-in .selectDay").val() == dateText){return}
+									$(".chk-out .selectDay").val(dateText);
+									$(".chk-out .cd-date").html('<em class="month">'+month+'</em>월 <em class="day">'+day+'</em>일');
+								}
+								
+								var chkIn = $(".chk-in .selectDay").val().split('-');
+								var chkOut = $(".chk-out .selectDay").val().split('-');
+								var chkInDate = new Date(chkIn[0], chkIn[1], chkIn[2]);
+								var chkOutDate = new Date(chkOut[0], chkOut[1], chkOut[2]);
+								var duration = (chkOutDate-chkInDate)/1000/60/60/24;
+								$('.result-days .days').text(duration);
+								$('.wrap-select-date .c-fix-btn, .result-days').show();
+								$(this).datepicker();
+							}
+						}
+					});
+					</script>
+
+				</div><!-- end : class : datePicker_wrap -->
+			</div><!-- end : id : contents -->
+
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

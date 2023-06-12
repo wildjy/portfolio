@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<script type="text/javascript" src="../../js/jquery.youtube_iframeApi.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault();
+	}
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+/* visual */
+#visual .main_visual{height:805px; overflow:hidden; position:relative;}
+#visual .video_box{position:absolute; left:0; top:0; width:100%; height:100%; z-index:0;}
+#visual .video_box iframe{position:absolute; left:0; top:0; width:100%; height:100%; z-index:0; pointer-events:none}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual" class="movie">
+				<h2 class="hide">비쥬얼</h2>
+				<div class="main_visual">
+					<div class="video_box">
+						<div id="main_video"></div>
+					</div>
+				</div>
+			</div><!-- end : id : visual -->
+<script type="text/javascript">
+//<![CDATA[
+function main_video(){
+	if($("#main_video").length > 0) {
+		var $target = $(".main_visual");
+		function youTube_visual() {
+			$(".main_visual").height($(window).height());
+			var aspectRatio = 1.78,
+			$video = $("#main_video"),
+			$v_Width = $(window).width(),
+			$v_Height = $target.height(),
+			$v_Ratio = $v_Width / $v_Height;
+			console.log($v_Ratio);
+			 if($v_Ratio > 1.78) {
+				var $getV_Height = $v_Width * 0.5625;
+				$video.css({ width:$v_Width, height:$getV_Height, left:0, top:"50%", margin:-($getV_Height / 2) + "px 0 0 0" });
+			}
+			else {
+				var $getV_Width = $v_Height * 1.78;
+				$video.css({ width:$getV_Width, height:$v_Height, left:"50%", top:0, margin:"0 0 0 -" + ($getV_Width / 2) + "px" });
+			}
+		}
+		$(window).on("resize", function() {
+			youTube_visual();
+		});
+		youTube_visual();
+	}
+};
+
+//硫붿씤 �좏뒠釉� �곸긽
+var mainVideo;
+function onYouTubeIframeAPIReady() {
+	mainVideo = new YT.Player("main_video", {
+		height: "100%",
+		width: "100%",
+		playerVars: {
+				autoplay: 1,
+				loop: 1,
+				controls: 0,
+				showinfo: 0,
+				autohide: 1,
+				modestbranding: 1,
+				rel: 0,
+				vq: "hd1080"
+		},
+		videoId: "gofBLZBHnlI",
+		events: {
+				"onReady": function(event) {
+					 event.target.playVideo();
+					 mainVideo.mute();
+				},
+				"onStateChange": function(event) {
+					 if (event.data === YT.PlayerState.ENDED) {
+						  mainVideo.playVideo(); 
+					 }
+				}
+		}
+	});
+}
+
+$(document).ready(function(){
+	main_video();
+});
+//]]>
+</script>
+			<!-- contents  -->
+			<div id="contents">
+
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

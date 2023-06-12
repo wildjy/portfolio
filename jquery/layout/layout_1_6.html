@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko" class="full">
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.mousewheel.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; overflow:hidden; background-color: #111; z-index:10;}
+
+.section{position:absolute; top:0; left:0; width:100%; overflow:hidden; background-color:#FFF;
+-webkit-transition:all .7s cubic-bezier(.1,.7,.34,.88);
+-moz-transition:all .7s cubic-bezier(.1,.7,.34,.88);
+-ms-transition:all .7s cubic-bezier(.1,.7,.34,.88);
+-o-transition:all .7s cubic-bezier(.1,.7,.34,.88);
+transition:all .7s cubic-bezier(.1,.7,.34,.88);
+-webkit-transform:translateY(100%);
+-moz-transform:translateY(100%);
+-ms-transform:translateY(100%);
+-o-transform:translateY(100%);
+transform:translateY(100%);
+}
+.section.active{
+-webkit-transform:translateY(0%);
+-moz-transform:translateY(0%);
+-ms-transform:translateY(0%);
+-o-transform:translateY(0%);
+transform:translateY(0%);
+}
+.section.section_0{background-color:#FFF;}
+.section.section_1{background-color:red;}
+.section.section_2{background-color:blue;}
+.section.section_3{background-color:yellow;}
+.wrap_Scroll{overflow-y:scroll;}
+.wrap_Scroll>div{height:1000px; color:#000;}
+.wrap_Scroll>div:nth-child(2){background-color:#ddd}
+.wrap_Scroll>div:nth-child(5){background-color:#e9e9e9}
+
+
+
+table {width: 100%;height: 100%;}
+table tr td {font-size: 40px; color:#111; font-weight:600; text-align: center; vertical-align: middle;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="section section_0 active">
+				<table>
+					<tr>
+						<td>1</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section section_1">
+				<table>
+					<tr>
+						<td>2</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section section_2">
+				<table>
+					<tr>
+						<td>3</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section section_3">
+				<table>
+					<tr>
+						<td>4</td>
+					</tr>
+				</table>
+			</div>
+			<div class="section wrap_Scroll">
+				<div class="contents"><table><tr><td>1</td></tr></table></div>
+				<div class="contents"><table><tr><td>2</td></tr></table></div>
+				<div class="contents"><table><tr><td>3</td></tr></table></div>
+				<div class="contents"><table><tr><td>4</td></tr></table></div>
+				<div class="contents"><table><tr><td>5</td></tr></table></div>
+			</div>
+		</div><!-- end : id : wrap -->
+		<script type="text/javascript">
+		//<![CDATA[
+		$(function(){
+			mouse.init();
+		});
+
+		var mouse = {
+			init : function(){
+				var index = 0;
+				var isAni = false;
+				var preventScroll = true;
+
+				var wH = $(window).height();
+				$('#wrap div.section').height(wH);
+
+				var a = $("#wrap");
+				var b = a.find(".section").length - 1;
+				var c = $("#wrap div.section_1").offset().top;
+				//console.log(b);
+				setTimeout(function () {
+					//$(".section").eq(0).addClass("active");
+				}, 0);
+
+				$('.wrap_Scroll').on("mousewheel", function(event){
+					if(preventScroll) {
+						console.log("stop");
+						event.stopPropagation();
+						event.preventDefault();
+						return false;
+					}
+				});
+
+				$('html, body').on('mousewheel', function(event) {
+					//console.log(event.deltaX, event.deltaY, event.deltaFactor);
+					if(!isAni) {
+						isAni = true;
+
+						if (event.deltaY < 0) {
+							//Down
+							console.log("Down");
+							if(index < b) {
+								index++;
+
+								console.log(index)
+								//console.log(c*index)
+								//$(".section").removeClass("active");
+								$(".section").eq(index).addClass("active");
+
+								setTimeout(function () {
+									if(index == 4) {
+										$("html").removeClass("full");
+										console.log("free Scroll");
+										preventScroll = false;
+									}
+									isAni = false;
+								}, 500);
+							}else{
+								isAni = false;
+							}
+
+						} else {
+							//Up
+							console.log("Up");
+							if(index > 0 && $(".wrap_Scroll").scrollTop() == 0) {
+								console.log("Back");
+								console.log(index)
+								//console.log(c*index)
+								$(".section").eq(index).removeClass("active");
+								index--;
+								setTimeout(function () {
+									isAni = false;
+								}, 500);
+							}else{
+								isAni = false;
+								preventScroll = false;
+							}
+
+						}
+					}else{
+						console.log("XX")
+					}
+				});
+			}
+		}
+		//]]>
+		</script>
+	</body>
+</html>

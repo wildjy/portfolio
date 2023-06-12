@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/iscroll.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+		<script type="text/javascript">
+		//<![CDATA[
+
+function loaded () {
+	myScroll = new IScroll('#wrapper', {
+				scrollbars: true,
+		interactiveScrollbars: true,
+		scrollX: true,
+		scrollY: false,
+		momentum: false,
+		snap: true,
+		snapSpeed: 400,
+		keyBindings: true,
+		indicators: {
+			el: document.getElementById('indicator'),
+			resize: false
+		}
+	});
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+$(document).ready(function(){
+loaded();
+});
+		//]]>
+		</script>
+		<style type="text/css">
+
+#viewport {
+	position: relative;
+	width: 100%;
+	height: 240px;
+	margin: 0 auto;
+	background: #444;
+	overflow: hidden;
+}
+
+#wrapper {
+	width: 200px;
+	height: 240px;
+	margin: 0 auto;
+}
+
+#scroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 800px;
+	height: 240px;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+	background-color: #444;
+}
+
+.slide {
+	width: 200px;
+	height: 240px;
+	float: left;
+}
+
+.painting {
+	width: 140px;
+	height: 200px;
+	border-radius: 10px;
+	margin: 20px auto;
+	border: 1px solid #000;
+	box-shadow:
+		inset 2px 2px 6px rgba(255,255,255,0.6),
+		inset -2px -2px 6px rgba(0,0,0,0.6),
+		0 1px 8px rgba(0,0,0,0.8);
+}
+
+.giotto {
+	background: url("../images/contents/giotto.jpg");
+}
+
+.leonardo {
+	background: url("../images/contents/leonardo.jpg");
+}
+
+.gaugin {
+	background: url("../images/contents/gaugin.jpg");
+}
+
+.warhol {
+	background: url("../images/contents/warhol.jpg");
+}
+
+#indicator {
+	position: relative;
+	width: 110px;
+	height: 20px;
+	margin: 10px auto;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUBAMAAABohZD3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUGCDYztyDUJgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAGFBMVEUAAADNzc3Nzc3Nzc3Nzc3Nzc3Nzc3///8aWwwLAAAABnRSTlMAX5Ks3/nRD0HIAAAAAWJLR0QHFmGI6wAAAFtJREFUGFdjYGBgEHYNMWRAAJE0IHCEc5nSwEABxleD8JOgXMY0KBCA8FlgfAcIXwzGT4TwzWD8ZAjfDcZPgfDDYPxU7Hx09ejmoduH7h5096L7B8O/6OGBGl4APYg8TQ0XAScAAAAASUVORK5CYII=);
+}
+
+#dotty {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	background: #777;
+}
+
+		</style> 
+	</head>
+
+	<body>
+		<div id="viewport">
+			<div id="wrapper">
+				<div id="scroller">
+					<div class="slide">
+						<div class="painting giotto"></div>
+					</div>
+					<div class="slide">
+						<div class="painting leonardo"></div>
+					</div>
+					<div class="slide">
+						<div class="painting gaugin"></div>
+					</div>
+					<div class="slide">
+						<div class="painting warhol"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="indicator">
+			<div id="dotty"></div>
+		</div>
+	</body>
+</html>

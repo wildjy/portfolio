@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		$(".btnTop").click(function(){
+			$("html, body").stop().animate({"scrollTop":0}, 600, "easeOutExpo");
+		});
+		
+		function limitFixed(){
+			var footerH 	= 300;
+			pageY          = getScrollOffsets().y;
+			var footerY = $(document).height() - footerH - $(window).height() - pageY;
+			console.log(pageY);
+
+			if(footerY <= 0){
+				//$('.btnTopDiv').fadeOut();
+				$('.btnTopDiv').css({"bottom": - (footerY - 30)});
+			} else {
+				//$('.btnTopDiv').fadeIn();
+				$('.btnTopDiv').css({"bottom": "30px"});
+				$('.btnTopDiv').css({"position":"fixed"});
+			}
+		}
+		
+		limitFixed();
+
+		$(window).scroll(function(){
+			limitFixed();
+		});
+
+		function getScrollOffsets(w) {
+			w = w || window;
+			// This works for all browsers except IE versions 8 and before
+			if (w.pageXOffset != null) return {
+				x: w.pageXOffset, 
+				y:w.pageYOffset
+			};
+			// For IE (or any browser) in Standards mode
+			var d = w.document;
+			if (document.compatMode == "CSS1Compat") {
+				return {
+					x:d.documentElement.scrollLeft, 
+					y:d.documentElement.scrollTop
+				};
+			}
+			// For browsers in Quirks mode
+			return { 
+				x: d.body.scrollLeft, 
+				y: d.body.scrollTop 
+			}; 
+		};
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html, body{width:100%; position:relative;}
+#wrap{width:100%; overflow-x:hidden; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; position:relative;}
+#footer{width:100%; height:300px; position:relative; background-color:#000;}
+.inner{width:100%; max-width:1200px; margin:0 auto;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+img{width:100%;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#footer .btnTopDiv{position:fixed; bottom:30px; right:30px; width:80px; height:80px; background-color:red;}
+
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual" style="height:500px">
+
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents" style="height:1000px">
+
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+				<div class="btnTopDiv"></div>
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

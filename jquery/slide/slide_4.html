@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1000px, initial-scale=0.1, user-scalable=yes, maximum-scale=1.0, minimum-scale=0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/slick.min.js"></script>
+
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%; height:100%;  }
+#contents{width:100%;}
+#footer{width:100%;}
+.in{width:100%;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+
+/* 2019-07-10 메인_슬라이더 */
+.main_cont_slider{margin:0 auto 0; width:650px; overflow:hidden; border:1px solid #B6B6B6; background-color:#fff;}
+.main_cont_slider .nav_Area{padding:0; width:480px; position:relative; z-index:1;}
+.main_cont_slider .nav_Area:after{content:""; display:block; position: absolute; top:0; right:-168px; width:170px; height:100%; background-color: #fff;}
+.main_cont_slider .nav_Area>.slick-slider{}
+.main_cont_slider .nav_Area .slick-list {}
+.main_cont_slider .nav_Area .slick-prev{width:24px; height:24px; z-index:10;}
+.main_cont_slider .nav_Area .slick-next{width:23px; height:24px; z-index:10;}
+.main_cont_slider .nav_Area .slick-prev{right:-137px !important; background: url("https://imgorg.catch.co.kr/job/corp/main_slider_prev.gif") 0 0 no-repeat;}
+.main_cont_slider .nav_Area .slick-prev:before{content:"";}
+.main_cont_slider .nav_Area .slick-next{right:-160px; background: url("https://imgorg.catch.co.kr/job/corp/main_slider_next.gif") 0 0 no-repeat;}
+.main_cont_slider .nav_Area .slick-next:before{content:"";}
+/* .main_cont_slider .nav_Area .slick-track{left:-50px;} */
+.main_cont_slider .nav_Area .slick-slide{padding:15px; position: relative; cursor:pointer;}
+.main_cont_slider .nav_Area .slick-slide.slick-current{color:red; font-weight:600;}
+.main_cont_slider .nav_Area .slick-slide.slick-current:after{content:""; position: absolute; bottom:-1px; left:50%; margin-left:-6.5px; display:block; width:13px; height:8px; background: url("https://imgorg.catch.co.kr/job/corp/slider_nav_on.png") 50% 0 no-repeat; z-index:1;}
+
+.main_cont_slider .slider-panel{height:342px; border-top:1px solid #E3E3E3; background-color:#eee;}
+.main_cont_slider .slider-panel .cont-panel{padding:20px 15px; position: relative;}
+.main_cont_slider .slider-panel .cont-panel .panel:after{content:""; display:block; clear:both;}
+.main_cont_slider .slider-panel .cont-panel .panel p>a{display:inline-block; padding-left:10px;}
+
+
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="code in" style="padding:100px 0;">
+
+            <div class="main_cont_slider">
+               <div class="nav_Area">
+                  <div class="slider slider-nav">
+                     <div class="slick-slide"><span>메뉴_1</span></div>
+                     <div class="slick-slide"><span>메뉴_2</span></div>
+                     <div class="slick-slide"><span>메뉴_3</span></div>
+                     <div class="slick-slide"><span>메뉴_4</span></div>
+                     <div class="slick-slide"><span>메뉴_5</span></div>
+                     <div class="slick-slide"><span>메뉴_6</span></div>
+                  </div>
+               </div><!-- end : class : slider-nav -->
+
+               <div class="slider slider-panel">
+                  <div class="cont-panel slick-slide">
+                     <p>1</p>
+                  </div><!-- end : class : 1 -->
+
+                  <div class="cont-panel slick-slide">
+                     <p>2</p>
+                  </div><!-- end : class : 2 -->
+
+                  <div class="cont-panel slick-slide">
+                     <p>3</p>
+                  </div><!-- end : class : 3 -->
+
+                  <div class="cont-panel slick-slide">
+                     <p>4</p>
+                  </div><!-- end : class : 4 -->
+
+                  <div class="cont-panel slick-slide">
+                     <p>5</p>
+                  </div><!-- end : class : 5 -->
+
+                  <div class="cont-panel slick-slide">
+                     <p>6</p>
+                  </div><!-- end : class : 6 -->
+
+               </div><!-- end : class : slider-panel -->
+            </div><!-- end : class : main_cont_slider -->
+
+
+			</div>
+			<div class="sampleWrap">
+
+			<script type="text/javascript">
+			//<![CDATA[
+			$(document).ready(function(){
+				genHTML(); // codemirror 실행
+
+				var reset = {
+					slider : function(){
+                  $('.slider-nav').on('init', function(event, slick, currentSlide){
+                     //$(".slick-active").find("img").attr("src", $(".slick-active").find("img").attr("src").replace("_off.png", "_on.png"));
+                     $(".slick-active").addClass("active");
+                  });
+
+                  $('.slider-nav').slick({
+                     autoSlidesToShow: true,
+                     variableWidth: true,
+										 //infinite: false,
+										 slidesToShow: 4,
+                     slidesToScroll: 1,
+                     speed: 100,
+                     asNavFor: '.slider-panel',
+                     dots: false,
+                     centerMode: true,
+                     centerPadding: "0px",
+                     focusOnSelect: true
+                  });
+
+                  $('.slider-nav').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                     var prevPanel = $(this).find('.slick-slide[data-slick-index="'+currentSlide+'"]')
+                     var nextPanel = $(this).find('.slick-slide[data-slick-index="'+nextSlide+'"]');
+
+                     //$(prevPanel).find("img").attr("src", $(prevPanel).find("img").attr("src").replace("_on.png", "_off.png"));
+                     //$(nextPanel).find("img").attr("src", $(nextPanel).find("img").attr("src").replace("_off.png", "_on.png"));
+                     $(prevPanel).removeClass("active");
+                     $(nextPanel).addClass("active");
+                  });
+
+                  $('.slider-panel').slick({
+                     slidesToShow: 1,
+                     slidesToScroll: 1,
+                     arrows: false,
+                     fade: true,
+                     speed: 100,
+                     asNavFor: '.slider-nav'
+                  });
+					}
+				}
+				reset.slider();
+			});
+			//]]>
+			</script>
+			</div><!-- // sampleWrap -->
+
+			<script type="text/javascript">
+			function genHTML(valArr){
+				$('.sampleWrap').each(function(i){
+					var temp = valArr || $(this).html();
+					var $src = $('<div class="htmlsrc" ></div>');
+					$(this).after($src);
+					var myCodeMirror = CodeMirror($src[0], {
+						value: valArr ? temp[i] : temp,
+						mode: 'htmlmixed',
+						lineNumbers: !$(this).is('.inline'),
+						readOnly: true,
+						styleActiveLine: false,
+						autoClearEmptyLines:true,
+						lineWrapping: true,
+						matchBrackets: true
+					});
+					if($(this).hasClass('mine')) $(this).hide(); // 클래스 mine 이 붙으면 기존에 있던 텍스트는 삭제
+				});
+			}
+			</script>
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

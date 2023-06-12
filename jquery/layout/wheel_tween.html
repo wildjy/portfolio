@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko" class="full">
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1000px, initial-scale=0.1, user-scalable=yes, maximum-scale=1.0, minimum-scale=0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+	<script src="../../js/jquery-1.12.4.min.js"></script>
+	<script src="../../js/jquery.mousewheel.min.js"></script>
+	<script src="../../js/jquery.gsap.min.js"></script>
+	<script src="../../js/TweenMax.min.js"></script>
+	<script src="../../js/EasePack.min.js"></script>
+
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+
+<style type="text/css">
+/* layout */
+html, body {margin: 0;}
+html.full, html.full body {height: 100%;overflow: hidden;}
+.code{}
+.wrap {position: relative;height:100%;}
+.section_f {width: 100%;height: 100%;position: absolute;top: 0;left: 0;}
+.wrap_section {overflow-y: scroll;overflow-x: hidden;height: 100%;}
+.f_section_00 {background-color: #000;}
+.f_section_01 {background-color: red;}
+.f_section_02 {background-color: blue;}
+.section {height: 800px;}
+.f_section_03 {background-color: white;}
+.section_04 {background-color: orange;}
+.section_05 {background-color: grey;}
+.section_06 {background-color: green;}
+
+.contents {position: relative;width: 100%;height: 100%;}
+table {width: 100%;height: 100%;}
+table tr td {font-size: 40px;text-align: center;vertical-align: middle;}
+.f_section_00 td {color: white;}
+
+.photo {position: absolute;top: 50%;left: 10%;width: 400px;height: 400px; transform: translateY(-50%);background-color: black; }
+.rect {position: absolute;top: 50%;left: 50%;width: 300px;height: 300px;transform: translate(-50%, -50%);background-color: cyan;}
+.box {position: absolute;top: 0;right: 0;width: 50%;height: 400px;}
+.box01 {background-color: orange;}
+.box02 {background-color: green;}
+.box03 {background-color: yellow;}
+
+
+.sampleWrap{}
+.htmlsrc{/* display:none;  */width:100%; height:1400px; overflow-y:scroll}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="code in">
+				<div class="wrap">
+					<div class="section_f f_section_00 action">
+						<div class="contents">
+							<table>
+								<tr>
+									<td>1</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="section_f f_section_01">
+						<div class="contents">
+							<div class="rect">
+								<table>
+									<tr>
+										<td>2</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="section_f f_section_02">
+						<div class="contents">
+						<table>
+							<tr>
+								<td>3</td>
+							</tr>
+						</table>
+						<div class="photo"></div>
+						<div class="box box01"></div>
+						<div class="box box02"></div>
+						<div class="box box03"></div>
+						</div>
+					</div>
+					<div class="wrap_section section_f f_section_03">
+										
+						<div class="section section_03">
+							<table>
+								<tr>
+									<td>4</td>
+								</tr>
+							</table>
+						</div>
+						<div class="section section_04">
+							<table>
+								<tr>
+									<td>5</td>
+								</tr>
+							</table>
+						</div>
+						<div class="section section_05">
+							<table>
+								<tr>
+									<td>6</td>
+								</tr>
+							</table>
+						</div>
+						<div class="section section_06">
+							<table>
+								<tr>
+									<td>7</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div><!-- // code -->
+
+			<div class="sampleWrap">
+<script>
+	var index = 0;
+	var box_index = 1;
+	var isIng = false;
+	var preventScroll = true;
+
+
+
+	/*
+	function preventDefault(e){
+		e.preventDefault();
+	}
+
+	function disableScroll(){
+		document.body.addEventListener('touchmove', preventDefault, { passive: false });
+	}
+	function enableScroll(){
+		document.body.removeEventListener('touchmove', preventDefault, { passive: false });
+	}
+	*/
+	$(function(){
+		genHTML(); // codemirror 실행
+
+		TweenMax.set($(".f_section_01, .f_section_02, .f_section_03"), {y: '100%'});
+		TweenMax.set($(".box02, .box03"), {y: '150%', autoAlpha: 0});
+		TweenMax.set($(".rect"), {y: '150%', autoAlpha: 0});
+
+
+	$(".section_f").height($(window).height());
+
+		$('.wrap_section').on("mousewheel", function(event){
+			if(preventScroll) {
+				event.stopPropagation();
+				event.preventDefault();
+				return false;
+			}
+		});
+		
+		$(".box01").on("click", function(){
+			TweenMax.to($(".box01"), 0.5, {y: '-150%', autoAlpha: 0});
+			TweenMax.to($(".box02"), 0.5, {y: '0%', autoAlpha: 1});
+		});
+
+		$('html, body').on('mousewheel', function(event) {
+			//console.log(event.deltaX, event.deltaY, event.deltaFactor);
+			if(!isIng) {
+
+				isIng = true;
+				if (event.deltaY < 0) {
+					//Down
+					if(index < 3) {
+							console.log(index, box_index);
+						if(index != 2 || (index == 2 && box_index == 3)) {
+							//$(".f_section_0" + index).addClass("action");
+							index++;
+							console.log(index, box_index);
+							console.log("index=="+index);
+
+							TweenMax.to($(".f_section_0" + index), 0.7, {
+								y: '0%', ease: Power2.easeInOut, onComplete: function () {
+									if (index == 3) {
+										//$("html").removeClass("full");
+										preventScroll = false;
+									} else {
+										preventScroll = true;
+									}
+									isIng = false;
+
+									if(index == 2){
+										TweenMax.set($(".rect"), {y: '-200%', autoAlpha: 0});
+									}
+								}
+							});
+							
+							if(index == 0) {
+								TweenMax.set($(".rect"), {y: '150%', autoAlpha: 0});
+							}else if(index == 1)
+							{
+								TweenMax.to($(".rect"), 1, {y: '-50%', autoAlpha: 1, ease: Elastic.easeInOut.config(1, 1)});
+							}
+						}else{
+							TweenMax.to($(".box0"+box_index), 1, {y: '-150%', autoAlpha: 0, ease: Elastic.easeInOut.config(1, 1)});
+							box_index++;
+							console.log(index, box_index);
+							TweenMax.to($(".box0"+box_index), 1, {y: '0%', autoAlpha: 1, ease: Elastic.easeInOut.config(1, 1), onComplete: function(){
+									isIng = false;
+								}});
+
+						}
+
+					}else{
+						isIng = false;
+					}
+
+
+				} else {
+					//Up
+					//console.log($(".wrap_section").scrollTop());
+					if(index > 0 && $(".wrap_section").scrollTop() == 0) {
+						preventScroll = true;
+						console.log(index, box_index);
+						if(index != 2 || (index == 2 && box_index == 1)) 	{
+							TweenMax.to($(".f_section_0" + index), 0.7, {
+								y: '100%', ease: Power2.easeInOut, onComplete: function () {
+									isIng = false;
+
+									if (index == 0) {
+										TweenMax.set($(".rect"), {y: '150%', autoAlpha: 0});
+									}
+								}
+							});
+							index--;
+							if(index == 1)
+							{
+								TweenMax.to($(".rect"), 1, {y: '-50%', autoAlpha: 1, ease: Elastic.easeInOut.config(1, 1)});
+							}
+
+						}else{
+							TweenMax.to($(".box0"+box_index), 1, {y: '150%', autoAlpha: 0, ease: Elastic.easeInOut.config(1, 1)});
+							box_index--;
+							TweenMax.to($(".box0"+box_index), 1, {y: '0%', autoAlpha: 1, ease: Elastic.easeInOut.config(1, 1), onComplete: function(){
+									isIng = false;
+							}});
+						}
+
+
+					}else{
+						isIng = false;
+						preventScroll = false;
+					}
+
+					if(index < 3)
+					{
+						$("html").addClass("full");
+					}
+				}
+			}else{
+				console.log("XX")
+			}
+		});
+
+	});
+</script>
+			</div><!-- // sampleWrap -->
+
+			<script type="text/javascript">
+			function genHTML(valArr){
+				$('.sampleWrap').each(function(i){
+					var temp = valArr || $(this).html();
+					var $src = $('<div class="htmlsrc" ></div>');
+					$(this).after($src);	
+					var myCodeMirror = CodeMirror($src[0], {
+						value: valArr ? temp[i] : temp,
+						mode: 'htmlmixed',
+						lineNumbers: !$(this).is('.inline'),
+						readOnly: true,
+						styleActiveLine: false,
+						autoClearEmptyLines:true,
+						lineWrapping: true,
+						matchBrackets: true
+					});
+					if($(this).hasClass('mine')) $(this).hide(); // 클래스 mine 이 붙으면 기존에 있던 텍스트는 삭제
+				});
+			}
+			</script>
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

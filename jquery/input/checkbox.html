@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault();
+	}
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+		//checkbox
+		$(".chkMdu").find("input:checkbox").each(function(){
+			$(this).on("click",function(){
+				if($(this).prop("checked")){
+					console.log("11");
+					$(this).parent().addClass("on");
+				} else {
+					console.log("22");
+					$(this).parent().removeClass("on");
+				};
+			});
+		});
+
+		//all checkbox
+		$("#allChk").on("click", function(){
+			if($(this).prop("checked")){
+				console.log("aa");
+				$("input[name=chk]:checkbox").each(function(){
+					$(this).prop("checked", true);
+					$(this).parent().addClass("on");
+				});
+			} else {
+				console.log("bb");
+				$("input[name=chk]:checkbox").each(function(){
+					$(this).prop("checked", false);
+					$(this).parent().removeClass("on");
+				});
+			}
+		});
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; background-color: #111; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#header .gnb_Btn{position: absolute; top:15px; right:15px; width:40px; height:35px; cursor:pointer; z-index:99}
+#header .gnb_Btn span{position: absolute; display:block; width:100%; height:2px; background-color: #fff;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+#header .gnb_Btn .t{top:0;}
+#header .gnb_Btn .c{top:50%;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#header .gnb_Btn .b{bottom:0;}
+#header .gnb_Btn.hover:hover .t{
+-webkit-transform:translateY(17px) rotate(-90deg);
+-moz-transform:translateY(17px) rotate(-90deg);
+-o-transform:translateY(17px) rotate(-90deg);
+transform:translateY(17px) rotate(-90deg);}
+#header .gnb_Btn.hover:hover .b{
+-webkit-transform:translateY(-16px) rotate(180deg);
+-moz-transform:translateY(-16px) rotate(180deg);
+-o-transform:translateY(-16px) rotate(180deg);
+transform:translateY(-16px) rotate(180deg);}
+#header .gnb_Btn.active .t{
+-webkit-transform:translateY(17px) rotate(-135deg);
+-moz-transform:translateY(17px) rotate(-135deg);
+-o-transform:translateY(17px) rotate(-135deg);
+transform:translateY(17px) rotate(-135deg);}
+#header .gnb_Btn.active .c{opacity:0;}
+#header .gnb_Btn.active .b{
+-webkit-transform:translateY(-17px) rotate(135deg);
+-moz-transform:translateY(-17px) rotate(135deg);
+-o-transform:translateY(-17px) rotate(135deg);
+transform:translateY(-17px) rotate(135deg);}
+
+.chkBox-Area{padding:100px 15px; width:100%; max-width:1100px; margin:0 auto;}
+.chkMdu{}
+.chkMdu>span{display:inline-block; width:18px; height:18px; position:relative; overflow:hidden;}
+.chkMdu>span label{display:block; width:100%; height:100%; background: url("../../images/ico/ico_chkBox_off.gif") 0 0 no-repeat; position:relative; z-index:5;}
+.chkMdu>span.on label{background: url("../../images/ico/ico_chkBox_on.gif") 0 0 no-repeat;}
+.chkMdu>span input{position:absolute; top:0; left:0; display:block; width:0; height:0; font-size:0; line-height:0; z-index:1;}
+.chkMdu>label{display:inline-block; padding-left:5px; font-size:14px; color:#fff; vertical-align:5px;}
+
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+				<div class="gnb_Btn hover">
+					<span class="t"></span><span class="c"></span><span class="b"></span>
+				</div>
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents">
+				<div class="chkBox-Area">
+					<form method="post" action="">
+						<fieldset>
+							<legend>체크박스 테스트</legend>
+								<p class="chkMdu"><span><label for="chk_1"></label><input type="checkbox" name="chk" id="chk_1" title="체크하시오" /></span><label for="chk_1">체크1</label></p>
+								<p class="chkMdu"><span><label for="chk_2"></label><input type="checkbox" name="chk" id="chk_2" title="체크하시오" /></span><label for="chk_2">체크2</label></p>
+								<p class="chkMdu"><span><label for="chk_3"></label><input type="checkbox" name="chk" id="chk_3" title="체크하시오" /></span><label for="chk_3">체크3</label></p>
+								<div class="allchk chkMdu"><span><label for="allChk"></label><input type="checkbox" name="chk" id="allChk" title="체크하시오" /></span><label for="allChk">모두체크</label></div>
+
+
+<label>
+	<span><input type="checkbox" id="" class="" name="" title="" /></span>
+	<b>모바일용 : 체크박스 입니다.</b>
+</label>
+
+<div>
+	<span><input type="checkbox" id="chk" class="" name="" title="" /></span>
+	<label for="chk">PC용 : 체크박스 입니다.</label>
+</div>
+
+						</fieldset>
+					</form>
+				</div>
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="format-detection" content="telephone=no">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- <meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:url" content="" /> -->
+		<!-- <link rel="shortcut icon" type="text/css" href="images/ico/favicon_ns.ico" /> -->
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/study.css" />
+		<link type="text/css" rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<link type="text/css" rel="stylesheet" href="https://codemirror.net/2/theme/monokai.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/study.js"></script>
+		<!--[if lt IE 9]><script src="../../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../../js/html5shiv.js"></script><![endif]-->
+
+	</head>
+
+	<body>
+		<h1>Javascript</h1>
+		<h2 class="tit">내장 객체 I</h2>
+		<p>내장 객체란 브라우저의 자바스크립트 엔진에 내장된 객체를 말하며, 필요한 경우 객체를 생성해 사용할 수 있습니다. <em>내장 객체로는 문자(String), 날짜(Date), 배열(Array), 수학(Math), 정규 표현 객체(RegExp Object) 등이 있습니다.</em></p>
+
+
+		<h3>내장 객체 생성하기</h3>
+		<ul>
+			<li><strong>기본형</strong> →	 변수 = new 생성 함수()</li>
+		</ul>
+
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		// tv 객체 생성
+		var tv = new Object();
+
+		// tv 객체의 속성(프로퍼티)을 생성
+		tv.width="30cm";
+		tv.height="25cm";
+		tv.weight="20kg";
+		tv.color="white";
+
+		// tv 객체의 off 기능(메서드)를 생성
+		tv.off = function(){
+			// alert('전원 off');
+
+		}
+
+		tv.off(); // tv에 off 기능을 실행
+		</script>
+		</div>
+
+		<h3>날짜 관련 메서드</h3>
+		<ul>
+			<li><strong>getFullYear()</strong> : 연도 정보를 가져옴</li>
+			<li><strong>getMonth()</strong> : 월 정보를 가져옴(현재 월-1)</li>
+			<li><strong>getDate()</strong> : 일 정보를 가져옴</li>
+			<li><strong>getDay()</strong> : 요일 정보를 가져옴(일:0~토:6)</li>
+			<li><strong>getHours()</strong> : 시 정보를 가져옴</li>
+			<li><strong>getMinutes()</strong> : 분 정보를 가져옴</li>
+			<li><strong>getSeconds()</strong> : 초 정보를 가져옴</li>
+			<li><strong>getMilliseconds()</strong> : 밀리초 정보를 가져옴(1/1000초 단위)</li>
+			<li><strong>getTime()</strong> : 1970년 1월 1일부터 경과된 시간을 밀리초로 표기함</li>
+			<li><strong>toGMTString()</strong> : GMT 표준 표기 방식으로 문자형 데이터로 반환함</li>
+		</ul>
+
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		var t = new Date();
+		console.log('t.getFullYear() : '+t.getFullYear());
+		console.log('t.getMonth() : '+t.getMonth());
+		console.log('t.getDate() : '+t.getDate());
+		console.log('t.getDay() : '+t.getDay());
+		console.log('t.getHours() : '+t.getHours());
+		console.log('t.getMinutes() : '+t.getMinutes());
+		console.log('t.getSeconds() : '+t.getSeconds());
+		console.log('t.getMilliseconds() : '+t.getMilliseconds());
+		console.log('t.getTime() : '+t.getTime());
+		console.log('t.toGMTString() : '+t.toGMTString());
+
+		// var m = new Date(2017,1,18);
+		var m = new Date("2017/2/18");
+		console.log('조회 월 : ' +m.getMonth());
+		console.log('조회 일 : ' +m.getDate());
+		console.log('조회 요일 : ' +m.getDay());
+
+
+		// D-Day
+		var d = new Date();
+		var nowYear = d.getFullYear();
+		var theDate = new Date(nowYear, 11, 31);
+		var diffDate = theDate-d;
+		var result = Math.ceil( diffDate/(60*1000*60*24) ); // Math,ceil() = 반올림, 1일 = 86,400,000밀리초
+		console.log('현재일로 부터 올해 말일까지는 '+result+'일 남았습니다.');
+		</script>
+		</div>
+
+		<h3>숫자 객체 생성하기</h3>
+		<ul>
+			<li><strong>기본형</strong> → 변수 = new Number(값)</li>
+		</ul>
+
+		<h3>Number 객체의 속성</h3>
+		<ul>
+			<li><strong>MAX_VALUE</strong> : 표현 가능한 가장 큰 수</li>
+			<li><strong>MIN_VALUE</strong> : 표현 가능한 가장 작은 수</li>
+			<li><strong>POSITIVE_INFINITY</strong> : 무한대 수 표기</li>
+			<li><strong>NEGATIVE_INFINITY</strong> : 음의 무한대 수 표기</li>
+			<li><strong>NaN</strong> : 숫자가 아닌 경우 표기</li>
+		</ul>
+
+		<h3>Number 객체의 메서드</h3>
+		<ul>
+			<li><strong>toExponential(n)</strong> : 지수 표기법으로 소수점 n자리만큼 문자형 데이터로 반환</li>
+			<li><strong>toFixed(n)</strong> : 소수점 n자리만큼 반올림하여 문자형 데이터로 반환</li>
+			<li><strong>toPrecision(n)</strong> : 유효 숫자 n의 개수만큼 반올림하여 문자형 데이터로 반환</li>
+			<li><strong>toString()</strong> : 숫자형 데이터를 문자형 데이터로 반환</li>
+			<li><strong>valueOf()</strong> : 객체의 원래 값을 반환</li>
+			<li><strong>parseInt(값)</strong> : 데이터를 정수로 변환하여 반환</li>
+			<li><strong>parseFloat(값)</strong> : 데이터를 실수로 변환하여 반환</li>
+		</ul>
+
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		console.log( '------------------------------' );
+
+		var n1 = 3.456789;
+		var n2 = 700000;
+		var n3 = "30.5px";
+		var n4 = 40;
+
+		console.log('n1 : ' + n1);
+		console.log('n2 : ' + n2);
+		console.log('n3 : ' + n3);
+		console.log('n4 : ' + n4);
+		console.log('n2.toExponential(1) : ' + n2.toExponential(1));
+		console.log('n1.toFixed(2) : ' + n1.toFixed(2));
+		console.log('n1.toPrecision(2) : ' + n1.toPrecision(2));
+		console.log('n1.toString() : ' + n1.toString());
+		console.log('n4.valueOf() : ' + n4.valueOf());
+		console.log('parseInt(n3)+n4 : ' + (parseInt(n3)+n4));
+		console.log('parseFloat(n3)+n4 : ' + (parseFloat(n3)+n4));
+		</script>
+		</div>
+
+		<h3>수학 객체의 메서드 및 상수</h3>
+		<ul>
+			<li><strong>Math.abs(숫자)</strong> : 숫자의 절대값을 반환</li>
+			<li><strong>Math.max(숫자1, 숫자2, 숫자3, 숫자4)</strong> : 숫자 중 가장 큰 값을 반환</li>
+			<li><strong>Math.min(숫자1, 숫자2, 숫자3, 숫자4)</strong> : 숫자 중 가장 작은 값을 반환</li>
+			<li><strong>Math.pow(숫자, 제곱값)</strong> : 숫자의 거듭제곱한 값을 반환</li>
+			<li><strong>Math.random()</strong> : 0~1 사이에 난수를 반환</li>
+			<li><strong>Math.round(숫자)</strong> : 소수점 첫째 자리에서 반올림하여 정수를 반환</li>
+			<li><strong>Math.ceil(숫자)</strong> : 소수점 첫째 자리에서 무조건 올림하여 정수를 반환</li>
+			<li><strong>Math.floor(숫자)</strong> : 소수점 첫째 자리에서 무조건 내림하여 정수를 반환</li>
+			<li><strong>Math.sqrt(숫자)</strong> : 숫자의 제곱근 값을 반환</li>
+			<li><strong>Math.PI</strong> : 원주율 상수를 반환</li>
+		</ul>
+
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		console.log( '------------------------------' );
+
+		var n5 = 2.1234;
+
+		console.log('n5 : ' + n5);
+		console.log('Math.max(10, 5, 8, 30) : ' + Math.max(10, 5, 8, 30));
+		console.log('Math.min(10, 5, 8, 30) : ' + Math.min(10, 5, 8, 30));
+		console.log('Math.round(n5) : ' + Math.round(n5));
+		console.log('Math.ceil(n5) : ' + Math.ceil(n5));
+		console.log('Math.floor(n5) : ' + Math.floor(n5));
+		console.log('Math.random() : ' + Math.random());
+		console.log('Math.PI : ' + Math.PI);
+		</script>
+		</div>
+	</body>
+</html>

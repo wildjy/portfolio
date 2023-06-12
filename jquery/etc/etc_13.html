@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.popup();
+	},
+
+	popup : function(){
+
+		//쿠키저장 함수
+		function setCookie( name, value, expiredays ) { 
+			var todayDate = new Date(); 
+			todayDate.setDate( todayDate.getDate() + expiredays ); 
+			document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+		}
+
+		$(document).ready(function(){
+			$("#main_Popup .close").click(function(){
+				//오늘만 보기 체크박스의 체크 여부를 확인 해서 체크되어 있으면 쿠키를 생성한다.
+				if($("#today").is(':checked')){
+					//$.cookie('topPop','done',{expores:1, path:'/'});
+					setCookie( "topPop", "done" , 1 ); 
+					//alert("쿠키를 생성하였습니다.");
+				}
+				//팝업창을 위로 애니메이트 시킨다. 혹은 slideUp()
+				//$('#promotionBanner').animate({height: 0}, 500);
+				$('#main_Popup').fadeOut(); 
+			});
+
+			//저장된 해당 쿠키가 있으면 창을 안 띄운다 없으면 뛰운다.
+			cookiedata = document.cookie;    
+			if ( cookiedata.indexOf("topPop=done") < 0 ){      
+				document.all['main_Popup'].style.display = "block";
+				} 
+			else {
+				document.all['main_Popup'].style.display = "none"; 
+			}
+		});
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; overflow-x:hidden; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; position:relative;}
+#footer{width:100%; background-color:#51535B;}
+.inner{width:100%; max-width:1200px; margin:0 auto;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+img{width:100%;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+/* chkMdu */
+/* .chkMdu{margin:15px 0; padding-left:30px; position:relative;}
+.chkMdu label{display:inline-block; width:calc(100% - 80px); font-size:15px; color:#777; line-height:20px; vertical-align:2px}
+.chkMdu label>b{font-size:15px; color:#1a97fc;}
+.chkMdu .view{position:absolute; top:50%; right:0; display:block; margin-left:10px; padding:5px 10px; font-size:12px; color:#444; text-align:center; border:1px solid #ddd; border-radius:3px;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+.chkMdu .view:hover{background-color:#f5f5f5;
+-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.chkMdu>.chkLabel{position:absolute; top:50%; left:0; display:block; width:20px; height:20px; font-size:0; color:#252525; font-weight:600; text-indent:-9999px ;border:1px solid #ccc; border-radius:3px;
+background:#FFF url("../../images/ico/terms_chk_off.gif") 50% 50% no-repeat; background-size:20px 20px; cursor:pointer;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+.chkMdu>.chkLabel.on{border:1px solid #1B9ECA; background:#1B9ECA url("../../images/ico/terms_chk_on.gif") 50% 50% no-repeat; background-size:20px 20px;
+-webkit-transition:all .1s ease-in;
+-moz-transition:all .1s ease-in;
+-o-transition:all .1s ease-in;
+transition:all .1s ease-in;}
+ */
+#main_Popup{position:fixed; top:0; left:0; bottom:0; right:0; background-color:rgba(0,0,0,.75); z-index:100;}
+#main_Popup>.Popup{position:absolute; top:50%; left:50%; border:1px solid #252525;
+-webkit-transform:translate(-50%, -50%);
+-moz-transform:translate(-50%, -50%);
+-o-transform:translate(-50%, -50%);
+transform:translate(-50%, -50%);}
+#main_Popup>.Popup .close{position:absolute; top:20px; right:20px; cursor:pointer;}
+#main_Popup>.Popup .todayClose{position:absolute; bottom:20px; right:20px;}
+#main_Popup>.Popup .todayClose .chkMdu{margin:0; padding-left:20px; height:auto;}
+#main_Popup>.Popup .todayClose .chkMdu>.chkLabel{width:15px; height:15px; background-size:15px 15px;}
+#main_Popup>.Popup .todayClose .chkMdu>.chkLabel.on{background-size:15px 15px;}
+#main_Popup>.Popup .todayClose .chkMdu label{font-size:12px; color:#252525;}
+#main_Popup>.Popup.open{width:560px; height:530px; background-color:#1A97FC;}
+#main_Popup>.Popup .in_p{}
+#main_Popup>.Popup .in_p .renewal{position:absolute; top:50%; left:50%; width:100%;
+-webkit-transform:translate(-50%, -50%);
+-moz-transform:translate(-50%, -50%);
+-o-transform:translate(-50%, -50%);
+transform:translate(-50%, -50%);}
+#main_Popup>.Popup .in_p .renewal_obj{padding-bottom:15px; text-align:center;}
+#main_Popup>.Popup .in_p .renewal_info{text-align:center;}
+#main_Popup>.Popup .in_p .renewal_info>dt{padding-bottom:30px; font-size:40px; color:#fff; font-weight:600;}
+#main_Popup>.Popup .in_p .renewal_info>dd{font-size:17px; color:#fff; line-height:23px;}
+
+@media all and (max-width:720px){
+	#main_Popup>.Popup{position:absolute; top:20px; left:0; right:0; 
+	-webkit-transform:translate(0, 0);
+	-moz-transform:translate(0, 0);
+	-o-transform:translate(0, 0);
+	transform:translate(0, 0);}
+	#main_Popup>.Popup.open{margin:0 15px; padding:50px 10px; width:calc(100% - 30px); height:auto;}
+	#main_Popup>.Popup .in_p .renewal{position:relative; top:0; left:0; width:100%;
+	-webkit-transform:translate(0, 0);
+	-moz-transform:translate(0, 0);
+	-o-transform:translate(0, 0);
+	transform:translate(0, 0);}
+	#main_Popup>.Popup .in_p .renewal_info>dt{padding-bottom:15px; font-size:23px;}
+	#main_Popup>.Popup .in_p .renewal_info>dd{font-size:12px; line-height:18px;}
+}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<div id="main_Popup">
+				<div class="Popup open">
+					<div class="in_p">
+						<div class="renewal">
+							<dl class="renewal_info">
+								<dt>Layer 팝업 오늘만보기</dt>
+								<dd>
+									Layer 팝업 오늘만보기보기보기보기<br />
+									Layer 팝업 오늘만보기보기보기보기<br />
+									Layer 팝업 오늘만보기보기보기보기<br />
+									Layer 팝업 오늘만보기보기보기보기<br />
+									Layer 팝업 오늘만보기보기보기보기<br />
+									Layer 팝업 오늘만보기보기보기보기<br />
+								</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="close"><img src="../../images/btn/layer_Close.png" alt="" /></div>
+					<div class="todayClose">
+						<p class="chkMdu">
+							<label for="today" class="chkLabel"><input type="checkbox" id="today" title="오늘 하루 열지 않기" /></label>
+							<label for="today">오늘 하루 열지 않기</label>
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

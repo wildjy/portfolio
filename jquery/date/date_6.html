@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="apple-touch-icon-precomposed" href="https://m.inbyu.com/img/v3/contents/homescreen_icon.png">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault();
+	}
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		//inputPlaceHolder
+		$(".inputPlace").find("input, textarea").each(function(){
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				}
+			});
+		});
+
+		//inputPlaceHolder - datepicker
+		$(".datePlace").find("input").each(function(){
+			if($(window).width() < 750){
+				$(this).attr("readonly", true);
+			}
+
+			if($(this).val() == ""){
+				$(this).siblings("label").show();
+			} else {
+				$(this).siblings("label").hide();
+			};
+
+			$(this).on("click focus", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").hide();
+				}
+
+				if($(window).width() < 750){
+					$(this).on("click focus", function(){
+						var $thisP = $(this).offset().top - 280;
+						//console.log($(this));
+						$("html, body").animate({"scrollTop":$thisP},300);
+					});
+				};
+			});
+
+			$(this).on("focusout", function(){
+				if($(this).val() == ""){
+					$(this).siblings("label").show();
+				}
+			});
+		});
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%; background-color: #111; }
+#wrap{width:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%;}
+#contents{width:100%; }
+#footer{width:100%; background-color:#eee;}
+.inner{width:100%; margin:0 auto; position:relative;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#contents .main_contents{padding:70px 0; width:100%; max-width:1050px; height:1500px; margin:0 auto;}
+#contents .main_contents>.m_articel{padding:50px 30px; width:515px; height:480px; position:relative; background-color:#fff;}
+
+@media all and (max-width:1050px){
+	#contents .main_contents{padding:50px 15px; width:100%; max-width:1050px;}
+	#contents .main_contents>.m_articel{padding:30px 15px 15px 15px; width:calc(100%/2 - 10px); height:525px;}
+}
+@media all and (max-width:720px){
+	#contents .main_contents>.m_articel{width:calc(100%); height:auto;}
+	#contents .main_contents>.m_articel:first-child{margin-bottom:20px;}
+}
+
+
+/* 보험료계산 */
+#contents .input-zip{}
+#contents .input-zip:after{content:""; display:block; clear:both;}
+#contents .input-zip>dt{float:left; width:115px;}
+#contents .input-zip>dt label{display:block; padding:10px 0 0 0; font-size:16px; color:#777;}
+#contents .input-zip>dd{float:left; margin-bottom:10px; position:relative;}
+#contents .input-zip>dd:after{content:""; display:block; clear:both;}
+#contents .input-zip>dd>div{float:left;}
+
+#contents .input-zip>dd>div.select-div{width:130px;}
+#contents .input-zip>dd>div.sexRadio{width:130px; height:46px; border:1px solid #ddd;}
+#contents .input-zip>dd>div.sexRadio:after{content:""; display:block; clear:both;}
+#contents .input-zip>dd>div.sexRadio>div{float:left; width:50%; height:100%; position:relative;}
+#contents .input-zip>dd>div.sexRadio>div:first-child{border-right:1px solid #ddd;}
+#contents .input-zip>dd>div.sexRadio>div label{position:absolute; top:0; left:0; display:block; padding-top:10px; width:100%; height:100%; font-size:16px; color:#777; text-align:center; background-color:#FFF; z-index:2;}
+#contents .input-zip>dd>div.sexRadio>div a{position:absolute; top:0; left:0; display:block; padding-top:10px; width:100%; height:100%; font-size:16px; color:#777; text-align:center; background-color:#FFF; z-index:2;}
+#contents .input-zip>dd>div.sexRadio>div input{position:absolute; top:-10px; left:-10px; z-index:1;}
+#contents .input-zip>dd>div.sexRadio>div.on label{color:#fff; background-color:#777;}
+#contents .input-zip>dd>div.sexRadio>div.on a{color:#fff; background-color:#777;}
+
+#contents .input-zip>dd>div.datepicker{margin-right:10px; width:200px; height:46px; border:1px solid #ddd; position:relative; z-index:15;}
+#contents .input-zip>dd>div.datepicker>label{position:absolute; top:50%; left:10px; font-size:16px; color:#c8c8c8;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#contents .input-zip>dd>div.datepicker>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+
+#contents .input-zip>dd>div.inputPlace{margin-right:10px; width:200px; height:46px; border:1px solid #ddd; position:relative; z-index:15;}
+#contents .input-zip>dd>div.inputPlace.dateOpen{margin-right:0; width:340px;}
+#contents .input-zip>dd>div.inputPlace>label{position:absolute; top:50%; left:10px; font-size:16px; color:#c8c8c8;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#contents .input-zip>dd>div.inputPlace>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+
+/* btn */
+#contents .m_articel .btn{position:absolute; bottom:0; left:0; right:0;}
+#contents .m_articel .btn:after{content:""; display:block; clear:both;}
+#contents .m_articel .btn>a{display:block; padding-top:18px; width:100%; height:70px; font-size:24px; color:#fff; font-weight:400; text-align:center; background-color:#1181AC;}
+
+@media all and (max-width:1050px){
+	#contents .input-zip>dt{padding-bottom:10px; }
+	#contents .input-zip>dt label{padding:10px 0 0 0; font-size:16px; color:#777;}
+	#contents .input-zip>dd{margin-bottom:10px; width:100%;}
+	#contents .input-zip>dd>div.datepicker{margin-right:10px; width:calc(70% - 5px);}
+	#contents .input-zip>dd>div.datepicker>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+	#contents .input-zip>dd>div.select-div{width:calc(30% - 5px);}
+	#contents .input-zip>dd>div.sexRadio{width:calc(30% - 5px);}
+}
+@media all and (max-width:720px){
+	#contents .input-zip>dd>div.inputPlace.dateOpen{margin-right:0; width:100%; max-width:340px;}
+	#contents .cal-wrap>.in_cal .dateBox .cal-box{width:100%;}
+	#contents .cal-wrap>.in_cal .dateBox .cal-box:first-child{margin-right:0%; margin-bottom:30px; }
+
+	#contents .input-zip>dt .info{top:5px; left:50px;}
+	#contents .input-zip>dd>div label{font-size:13px;}
+	#contents .input-zip>dd>div.sexRadio>div a{padding-top:12px;}
+
+	#contents .m_articel .btn{position:relative; padding-top:40px;}
+	#contents .m_articel .btn>a{padding:15px 0; height:auto; font-size:18px; border-radius:5px;/*  border:4px double #269EC6; */}
+}
+@media all and (max-width:640px){
+	#contents .input-zip>dt{font-size:15px;}
+	#contents .input-zip>dd{font-size:14px;}
+	#contents .input-zip>dt label{padding:5px 0 0 0; font-size:14px;}
+}
+
+.select{display:block; padding:5px 25px 5px 5px; width:100%; max-width:200px; height:46px; font-size:16px; color:#c8c8c8; text-align:left; vertical-align:-2px; border:none; border:1px solid #ddd; background:#FFF url("images/ico/custom_Select_.gif") right 50% no-repeat; background-size:31px 46px;}
+.select option{padding:5px 25px 5px 5px; font-size:16px; color:#c8c8c8;}
+
+
+/* layerDatepicker */
+#contents .cal-wrap{display:none;position:fixed; top:0; left:0; bottom:0; right:0; z-index:20; background-color:rgba(0,0,0,.5);}
+#contents .cal-wrap.show{display:block;}
+#contents .cal-wrap>.in_cal{position:absolute; top:50%; left:50%; right:0; padding:30px; width:100%; max-width:1000px; background-color:#FFF; z-index:20;
+-webkit-transform:translate(-50%,-50%);
+-moz-transform:translate(-50%,-50%);
+-o-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%);}
+#contents .cal-wrap>.in_cal .dateBox:after{content:""; display:block; clear:both;}
+#contents .cal-wrap>.in_cal .dateBox .cal-box{float:left; width:49%;}
+#contents .cal-wrap>.in_cal .dateBox .cal-box:first-child{margin-right:2%;}
+#contents .cal-wrap>.in_cal>.cal-close{margin:30px auto 0;width:100px; padding:10px 0; font-size:17px; color:#fff; text-align:center; background-color:#111; border-radius:3px; cursor:pointer;}
+
+#contents .cal-wrap .topCal-box{margin-bottom:10px;}
+#contents .cal-wrap .topCal-box:after{content:""; display:block; clear:both;}
+#contents .cal-wrap .topCal-box>div{float:left;}
+#contents .cal-wrap .datepicker{margin-right:10px; width:calc(100% - 160px); height:46px; border:1px solid #ddd; position:relative; z-index:15;}
+#contents .cal-wrap .datepicker>label{position:absolute; top:50%; left:10px; font-size:16px; color:#c8c8c8;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#contents .cal-wrap .datepicker>input{padding:10px; width:100%; height:100%; font-size:16px; color:#777;}
+#contents .cal-wrap .select-div{width:150px;}
+
+.cal-wrap{width:100%;}
+.ui-datepicker {padding:0; width:100%; height:294px; background:#fff; display:none; border:none;}
+
+@media all and (max-width:720px){
+	.ui-datepicker {height:auto;}
+}
+
+.ui-datepicker-header {font-size:26px; color:#444; text-align:center; letter-spacing:-2px; background:#fff; border:none;}
+.ui-datepicker .ui-datepicker-title {margin:0; padding:5px 10px 0 10px; font-size:18px; }
+.ui-datepicker td {padding:0; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {display:block; padding:10px 0; color:#666; font-size:13px; text-align:center; border:none; background:none;}
+/* .ui-state-active {color:#fff !important; letter-spacing:0; background:#484f59 !important; border-radius: 5px;} */
+.ui-datepicker-today .ui-state-default,
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {background-color:#f5f5f5;}
+.ui-icon {width:11px; height:21px;}
+.ui-icon-circle-triangle-e {background-position:none;}
+.ui-datepicker .ui-icon {text-indent:-99999px; overflow:hidden; background-repeat:no-repeat;}
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next{display:block; top:10px; width:30px; height:30px; z-index:100;}
+.ui-datepicker .ui-datepicker-prev{left:0;}
+.ui-datepicker .ui-datepicker-next{right:0;}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {margin:0; top:0; left:0;}
+.ui-datepicker-next .ui-icon.ui-icon  {width:100%; height:100%; background:url("../../images/ico/next_icon.png") 50% 50% no-repeat; }
+.ui-datepicker-prev .ui-icon.ui-icon  {width:100%; height:100%; background:url("../../images/ico/prev_icon.png") 50% 50% no-repeat; }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {opacity: .35;}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {}
+.ui-datepicker-calendar > thead th {}
+.ui-datepicker-calendar > thead th:first-child span { color: #ff1d1d;}
+.ui-datepicker-calendar > thead th:last-child span { color: #127cff;}
+.ui-datepicker .ui-datepicker-buttonpane {border:none; margin-bottom: 20px;}
+.ui-datepicker .ui-datepicker-buttonpane button {margin:auto 20%;  color:#fff; background:#484f59; width:60%; border-radius:0px; padding:9px; margin-top:10px; margin-bottom:10px;}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {display:none;}
+
+.dp-highlight .ui-state-default {background: #fb4e02;color: #fff !important;font-weight: 600;border-radius: 5px;}
+#datepicker_2 .dp-highlight .ui-state-default {background: #1A97FC;}
+.dp-highlight.pd-between {background: #fb4e02;}
+.dp-highlight.dp-first {
+	-webkit-background: linear-gradient(to right,#f8f8f8 0%,#f8f8f8 5px,#fb4e02 5px,#fb4e02 100%);
+	-moz-background: linear-gradient(to right,#f8f8f8 0%,#f8f8f8 5px,#fb4e02 5px,#fb4e02 100%);
+	background: linear-gradient(to right,#f8f8f8 0%,#f8f8f8 5px,#fb4e02 5px,#fb4e02 100%);
+}
+.dp-highlight.dp-end {
+	-webkit-background: linear-gradient(to right,#fb4e02 0%,#fb4e02 5px,#f8f8f8 5px,#f8f8f8 100%);
+	-moz-background: linear-gradient(to right,#fb4e02 0%,#fb4e02 5px,#f8f8f8 5px,#f8f8f8 100%);
+	background: linear-gradient(to right,#fb4e02 0%,#fb4e02 5px,#f8f8f8 5px,#f8f8f8 100%);
+}
+@media all and (max-width:425px){
+	.ui-datepicker th{font-size:13px;}
+	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {padding:5px 0; font-size:13px;}
+}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+
+			</div><!-- end : id : visual -->
+
+			<div id="contents">
+				<section class="main_contents">
+					<article class="m_articel">
+						<form method="get" action="#self">
+							<legend class="hid">내 보험료 확인하기</legend>
+
+							<div class="in check">
+								<dl class="input-zip">
+									<dt><label for="reserDay">예약일시</label></dt>
+									<dd>
+										<div class="inputPlace dateOpen"><label for="reserDay">연도-월-일</label><input type="text" class="reserVal" id="reserDay" value="" readonly /></div>
+									</dd>
+									<dt><label for="birth">생년월일</label></dt>
+									<dd>
+										<div class="inputPlace"><label for="birth">예:19901105</label><input type="tel" id="birth" maxlength="8" title="생년월일을 입력하세요"  /> </div>
+										<div class="sexRadio">
+											<div><a href="#self">남</a></div><!-- addClass=on -->
+											<div><a href="#self">여</a></div>
+										</div>
+									</dd>
+								</dl>
+							</div>
+						</form>
+					</article><!-- end : class : m_articel -->
+
+					<div class="cal-wrap">
+						<div class="in_cal">
+							<div class="dateBox">
+								<div class="cal-box">
+									<div class="topCal-box">
+										<div class="datepicker"><label for="datePic_1" class="outDay">연도-월-일</label><input type="text" class="dateVal_1" id="datePic_1" value="" readonly /></div>
+										<div class="select-div">
+											<select name="" id="outTime" class="select" title="출국 예정일시를 선택하세요">
+												<option value="선택">시간</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+											</select>
+										</div>
+									</div>
+									<div id="datepicker_1"></div>
+								</div>
+								<div class="cal-box">
+									<div class="topCal-box">
+										<div class="datepicker"><label for="datePic_2" class="inDay">연도-월-일</label><input type="text" class="dateVal_2"  id="datePic_2" value="" readonly /> </div>
+										<div class="select-div">
+											<select name="" id="inTime" class="select" title="출국 예정일시를 선택하세요">
+												<option value="선택">시간</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+											</select>
+										</div>
+									</div>
+									<div id="datepicker_2"></div>
+								</div>
+							</div>
+							<div class="cal-close">확인</div>
+						</div>
+					</div>
+
+					<script type="text/javascript">
+						//<![CDATA[
+						$(document).ready(function(){
+							//datePicker
+							$('.dateOpen').on('click', function(){
+								$(".cal-wrap").addClass('show');
+							});
+
+							$(".cal-close").click(function(){
+								var $outDay = $(".dateVal_1").val(),
+								$outTime = $("#outTime").val(),
+								$inDay = $(".dateVal_2").val(),
+								$inTIme = $("#inTime").val();
+								console.log($outDay);
+								console.log($outTime);
+								console.log($inDay);
+								console.log($inTIme);
+								$(".dateOpen label").hide();
+								$(".reserVal").val($outDay + " : " + $outTime + "시" + " ~ " + $inDay + " : " + $inTIme + "시");
+								$(".cal-wrap").removeClass('show');
+							});
+
+							$( "#datepicker_1" ).datepicker({
+								  //closeText: "확인",
+								  showOtherMonths: true,
+								  selectOtherMonths: false,
+								  //currentText: "오늘",
+								  minDate:0,
+								  maxDate:"+3M",
+								  yearRange: "2018:2020",
+								  changeYear: false,
+								  changeMonth: false,
+								  dateFormat:"yy-mm-dd",
+								  yearSuffix : "년",
+								  showButtonPanel: false,
+								  showMonthAfterYear:true,
+								  dayNamesMin: ["일","월","화","수","목","금","토"],
+								  monthNamesShort: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+								  monthNames: ["01월","02월","03월","04월","05월","06월","07월","08월","09월","10월","11월","12월"],
+								  beforeShowDay: function(date) {
+									  var date1 = $.datepicker.parseDate('yy-mm-dd', $(".dateVal_1").val());
+
+									  var addClassName = '';
+								  	  if(date1){
+										  if(date.getTime() == date1.getTime()){
+									  		addClassName = 'dp-highlight ';
+										  }
+									  }
+									  return [true, addClassName];
+								  },
+								  onSelect: function(selectedDate){
+									  var $this = $(this).parent().parent(),
+									  $getDate = $(this).datepicker('getDate'),
+									  $selDate = new Date($getDate.setDate($getDate.getDate() + 1));
+									  newMax = new Date($getDate.setDate($getDate.getDate() + 90));
+
+									  $(".outDay").hide();
+									  $(".dateVal_1").val(selectedDate);
+									  $( "#datepicker_2" ).datepicker( "option", "minDate", $selDate );
+									  $( "#datepicker_2" ).datepicker( "option", "maxDate", newMax );
+								  }
+							});
+
+							$( "#datepicker_2" ).datepicker({
+								  //closeText: "확인",
+								  showOtherMonths: true,
+								  selectOtherMonths: false,
+								  //currentText: "오늘",
+								  //defaultDate: "+1w",
+								  minDate:"0",
+								  maxDate:"+3M",
+								  yearRange: "2018:2020",
+								  changeYear: false,
+								  changeMonth: false,
+								  dateFormat:"yy-mm-dd",
+								  yearSuffix : "년",
+								  showButtonPanel: false,
+								  showMonthAfterYear:true,
+								  dayNamesMin: ["일","월","화","수","목","금","토"],
+								  monthNamesShort: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+								  monthNames: ["01월","02월","03월","04월","05월","06월","07월","08월","09월","10월","11월","12월"],
+								  beforeShowDay: function(date) {
+									  var date2 = $.datepicker.parseDate('yy-mm-dd', $(".dateVal_2").val());
+
+									  var addClassName = '';
+								  	  if(date2){
+										  if(date.getTime() == date2.getTime()){
+									  		addClassName = 'dp-highlight ';
+										  }
+									  }
+									  return [true, addClassName];
+								  },
+								  onSelect: function(selectedDate){
+									  $(".inDay").hide();
+									  $(".dateVal_2").val(selectedDate);
+								  }
+							});
+						});
+						//]]>
+					</script>
+				</section><!-- end : class : main_contents -->
+			</div><!-- end : id : contents -->
+
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

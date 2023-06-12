@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/slick.js"></script>
+
+		<!--  ** start : codemirror ** -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<!--  ** end : codemirror ** -->
+
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;  background-color: #111;}
+#wrap{width:100%; height:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%; height:100%;s}
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:100%; max-width:1000px; margin:0 auto; }
+
+@media all and (max-width:720px){
+	.in_Layer{padding:0 20px;}
+}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+input[type=text],
+input[type=tel],
+input[type=submit],
+input[type=password],
+input[type=email],
+input[type=button],
+input[type=search]{
+-webkit-border-radius:0;
+-webkit-appearance:none;
+}
+
+.code{width:1000px; margin:0 auto; font-size:15px; color:#333; line-height:24px;}
+.sampleWrap{margin-top:30px;}
+.sampleWrap>p{padding-bottom:10px; font-size:16px; color:#222; font-weight:600;}
+.CodeMirror-wrap{border:1px solid #ddd;}
+.CodeMirror{height:100%;}
+.CodeMirror *{font-size:14px; line-height:1.8;}
+
+#contents .address_Box{width:100%; max-width:500px; margin:0 auto;}
+#contents .address_Box>p{margin-top:5px;}
+#contents .address_Box>p:first-child{margin-top:0px;}
+#contents .address_Box>p:after{content:""; display:block; clear:both;}
+#contents .address_Box>p input{float:left; background-color:#FFF;}
+#contents .address_Box>p input[type="text"].on{background-color:#ddd; border:1px solid #FF00AE;}
+#contents .address_Box>p input[type="text"]{padding:10px; width:100%; height:46px; font-family: 'Nanum Gothic', sans-serif; font-size:15px; color:#222; font-weight:600; border:1px solid #00FFA9;}
+#contents .address_Box>p input[type="text"]::-ms-input-placeholder{font-size:100%; color:#c8c8c8;}
+#contents .address_Box>p input[type="text"]::-webkit-input-placeholder{font-size:100%; color:#c8c8c8;}
+#contents .address_Box>p input[type="text"]::-moz-input-placeholder{font-size:100%; color:#c8c8c8;}
+#contents .address_Box>p.addBtn input[type="text"]{width:calc(100% - 130px);}
+#contents .address_Box>p.addBtn input[type="button"]{margin-left:10px; display:block; padding-top:0px; width:120px; height:46px; font-family: 'Nanum Gothic', sans-serif; font-size:14px; color:#fff; font-weight:600; text-align:center; border:1px solid #A3A3A3; background-color:#A3A3A3; cursor:pointer;}
+
+#contents .info_url{padding-top:15px;}
+#contents .info_url>a{font-size:14px; color:#fff; font-weight:600;}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<div id="contents">
+				<div class="in_Layer">
+					<div class="code"></div>
+					<div class="sampleWrap">
+						<div class="address_Box">
+							<p class="addBtn">
+								<input type="text" class="postInput" id="test_postcode" placeholder="우편번호" />
+								<input type="button" onclick="test_Postcode()" value="우편번호 찾기" />
+							</p>
+							<p><input type="text" class="postInput" id="test_address" placeholder="주소" /></p>
+							<p><input type="text" class="postInput" id="test_detailAddress" placeholder="상세주소" /></p>
+							<p><input type="text" class="postInput" id="test_extraAddress" placeholder="참고항목" /></p>
+
+							<p class="info_url"><a href="http://postcode.map.daum.net/guide" target="_blank">※ 우편번호 서비스 Guide 바로가기</a></p>
+						</div>
+
+					</div><!-- // sampleWrap -->
+				</div>
+			</div>
+
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault(); 
+	} 
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+		//mobile gnb
+		var $mOpen = $(".gnbOpen"),
+		$mClose = $(".aside_close"),
+		$langOpen = $(".m_lang"),
+		$mAside = $("#aside_navi"),
+		$mGnb = $(".m_gnb>li>a"),
+		$mSub = $(".m_sub_ly"),
+		$mSub_close = $(".back");
+		
+		$mOpen.on("click", function(){
+			$mAside.find(".laguage").hide();
+			$mAside.find("nav").show();
+			$mAside.stop().animate({"right":"0%"});
+		});
+		$langOpen.on("click", function(){
+			$mAside.find("nav").hide();
+			$mAside.find(".laguage").show();
+			$mAside.stop().animate({"right":"0%"});
+		});
+		$mClose.on("click", function(){
+			$mAside.stop().animate({"right":"-100%"});
+			$mSub.stop().animate({"right":"-100%"});
+		});
+		
+		$mGnb.each(function(){
+			var $this = $(this).next("div");
+			if($this.is(":visible")){
+				$(this).addClass("on");
+			};
+		});
+
+		$mGnb.on("click", function(){
+			var $this = $(this).next("div"),
+			$text = $(this).text();
+			if($this.is(":visible")){
+				$this.addClass("on");
+				$this.find(".sub-navi").html($text);
+				$this.stop().animate({"right":"0%"});
+			};
+		});
+
+		$mSub_close.on("click", function(){
+			$(this).parent().parent().stop().animate({"right":"-100%"});
+		});
+	},
+
+	main : function(){
+
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+body{width:100%;}
+#wrap{width:100%; position:relative; z-index:10;}
+#header{position:fixed; top:0; width:100%; height:90px; border-bottom:1px solid #ddd; background:rgba(255,255,255,1); z-index:999;
+-webkit-box-shadow: 0px 0 4px 0px rgba(0,0,0,0.35); 
+-moz-box-shadow: 0px 0 4px 0px rgba(0,0,0,0.35);
+box-shadow: 0px 0 4px 0px rgba(0,0,0,0.35);}
+#visual{width:100%;}
+#contents{width:100%; }
+#footer{width:100%; background-color:#eee;}
+.inner{width:1100px; margin:0 auto; position:relative;}
+.inner:after{content:""; display:block; clear:both;}
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+
+/* header */
+#header .logo{position:absolute; top:50%; left:30px;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+
+#header .utill-area{position:absolute; top:50%; right:0;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#header .utill-area:after{content:""; display:block; clear:both;}
+#header .utill-area>div{float:left; width:36px;}
+#header .utill-area>div.m_lang{width:89px; height:89px; position:relative; background:rgba(255,255,255,1); cursor:pointer;}
+#header .utill-area>div.m_lang>span{position:absolute; top:50%; left:50%; width:36px; 
+-webkit-transform:translate(-50%,-50%);
+-moz-transform:translate(-50%,-50%);
+-o-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%);}
+#header .utill-area>div.gnbOpen{width:89px; height:89px; border-left:1px solid #ddd; position:relative; background:rgba(255,255,255,1); cursor:pointer;}
+#header .utill-area>div.gnbOpen>span{position:absolute; top:50%; left:50%; width:30px;
+-webkit-transform:translate(-50%,-50%);
+-moz-transform:translate(-50%,-50%);
+-o-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%);}
+
+/* gnb */
+.bg{display:none; position:fixed; top:0; left:0; bottom:0; right:0; background:rgba(0,0,0,.75);z-index:995;}
+#aside{position:fixed; top:0; left:-100%; width:85%; max-width:350px; height:100%; z-index:999999;}
+#aside .scroll{width:100%; height:100%; background-color:rgba(255,255,255,1); position:relative;}
+#aside .gnb{width:100%;}
+#aside .gnb>li{width:100%; border-bottom:1px solid #ddd;}
+#aside .gnb>li>a{display:block; padding:15px 20px; width:100%; font-size:16px; color:rgba(68,68,68,1); font-weight:600; background:#fff url("../../images/ico/gnb_off.gif") 97% 50% no-repeat; background-size:18px 12px;  text-decoration:none;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+#aside .gnb>li>a.on{color:#0E9874; background:#fff url("../../images/ico/gnb_on.gif") 97% 50% no-repeat; background-size:18px 12px;}
+#aside .sub{display:none; padding:10px 0; width:100%;  border-top:1px solid #ddd; background-color:#F8F8F8;}
+#aside .sub>li{width:100%;}
+#aside .sub>li>a{display:block; padding:10px 25px; width:100%; font-size:13px; color:#444; font-weight:600; text-decoration:none;
+-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+
+
+#aside_navi{position:fixed; top:0; right:-100%; bottom:0; width:100%; max-width:460px; z-index:999;}
+#aside_navi:after{content:""; display:block; clear:both;}
+#aside_navi .aside_close{float:left; width:90px; height:90px; font-size:0; text-indent:-9999px; background:#9A9FA7 url("../../images/btn/btn_gnbClose.gif") 50% 50% no-repeat; cursor:pointer;}
+
+
+#aside_navi nav{float:right; width:calc(100% - 90px); height:100%; border-left:1px solid #ddd; background-color:#FFF; }
+#aside_navi .m_gnb{margin-top:65px; width:100%; border-top:1px solid #ddd;}
+#aside_navi .m_gnb>li{border-bottom:1px solid #ddd;}
+#aside_navi .m_gnb>li>a{display:block; padding:20px; width:100%; font-size:18px; color:#333; background-color:#FFF;}
+#aside_navi .m_gnb>li>a.on{background:#FFF url("../../images/ico/ico_gnb_on.gif") 95% 50% no-repeat;}
+#aside_navi .m_gnb>li>a:hover{background-color:#f5f5f5;}
+#aside_navi .m_gnb>li>a.on:hover{background:#F5F5F5 url("../../images/ico/ico_gnb_on.gif") 95% 50% no-repeat;}
+#aside_navi .m_sub_ly{position:absolute; top:0; right:-100%; bottom:0; width:calc(100% - 90px); background-color:#fff;}
+#aside_navi .m_sub_ly .top{width:100%; height:90px; border-bottom:1px solid #ddd; position:relative;}
+#aside_navi .m_sub_ly .back{width:90px; height:90px; font-size:0; text-indent:-9999px; background:#F5F5F5 url("../../images/btn/gnb_back.gif") 50% 50% no-repeat; border-bottom:1px solid #ddd; cursor:pointer;}
+#aside_navi .m_sub_ly .top .sub-navi{position:absolute; top:50%; left:110px; font-size:20px; color:#666;
+-webkit-transform:translate(0,-50%);
+-moz-transform:translate(0,-50%);
+-o-transform:translate(0,-50%);
+transform:translate(0,-50%);}
+#aside_navi .m_sub{width:100%; }
+#aside_navi .m_sub>li{border-bottom:1px solid #ddd;}
+#aside_navi .m_sub>li>a{display:block; padding:20px; width:100%; font-size:18px; color:#333; background-color:#FFF;}
+#aside_navi .m_sub>li>a:hover{background-color:#f5f5f5;}
+
+@media all and (max-width:460px){
+	/* header scale small */
+	#header{height:65px;}
+	#header .logo{left:15px; width:140px;}
+	#header .utill-area>div.gnbOpen{width:65px; height:65px;}
+	#header .utill-area>div.gnbOpen>span{width:30px;}
+
+	#header .sub-layer{top:65px;}
+
+	#aside_navi .aside_close{width:65px; height:65px;}
+	#aside_navi nav{width:calc(100% - 65px);}
+	#aside_navi .m_sub_ly{width:calc(100% - 65px);}
+	#aside_navi .m_sub_ly .top{height:65px; }
+	#aside_navi .m_sub_ly .back{width:65px; height:65px;}
+
+	#aside_navi .m_gnb>li>a{padding:15px; font-size:15px;}
+	#aside_navi .m_sub>li>a{padding:15px; font-size:15px;}
+}
+</style> 
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+				<div class="utill-area">
+					<div class="gnbOpen"><span><img src="../../images/btn/gnb_Open.png" alt="주메뉴 열기 버튼" /></span></div>
+				</div><!-- end : class : utill-area -->
+			</header><!-- end : id : header -->
+
+			<aside id="aside_navi">
+				<h2 class="hide">모바일 주메뉴</h2>
+				<div class="aside_close">모바일 주메뉴 닫기</div>
+
+				<nav>
+					<!-- <div class="scroll"> -->
+						<ul class="m_gnb">
+							<li><a href="#self">ホーム</a></li>
+							<li><a href="#self">法人紹介</a>
+								<div class="m_sub_ly">
+									<div class="top">
+										<div class="back">서브메뉴 닫기버튼</div>
+										<p class="sub-navi"></p>
+									</div>
+									<ul class="m_sub">
+										<li><a href="#self">ご挨拶</a></li>
+										<li><a href="#self">組織</a></li>
+										<li><a href="#self">ビジョンと理念</a></li>
+										<li><a href="#self">アクセス</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="#self">業務分野</a>
+								<div class="m_sub_ly">
+									<div class="top">
+										<div class="back">서브메뉴 닫기버튼</div>
+										<p class="sub-navi"></p>
+									</div>
+									<ul class="m_sub">
+										<li><a href="#self">韓国への進出支援</a></li>
+										<li><a href="#self">税務会計</a></li>
+										<li><a href="#self">HRサービス</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="#self">インサイト</a>
+								<div class="m_sub_ly">
+									<div class="top">
+										<div class="back">서브메뉴 닫기버튼</div>
+										<p class="sub-navi"></p>
+									</div>
+									<ul class="m_sub">
+										<li><a href="#self">イシュー及びニュース</a></li>
+										<li><a href="#self">リサーチ及びインサイト</a></li>
+										<li><a href="#self">関連サイト</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="#self">相談申請</a></li>
+							<li><a href="#self">アクセス</a></li>
+						</ul>
+					<!-- </div> -->
+				</nav>
+			</aside>
+
+			<div id="visual">
+	
+			</div><!-- end : id : visual -->
+
+			<div id="contents">
+
+			</div><!-- end : id : contents -->
+
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

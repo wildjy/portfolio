@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.bxslider.css" />
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="../../js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.bxslider.js"></script>
+		<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../js/html5shiv.js"></script><![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="../css/ie7.css" media="all" />
+		<![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+//user-scalable off
+document.documentElement.addEventListener('touchstart', function (event) {
+	if (event.touches.length > 1) {
+		event.preventDefault();
+	}
+}, false);
+
+//ios safari cash delete
+$(window).bind("pageshow", function(event) {
+	if(event.originalEvent.persisted){
+		window.location.reload()
+	}
+});
+
+$(document).ready(function(){
+	project.init();
+});
+
+var project = {
+	init : function(){
+		project.common();
+		project.main();
+		project.sub();
+	},
+
+	common : function(){
+
+	},
+
+	main : function(){
+		var $a = $(".test_bxslider div:first").find("img").attr("src");
+		//console.log($a);
+		
+		$(".test_bxslider").children("div").each(function(index){
+			for(var i = 0; i<index + 1; i++){
+				$(this).attr("data-number", i);
+			}
+		});
+
+		$(".test_bxslider div:first").addClass("active-slide");
+		$(".big").append("<img src='"+ $a + "' alt='' />");
+
+		var test = $('.test_bxslider').bxSlider({
+			auto:false,
+			pause:4000,
+			speed:500,
+			pager:true,
+			controls:true,
+			captions: false,
+			minSlides:2,
+			maxSlides:3,
+			moveSlides:1,
+			slideWidth:380,
+			slideMargin:20,
+			/*
+		    onSlideBefore: function($slideElement, oldIndex, newIndex){
+				console.log(newIndex);
+				$(newIndex).addClass("active");
+			}*/
+			onSliderLoad: function(currentIndex) {
+				//console.log(currentIndex);
+				$(".test_bxslider div").eq(currentIndex).addClass('active-slide');
+
+				$('.test_bxslider div').on("click" , function(){
+					var number = $(this).data('number');
+					test.goToSlide(number);
+				});
+			},
+			onSlideAfter: function($slideElement, newIndex){
+				$(".test_bxslider").children().removeClass('active-slide');
+				$slideElement.addClass('active-slide');
+				var $this = $slideElement.find("img").attr("src")
+				$(".big").find("img").attr("src", $this);
+			}
+		});
+	},
+
+	sub : function(){
+
+	}
+}
+//]]>
+</script>
+<style type="text/css">
+/* layout */
+html,body{width:100%; height:100%;}
+#wrap{width:100%; height:100%; position:relative; z-index:10;}
+#header{width:100%;}
+#visual{width:100%; background-color: #111; }
+#contents{width:100%;}
+#footer{width:100%;}
+.in_Layer{width:1000px; margin:0 auto; }
+
+#skip{}
+#skip a{display:block; position:absolute; top:0; width:0; height:0; margin-top:-1px; text-align:center; white-space:nowrap; overflow:hidden; text-decoration:none;}
+#skip a:focus, #skip a:active{position:relative; top:0; left:0;  width:100%; height:40px; line-height:40px; font-size:18px; font-weight:bold; color:#fff; background-color:#333; z-index:100;}
+
+/* easing */
+.e-i2{-webkit-transition:all .2s ease-in;
+-moz-transition:all .2s ease-in;
+-o-transition:all .2s ease-in;
+transition:all .2s ease-in;}
+.e-i3{-webkit-transition:all .3s ease-in;
+-moz-transition:all .3s ease-in;
+-o-transition:all .3s ease-in;
+transition:all .3s ease-in;}
+.e-o2{-webkit-transition:all .2s ease-out;
+-moz-transition:all .2s ease-out;
+-o-transition:all .2s ease-out;
+transition:all .2s ease-out;}
+.e-o3{-webkit-transition:all .3s ease-out;
+-moz-transition:all .3s ease-out;
+-o-transition:all .3s ease-out;
+transition:all .3s ease-out;}
+.e-c3{
+-webkit-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-moz-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+-o-transition:all .3s cubic-bezier(.96, .04, .10, 1.01);
+transition:all .3s cubic-bezier(.96, .04, .10, 1.01);}
+
+#visual .thumbs_Area{padding:100px 0; width:100%; max-width:1200px; margin:0 auto; text-align:center;}
+#visual .big{margin-bottom:50px; width:auto; max-width:100%; display:inline-block;}
+#visual .big img{width:100%;}
+#visual .test_bxslider{margin:0 25%; width:100%;}
+#visual .test_bxslider>div{text-align:center; background-color:#FFF;}
+#visual .test_bxslider>div.active-slide{border:2px solid red;}
+#visual .test_bxslider>div img{width:100%;}
+#visual .test_bxslider>div .text{opacity:0; visibility:hidden; display:block; position:absolute; top:50%; left:50%; margin-top:80px; font-size:25px; color:#fff; font-weight:600;
+-webkit-transform:translate(-50%,-50%);
+-moz-transform:translate(-50%,-50%);
+-o-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%);}
+/* #visual .test_bxslider>div.active-slide .text{opacity:1; visibility:visible; margin-top:0px;
+-webkit-transition:all 1.5s ease-in;
+-moz-transition:all 1.5s ease-in;
+-o-transition:all 1.5s ease-in;
+transition:all 1.5s ease-in;} */
+#visual .test_bxslider>div .text>b{display:block; padding-bottom:10px; font-size:150%;}
+#visual .bx-wrapper .bx-pager,
+#visual .bx-wrapper .bx-controls-auto {bottom:10px;}
+#visual .bx-wrapper .bx-pager.bx-default-pager a {width: 15px; height: 15px; background-color:#000;
+-moz-border-radius: 50%;
+-webkit-border-radius: 50%;
+border-radius: 50%;}
+#visual .bx-wrapper .bx-pager.bx-default-pager a:hover,
+#visual .bx-wrapper .bx-pager.bx-default-pager a.active,
+#visual .bx-wrapper .bx-pager.bx-default-pager a:focus {background: #eee;}
+#visual .bx-wrapper .bx-controls-direction a {margin-top: -35px; width: 35px; height:70px;}
+#visual .bx-wrapper .bx-prev {left: 10px; background-color:#000;}
+#visual .bx-wrapper .bx-prev:hover,
+#visual .bx-wrapper .bx-prev:focus {background-position: 0 0;}
+#visual .bx-wrapper .bx-next {right: 10px; background-color:#000;}
+#visual .bx-wrapper .bx-next:hover,
+#visual .bx-wrapper .bx-next:focus {background-position: 0 0;}
+
+@media all and (max-width:1000px){
+	#visual .test_bxslider>div{height:auto;}
+	#visual .test_bxslider>div img{margin:0 auto; position:relative; top:0; left:0;
+	-webkit-transform:translate(0,0);
+	-moz-transform:translate(0,0);
+	-o-transform:translate(0,0);
+	transform:translate(0,0);}
+	#visual .test_bxslider>div .text{margin-top:40px; font-size:18px;}
+}
+</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<dl id="skip">
+				<dt class="hide">메뉴 바로가기</dt>
+				<dd><a href="#self">주메뉴 바로가기</a></dd>
+				<dd><a href="#self">컨텐츠 바로가기</a></dd>
+			</dl>
+
+			<header id="header">
+
+			</header><!-- end : id : header -->
+
+			<div id="visual">
+				<div class="thumbs_Area">
+					<div class="big"></div>
+					<div class="carousel">
+						<div class="test_bxslider">
+							<div class="slider-move"><a href="#self"><img src="../../images/contents/coffee1.jpg" alt="" /></a></div>
+							<div class="slider-move"><a href="#self"><img src="../../images/contents/coffee2.jpg" alt="" /></a></div>
+							<div class="slider-move"><a href="#self"><img src="../../images/contents/coffee3.jpg" alt="" /></a></div>
+							<div class="slider-move"><a href="#self"><img src="../../images/contents/coffee1.jpg" alt="" /></a></div>
+							<div class="slider-move"><a href="#self"><img src="../../images/contents/coffee2.jpg" alt="" /></a></div>
+							<div class="slider-move"><a href="#self"><img src="../../images/contents/coffee3.jpg" alt="" /></a></div>
+						</div>
+					</div><!-- end : class : carousel -->
+				</div><!-- end : class : thumbs_Area -->
+			</div><!-- end : id : visual -->
+
+			<!-- contents  -->
+			<div id="contents">
+
+			</div><!-- end : id : contents -->
+
+			<!-- footer  -->
+			<footer id="footer">
+
+			</footer><!-- end : id : footer -->
+		</div><!-- end : id : wrap -->
+	</body>
+</html>

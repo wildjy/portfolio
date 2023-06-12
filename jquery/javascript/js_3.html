@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko" >
+	<head>
+		<title> :  : </title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+		<!-- <meta name="viewport" content="user-scalable=yes, initial-scale=0.25, maximum-scale=1 minimum-scale=0, width=1400px" /> -->
+		<meta name="format-detection" content="telephone=no">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- <meta property="og:type" content="website" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<meta property="og:url" content="" /> -->
+		<!-- <link rel="shortcut icon" type="text/css" href="images/ico/favicon_ns.ico" /> -->
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/study.css" />
+		<link type="text/css" rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<link type="text/css" rel="stylesheet" href="https://codemirror.net/2/theme/monokai.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+		<script type="text/javascript" src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../../js/study.js"></script>
+		<!--[if lt IE 9]><script src="../../js/respond.min.js"></script><![endif]-->
+		<!--[if lt IE 9]><script src="../../js/html5shiv.js"></script><![endif]-->
+
+	</head>
+
+	<body>
+		<h1>Javascript</h1>
+		<h2 class="tit">브라우저 객체 모델(BOM)</h2>
+
+		<p>브라우저에 내장된 객체를 <strong>브라우저 객체</strong>라 합니다. <em>window는 브라우저 객체의 최상위 객체</em>가 됩니다.</p>
+		<p>window - document, screen, location, history, navigator</p>
+
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		var pop = window.open('base-5-array-object.html', 'javascript array method', 'width=400, height=500, left=50, top=10, scrollbars=no, toolbars=no, location=no');
+		</script>
+		</div>
+
+		<h3>window 객체 메서드 종류</h3>
+		<ul>
+			<li><strong>open()</strong> : 새 창을 열 때 사용</li>
+			<li><strong>alert()</strong> : 경고 창을 띄움</li>
+			<li><strong>prompt()</strong> : 질의응답 창을 띄움</li>
+			<li><strong>confirm()</strong> : 확인/취소 창을 띄움</li>
+			<li><strong>moveTo()</strong> : 창의 위치를 이동시킬 때 사용 <div class="studyArea sm"><button onclick="pop.moveTo(250, 300); pop.focus();">moveTo</button></div></li>
+			<li><strong>resizeTo()</strong> : 창의 위치를 변경시킬 때 사용 <div class="studyArea sm"><button onclick="pop.resizeTo(150, 150); pop.focus();">resizeTo</button></div></li>
+			<li><strong>setInterval()</strong> : 일정 간격으로 지속적으로 실행문을 실행시킬 때 사용</li>
+			<li><strong>setTimeout()</strong> : 일정 간격으로 한 번만 실행문을 실행시킬 때 사용</li>
+		</ul>
+		<script type="text/javascript">
+		// prompt('당신의 연령은?', '0')
+		// confirm("정말로 삭제하시겠습니까?");
+		</script>
+
+
+		<h3>screen 객체의 속성 종류</h3>
+		<ul>
+			<li><strong>screen.width</strong> : 화면의 너빗값을 반환</li>
+			<li><strong>screen.height</strong> : 화면의 높잇값을 반환</li>
+			<li><strong>screen.availWidth</strong> : 작업 표시줄을 제외한 화면의 너빗값을 반환</li>
+			<li><strong>screen.availHeight</strong> : 작업 표시줄을 제외한 화면의 높잇값을 반환</li>
+			<li><strong>screen.colorDepth</strong> : 사용자 모니터가 표현 가능한 컬러 bit를 반환</li>
+		</ul>
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		console.log("screen.width : " + screen.width);
+		console.log("screen.height : " + screen.height);
+		console.log("screen.availWidth : " + screen.availWidth);
+		console.log("screen.availHeight : " + screen.availHeight);
+		console.log("screen.colorDepth : " + screen.colorDepth);
+		</script>
+		</div>
+
+
+		<h3>location 객체 속성 / 메서드 종류</h3>
+		<ul>
+			<li><strong>location.href</strong> : URL의 호스트 이름을 설정하거나 반환</li>
+			<li><strong>location.hostname</strong> : URL의 호스트 이름을 설정하거나 반환</li>
+			<li><strong>location.host</strong> : URL의 호스트 이름과 포트 번호를 반환</li>
+			<li><strong>location.port</strong> : URL의 포트 번호를 반환</li>
+			<li><strong>location.protocol</strong> : URL의 프로토콜을 반환</li>
+			<li><strong>location.search</strong> : URL의 쿼리(요청 값)을 반환</li>
+			<li><strong>location.reload()</strong> : 새로 고침이 일어납니다.</li>
+		</ul>
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		console.log( '------------------------------' );
+
+		console.log("location.href : " + location.href);
+		console.log("location.hostname : " + location.hostname);
+		console.log("location.host : " + location.host);
+		console.log("location.port : " + location.port);
+		console.log("location.protocol : " + location.protocol);
+		</script>
+		</div>
+
+		<h3>History 메서드 / 속성 종류</h3>
+		<ul>
+			<li><strong>history.back()</strong> : 이전 방문한 페이지로 이동</li>
+			<li><strong>history.forward()</strong> : 다음 방문한 페이지로 이동</li>
+			<li><strong>history.go(이동 숫자)</strong> : 이동 숫자가 -2이면 2단계 이전 페이지로 이동</li>
+			<li><strong>length</strong> : 방문 기록에 저장된 목록의 개수를 반환</li>
+		</ul>
+
+
+		<h3>navigator 속성</h3>
+		<ul>
+			<li><strong>navigator.appCodeName</strong> : 방문자의 브라우저 코드명을 반환</li>
+			<li><strong>navigator.appName</strong> : 방문자의 브라우저 이름을 반환</li>
+			<li><strong>navigator.appVersion</strong> : 방문자의 브라우저 버전 정보를 반환</li>
+			<li><strong>navigator.language</strong> : 방문자의 브라우저  사용 언어를 반환</li>
+			<li><strong>navigator.product</strong> : 방문자의 브라우저  사용 엔진 이름을 반환</li>
+			<li><strong>navigator.platform</strong> : 방문자의 브라우저를 실행하는 운영체제를 반환</li>
+			<li><strong>navigator.userAgent</strong> : 방문자의 브라우저와 운영체제 종합 정보를 제공</li>
+		</ul>
+		<div class="studyArea sm">
+		<script type="text/javascript">
+		console.log( '------------------------------' );
+
+		console.log("navigator.appCodeName : " + navigator.appCodeName);
+		console.log("navigator.appName : " + navigator.appName);
+		console.log("navigator.appVersion : " + navigator.appVersion);
+		console.log("navigator.language : " + navigator.language);
+		console.log("navigator.product : " + navigator.product);
+		console.log("navigator.platform : " + navigator.platform);
+		console.log("navigator.userAgent : " + navigator.userAgent);
+		</script>
+		<button onclick="info();">운영체제 정보</button>
+		<script type="text/javascript">
+		function info(){
+			var os = navigator.userAgent.toLowerCase();
+			// 브라우저 및 운영체제 종합 정보를 반환한 후, 모두 소문자로 바꿈
+			if(os.indexOf('windows')>=0){
+				alert('당신의 OS는 "윈도우" 입니다.');
+			}else if(os.indexOf('macintosh')>=0){
+				alert('당신의 OS는 "맥킨토시" 입니다.');
+			}else if(os.indexOf('iphone')>=0){
+				alert('당신의 OS는 "아이폰" 입니다.');
+			}else if(os.indexOf('android')>=0){
+				alert('당신의 OS는 "안드로이드" 입니다.');
+			}
+		}
+		</script>
+		</div>
+	</body>
+</html>
