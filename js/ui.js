@@ -71,7 +71,7 @@ var project = {
 			$gnb_Layer.removeClass("on");
 			TweenMax.to($gnb_Layer, .6, {"visibility":"hidden","scale":".6", ease: Power3.easeInOut});
 		});
-		
+
 		$gnb_Close.on("mouseover", function(){
 			$(this).rotate({animateTo:360,  duration:350, easing: $.easing.easeInOutSine});
 		}).on("mouseleave", function(){
@@ -102,7 +102,7 @@ var project = {
 			//TweenMax.to($(".logo"), 0.6, {"top":"2%","width" :"","z-index":"110", ease: Power3.easeInOut});
 			TweenMax.to($detail_Layer, 0.6, {"display" :"none","visibility":"hidden","scale":"0.6", ease: Power3.easeInOut});
 		});
-		
+
 		$detail_Close.on("mouseover", function(){
 			$(this).children("img").rotate({animateTo:360,  duration:250, easing: $.easing.easeInOutSine});
 		}).on("mouseleave", function(){
@@ -155,7 +155,7 @@ var project = {
 					for(var i=0; i<htpInitNum; i++){
 						$htpList.append(html);
 					}
-					
+
 					$mainSlider.slick('reinit');
 
 					$mainSlider.find(".more").each(function(index){
@@ -233,7 +233,7 @@ var project = {
 						ease: Expo.easeOut
 					})).add(TweenMax.to(".main", 1, {
 						overflowY: "auto",
-						overflowX: "hidden" 
+						overflowX: "hidden"
 					}), "=-1");
 				}
 			});
@@ -266,7 +266,7 @@ var project = {
 		if($(".about").is(":visible")){
 			//about interaction
 			var b = new TimelineMax({});
-			
+
 			b.add(TweenMax.to(".loader", 0, {// time 2
 				delay: 0,
 				visibility: "visible",
@@ -345,7 +345,7 @@ var project = {
 				ease: Quad.easeOut
 			}), "=.3").add(TweenMax.to("html,body", 1, {
 				//overflowY: "auto",
-				//overflowX: "hidden" 
+				//overflowX: "hidden"
 			}), "=-1");
 		};
 			/*
@@ -421,7 +421,7 @@ var project = {
 				scale: 1,
 				ease: Expo.easeOut
 			}))
-			
+
 			var z = new TimelineMax({
 				repeat: -1
 			});
