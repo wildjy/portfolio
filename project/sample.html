@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+	<title>sample</title>
+  <style type="text/css">
+    :root {
+      --mid-Width : 240px;
+    }
+    /* @media screen and (max-width: 720px) {
+      :root {
+        --mid-Width : 40%;
+      }
+    } */
+    * {padding: 0; margin: 0; }
+    #wrapper {position: relative;}
+    .cover {display: flex; flex-wrap:wrap; height: 100dvh; position: relative;}
+    .cover>div:not(.mid_contents) {display: flex; flex-wrap:wrap; justify-content:center; align-items: center; width: calc(100%/2); height: 100%; transition: all 3s; position: relative;}
+    .cover>div:not(.mid_contents):after {content: ""; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, .65); transition: all 1s;}
+    .cover>div:not(.mid_contents).active:after {background-color: rgba(0, 0, 0, 0);}
+    .cover>div:not(.mid_contents) a {display: block; padding: 15px 35px; font-size: 16px; color: #272727; text-align: center; background-color: #fff; border-radius: 10px; position: relative; z-index: 2;}
+    .cover .mid_contents {position: fixed; top: 0; bottom: 0; left: 50%; width: var(--mid-Width); background-color: #fff; transform: translate(-50%, 0); transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1); z-index:3;}
+    .cover .mid_contents.move_left {margin-left: calc(var(--mid-Width) / 2);}
+    .cover .mid_contents.move_right {margin-left: calc(var(--mid-Width) / 2 * -1);}
+
+    .cover .left {background-size: cover; background-image: url("http://www.chfoods.co.kr/images/intro_left_bg.jpg");background-position: 100% center; }
+    .cover .left a {margin-left: calc(var(--mid-Width) / 2 * -1 );}
+    .cover .right {background-size: cover; background-image: url("http://www.chfoods.co.kr/images/intro_rig_bg.jpg");background-position: 0% center; }
+    .cover .right a {margin-left: calc(var(--mid-Width) / 2);}
+    .cover .left:hover {background-position: 0 center; }
+    .cover .right:hover {background-position: 100% center; }
+    @media screen and (max-width: 720px) {
+      .cover .mid_contents.move_left {margin-left: calc(var(--mid-Width) / 4);}
+      .cover .left a {margin-left: 0;}
+      .cover .mid_contents.move_right {margin-left: calc(var(--mid-Width) / 4 * -1);}
+      .cover .right a {margin-left: 0;}
+    }
+  </style>
+</head>
+<body>
+
+  <div id="wrapper">
+    <div class="intro cover">
+      <div class="move left">
+        <a href="#self">좌측 이동 버튼</a>
+      </div>
+      <div class="mid_contents"></div>
+      <div class="move right">
+        <a href="#self">우측 이동 버튼</a>
+      </div>
+    </div>
+    <!-- // cover -->
+    <script>
+      const _obj = {
+        'move' : document.querySelectorAll('.move'),
+        'left' : document.querySelector('.left'),
+        'right' : document.querySelector('.right'),
+        'mid': document.querySelector('.mid_contents')
+      }
+
+      function init (_target) {
+        const checkDir = _target.classList.contains('left');
+        const active = 'active';
+        if(_target.classList.contains(active)) {
+          if (checkDir) {
+            _obj.mid.classList.remove('move_left');
+            _target.classList.remove(active);
+          } else {
+            _obj.mid.classList.remove('move_right');
+            _target.classList.remove(active);
+          }
+        } else {
+          if (checkDir) {
+            _obj.mid.classList.add('move_left');
+            _target.classList.add(active);
+          } else {
+            _obj.mid.classList.add('move_right');
+            _target.classList.add(active);
+          }
+        }
+      }
+
+    _obj.move.forEach((obj, index) => {
+      obj.addEventListener('mouseover', function (){
+        init(this);
+      })
+      obj.addEventListener('mouseleave', function (){
+        init(this);
+      })
+    })
+    </script>
+    <div class="intro">
+    </div>
+  </div>
+  <!-- // wrapper -->
+
+</body>
+</html>
