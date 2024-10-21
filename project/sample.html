@@ -9,33 +9,44 @@
     :root {
       --mid-Width : 240px;
     }
-    /* @media screen and (max-width: 720px) {
+    @media screen and (max-width: 720px) {
       :root {
         --mid-Width : 40%;
       }
-    } */
-    * {padding: 0; margin: 0; }
+    }
+    * {padding: 0; margin: 0; font-family: 'prentard', sans-serif; box-sizing: border-box;}
+    a {text-decoration: none;}
+    img {width: 100%;}
+    a:hover {text-decoration: underline;}
     #wrapper {position: relative;}
     .cover {display: flex; flex-wrap:wrap; height: 100dvh; position: relative;}
-    .cover>div:not(.mid_contents) {display: flex; flex-wrap:wrap; justify-content:center; align-items: center; width: calc(100%/2); height: 100%; transition: all 3s; position: relative;}
-    .cover>div:not(.mid_contents):after {content: ""; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, .65); transition: all 1s;}
+    .cover>div:not(.mid_contents) {display: flex; flex-wrap:wrap; justify-content: center; align-items: center; width: calc(100%/2); height: 100%;transition: all 3s; position: relative;}
+    .cover>div:not(.mid_contents):after {content: ""; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, .6); transition: all 1s;}
     .cover>div:not(.mid_contents).active:after {background-color: rgba(0, 0, 0, 0);}
-    .cover>div:not(.mid_contents) a {display: block; padding: 15px 35px; font-size: 16px; color: #272727; text-align: center; background-color: #fff; border-radius: 10px; position: relative; z-index: 2;}
-    .cover .mid_contents {position: fixed; top: 0; bottom: 0; left: 50%; width: var(--mid-Width); background-color: #fff; transform: translate(-50%, 0); transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1); z-index:3;}
+    .cover>div:not(.mid_contents) div{text-align: center;}
+    .cover>div:not(.mid_contents) a {display: inline-block; margin-top: 40px; width: 200px; height: 50px; font-size: 1em; line-height: 50px; color: #fff; text-align: center; background-color: #000; border-radius: 10px; position: relative; z-index: 2;}
+    .cover .mid_contents {position: fixed; top: 0; bottom: 0; left: 50%; display: flex; flex-wrap:wrap; justify-content: space-between; flex-direction: column;  align-items: center; width: var(--mid-Width); text-align: center; background-color: #16352F; transform: translate(-50%, 0); transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1); z-index:3;}
     .cover .mid_contents.move_left {margin-left: calc(var(--mid-Width) / 2);}
     .cover .mid_contents.move_right {margin-left: calc(var(--mid-Width) / 2 * -1);}
+    .cover .mid_contents .intro_obj_1 {margin-top: 30px;}
+    .cover .mid_contents .intro_obj_3 {margin-bottom: 30px;}
 
-    .cover .left {background-size: cover; background-image: url("../../images/contents/intro_left_bg.jpg");background-position: 100% center; }
-    .cover .left a {margin-left: calc(var(--mid-Width) / 2 * -1 );}
-    .cover .right {background-size: cover; background-image: url("../../images/contents/intro_rig_bg.jpg");background-position: 0% center; }
-    .cover .right a {margin-left: calc(var(--mid-Width) / 2);}
+    .cover .left {background-size: cover; background-image: url("https://wildjy.github.io/images/contents/intro_left_bg.jpg");background-position: 100% center; }
+    .cover .left>div {margin-left: calc(var(--mid-Width) / 2 * -1 );}
+    .cover .right {background-size: cover; background-image: url("https://wildjy.github.io/images/contents/intro_right_bg.jpg");background-position: 0% center; }
+    .cover .right>div {margin-left: calc(var(--mid-Width) / 2);}
     .cover .left:hover {background-position: 0 center; }
     .cover .right:hover {background-position: 100% center; }
     @media screen and (max-width: 720px) {
-      .cover .mid_contents.move_left {margin-left: calc(var(--mid-Width) / 4);}
-      .cover .left a {margin-left: 0;}
-      .cover .mid_contents.move_right {margin-left: calc(var(--mid-Width) / 4 * -1);}
-      .cover .right a {margin-left: 0;}
+      .cover>div:not(.mid_contents) div { width: 100%;}
+      .cover>div:not(.mid_contents) div .logo{margin: 0 auto; width: 50%;}
+      .cover>div.right div .logo{width: 65%;}
+      .cover .mid_contents {padding: 0 5%;}
+      .cover .mid_contents.move_left {margin-left: calc(var(--mid-Width) / 2);}
+      .cover .left>div {margin-left: 0;}
+      .cover .mid_contents.move_right {margin-left: calc(var(--mid-Width) / 2 * -1);}
+      .cover .right>div {margin-left: 0;}
+      .cover>div:not(.mid_contents) a {}
     }
   </style>
 </head>
@@ -44,11 +55,21 @@
   <div id="wrapper">
     <div class="intro cover">
       <div class="move left">
-        <a href="#self">좌측 이동 버튼</a>
+        <div>
+          <p class="logo"><img src="https://wildjy.github.io/images/contents/daejong_logo_1.png" alt="대종상사" /></p>
+          <a href="#self">대종상사 바로가기</a>
+        </div>
       </div>
-      <div class="mid_contents"></div>
+      <div class="mid_contents">
+        <p class="intro_obj_1"><img src="https://wildjy.github.io/images/contents/intro_txt_1.jpg" alt="ADVANCED" /></p>
+        <p class="intro_obj_2"><img src="https://wildjy.github.io/images/contents/intro_txt_3.jpg" alt="대한민국 효소산업 1세대로의 자부심" /></p>
+        <p class="intro_obj_3"><img src="https://wildjy.github.io/images/contents/intro_txt_2.jpg" alt="ENZYME SOLUTION" /></p>
+      </div>
       <div class="move right">
-        <a href="#self">우측 이동 버튼</a>
+        <div>
+          <p class="logo"><img src="https://wildjy.github.io/images/contents/daejong_logo_2.png" alt="대종자임스(주)" /></p>
+          <a href="#self">대종자임스 바로가기</a>
+        </div>
       </div>
     </div>
     <!-- // cover -->
