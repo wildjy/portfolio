@@ -38,7 +38,7 @@
     .cover .left:hover {background-position: 0 center; }
     .cover .right:hover {background-position: 100% center; }
     @media screen and (max-width: 720px) {
-      .cover>div:not(.mid_contents) div { width: 100%;}
+      .cover>div:not(.mid_contents) div {padding: 0 10%; width: 100%;}
       .cover>div:not(.mid_contents) div .logo{margin: 0 auto; width: 50%;}
       .cover>div.right div .logo{width: 65%;}
       .cover .mid_contents {padding: 0 5%;}
@@ -46,7 +46,7 @@
       .cover .left>div {margin-left: 0;}
       .cover .mid_contents.move_right {margin-left: calc(var(--mid-Width) / 2 * -1);}
       .cover .right>div {margin-left: 0;}
-      .cover>div:not(.mid_contents) a {}
+      .cover>div:not(.mid_contents) a {width: 100%; font-size: .75em; height: 3.5em; line-height: 3.5em;}
     }
   </style>
 </head>
